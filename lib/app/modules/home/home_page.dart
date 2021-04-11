@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_entregador/app/routes/constants_routes.dart';
+import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
 
 
 
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
             Modular.to.navigate(ConstantsRoutes.CALL_ACCOUNTPAGE);
           }
         },
-        currentIndex: currentIndex,
+        currentIndex: currentIndex,selectedItemColor: AppThemeUtils.colorPrimary,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

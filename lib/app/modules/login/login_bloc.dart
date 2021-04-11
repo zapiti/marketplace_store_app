@@ -54,6 +54,7 @@ class LoginBloc extends Disposable {
     loadingSubject.sink.add(true);
     Future.delayed(Duration(seconds: 2),(){
       loadingSubject.sink.add(false);
+      Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
     });
     // var response = await _authRepository.getLogin(
     //     username: emailController.text.toLowerCase(),

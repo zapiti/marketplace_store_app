@@ -42,7 +42,7 @@ class TitleDescriptionBigMobileWidget extends StatelessWidget {
                       (action != null
                           ? Icon(
                               Icons.keyboard_arrow_right,
-                              color: Theme.of(context).primaryColor,
+                              color:AppThemeUtils.colorPrimary,
                             )
                           : SizedBox()),
                   SizedBox(width: 10),

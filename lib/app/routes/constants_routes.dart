@@ -30,6 +30,12 @@ class ConstantsRoutes {
   static const String SUCESS_ALTERPASS = '/sucess_alter';
   static const String CALL_SUCESS_ALTERPASS  =  LOGIN+SUCESS_ALTERPASS;
 
+  static const String DETAILS_HISTORY = "/details_order_history";
+  static const String CALL_DETAILS_HISTORY   =  CALL_HOMEPAGE+DETAILS_HISTORY;
+
+  static const String DETAILS_PENDING = "/details_order_peding";
+  static const String CALL_DETAILS_PENDING  =  CALL_HOMEPAGE+DETAILS_PENDING;
+
   ///***passe @route
   ///para pegar o nome da rota
   static String getNameByRoute(
@@ -37,7 +43,7 @@ class ConstantsRoutes {
   ) {
     switch (route) {
       case ConstantsRoutes.HOMEPAGE:
-        return "Início";
+        return "Pedidos";
         break;
       default:
         return "Início";

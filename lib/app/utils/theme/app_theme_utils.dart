@@ -62,4 +62,13 @@ class AppThemeUtils {
   static bool isWeb(BuildContext context) {
     return kIsWeb;
   }
+
+  static ThemeData customTheme() {
+    return ThemeData(
+        primaryColor: AppThemeUtils.colorPrimary,
+        primaryColorLight: AppThemeUtils.colorPrimary,
+        buttonColor: AppThemeUtils.whiteColor,
+        iconTheme: IconThemeData(color: Colors.white),
+          );
+  }
 }

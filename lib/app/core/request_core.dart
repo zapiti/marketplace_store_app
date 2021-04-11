@@ -64,7 +64,7 @@ class RequestCore {
             return tryAgainElement(typeRequest, api, serviceName, isJsonResponse, isImage, body, funcFromMap, namedResponse, isObject);
           }else{
             var msg =
-            ResponseUtils.getErrorBody(serviceName, body, e.response?.data);
+            ResponseUtils.getErrorBody( e.response?.data);
             return ResponseUtils.getResponsePaginatedObject(
                 CodeResponse(error: msg), funcFromMap,
                 status: e?.response?.statusCode);
@@ -72,7 +72,7 @@ class RequestCore {
 
         } on Exception catch (e) {
           var msg =
-              ResponseUtils.getErrorBody(serviceName, body, e?.toString()) ??
+              ResponseUtils.getErrorBody( e?.toString()) ??
                   "Sem descrição de erro";
           return ResponseUtils.getResponsePaginatedObject(
               CodeResponse(error: msg), funcFromMap,

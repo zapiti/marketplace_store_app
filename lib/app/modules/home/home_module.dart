@@ -3,7 +3,6 @@ import 'package:marketplace_entregador/app/modules/home/modules/home/home_page_m
 import 'package:marketplace_entregador/app/modules/home/modules/store/store_module.dart';
 import 'package:marketplace_entregador/app/routes/constants_routes.dart';
 
-import 'home_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'home_page.dart';
@@ -12,7 +11,7 @@ class HomeModule extends Module {
   @override
   List<Bind> get binds =>
       [
-        Bind((i) => HomeBloc()),
+
 
       ];
 

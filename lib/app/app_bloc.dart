@@ -38,6 +38,6 @@ class AppBloc extends Disposable {
   }
 
  Future<bool> getFirstAcess() async{
-    return true;
+    return false;
   }
 }

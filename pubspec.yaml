@@ -6,6 +6,11 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 dependencies:
 
+  image_cropper:
+  image_picker:
+
+  flutter_masked_text:
+
   email_validator:
 
   ##sgv

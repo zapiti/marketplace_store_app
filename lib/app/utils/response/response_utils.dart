@@ -28,7 +28,7 @@ class ResponseUtils {
           error: response.error ?? "Sem resposta do servidor!");
     }
     if (response.sucess.length == 0) {
-      return ResponsePaginated.fromMap(List<T>());
+      return ResponsePaginated.fromMapSimple(List<T>());
     }
     var tempResp = namedResponse != null
         ? response?.sucess[namedResponse]
@@ -43,7 +43,7 @@ class ResponseUtils {
         listElementGeneric.add(order);
       }
     }
-    return ResponsePaginated.fromMap(listElementGeneric);
+    return ResponsePaginated.fromMapSimple(listElementGeneric);
   }
 
   ///***@response e a resposta do servidor e @funcFromMap converte a resposta do servidor em algo
@@ -64,12 +64,12 @@ class ResponseUtils {
       var object = ObjectUtils.parseToMap(response?.sucess,
           defaultValue: response?.sucess);
 
-      return ResponsePaginated.fromMap(funcFromMap(object));
+      return ResponsePaginated.fromMapSimple(funcFromMap(object));
     }
   }
 
   ///***@service e o nome do servico  @body e o body passado na requisicao  @result e o resultado do servidor
-  static String getErrorBody(String service, dynamic body, dynamic result) {
+  static String getErrorBody( dynamic result) {
     var error = ObjectUtils.parseToMap(result, defaultValue: result) ?? result;
 
     if (error is Map && error != null) {

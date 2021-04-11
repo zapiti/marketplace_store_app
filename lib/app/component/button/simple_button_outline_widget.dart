@@ -25,7 +25,7 @@ class SimpleButtonOutlineWidget extends StatelessWidget {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(4.0),
-            side: BorderSide(color: Theme.of(context).primaryColor)),
+            side: BorderSide(color:AppThemeUtils.colorPrimary)),
       ),
     );
   }

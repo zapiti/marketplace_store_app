@@ -100,6 +100,27 @@ class MyDateUtils {
     }
     return temp;
   }
+
+  static hoursToCompareNow(DateTime dtCreate) {
+    final minutes =  compareDateNowDatime(dtCreate,dateEnd: DateTime.now());
+    final duration = Duration(minutes: minutes);
+
+    return _printDuration(duration);
+  }
 }
 
 
+String _printDuration(Duration duration) {
+  String twoDigitDays = duration.inDays.toString();
+  String twoDigitHours = twoDigits(duration.inHours.remainder(24));
+  String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+
+
+
+  return duration.inHours == 0
+      ? "$twoDigitMinutes minutos"
+      :duration.inDays == 0
+      ? "$twoDigitHours:$twoDigitMinutes horas" : "$twoDigitDays dias e $twoDigitHours:$twoDigitMinutes horas";
+}
+
+String twoDigits(int n) => n.toString().padLeft(2, "0");
