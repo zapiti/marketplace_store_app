@@ -36,6 +36,15 @@ class ConstantsRoutes {
   static const String DETAILS_PENDING = "/details_order_peding";
   static const String CALL_DETAILS_PENDING  =  CALL_HOMEPAGE+DETAILS_PENDING;
 
+  static const String NEWPRODUCT = "/new_product";
+  static const String CALL_NEWPRODUCT =  CALL_STOREPAGE+NEWPRODUCT;
+
+  static const String NEWPRODUCTQUANTITY = "/new_product_quantidade";
+  static const String CALL_NEWPRODUCTQUANTITY =  CALL_STOREPAGE+NEWPRODUCTQUANTITY;
+
+  static const String NEWPRODUCTBARCODE = "/new_product_barcode";
+  static const String CALL_NEWPRODUCTBARCODE =  CALL_STOREPAGE+NEWPRODUCTBARCODE;
+
   ///***passe @route
   ///para pegar o nome da rota
   static String getNameByRoute(

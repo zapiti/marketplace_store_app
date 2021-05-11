@@ -5,6 +5,9 @@ class ImagePath {
 
   static final String imageLogo2  = "assets/images/ic_logo_2.svg";
 
+  static final String ic_barcode  = "assets/images/ic_barcode.svg";
+  static final String bg_barcode  = "assets/images/bg_barcode.svg";
+
   static final String checkSucessImage = "assets/images/ic_success.png";
 
   static final imageEmpty = "assets/images/icon_happy.png";

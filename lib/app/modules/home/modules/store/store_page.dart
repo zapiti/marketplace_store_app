@@ -65,7 +65,9 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
                       shape: RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(4.0),
                           side: BorderSide(color: AppThemeUtils.colorPrimary))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Modular.to.pushNamed(ConstantsRoutes.CALL_NEWPRODUCT);
+                  },
                 )),
             Expanded(
                 child: builderComponent<ResponsePaginated>(

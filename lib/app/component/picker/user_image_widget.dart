@@ -16,13 +16,14 @@ class UserImageWidget extends StatefulWidget {
 
   final Function(String) changeImage;
   final Stream userImage;
+  final String addButtom;
 
   UserImageWidget({
     this.height,
     this.width,this.isRounded = true,
 
     this.changeImage,
-    this.userImage,
+    this.userImage, this. addButtom,
   });
 
   @override
@@ -137,6 +138,17 @@ class _UserImageWidgetState extends State<UserImageWidget> {
                             _settingModalBottomSheet(context);
                           },
                     child: Stack(children: <Widget>[
+                      widget.addButtom == null ? SizedBox():    Center(
+                child:Opacity(opacity: 0.6,child:   ElevatedButton(
+                        child: Text(
+                         widget.addButtom,
+                          style: AppThemeUtils.normalSize(color: Colors.white),
+                        ),
+                        onPressed: (){
+                          _settingModalBottomSheet(context);
+                        },
+                        style: ElevatedButton.styleFrom(primary: Colors.grey,elevation: 0),
+                      ))),
                       _images == null
                           ? builderComponent<String>(
                               stream: widget.userImage,
@@ -149,8 +161,8 @@ class _UserImageWidgetState extends State<UserImageWidget> {
                                           Icons.person,
                                           size: 60,
                                         ))
-                                      : Image.network(
-                                          response ?? "", fit: BoxFit.fill,
+                                      : (response ?? "").isEmpty ? SizedBox():Image.network(
+                                    (response ?? ""), fit: BoxFit.fill,
 
                                     width: widget.width ?? 120,
                                     height: widget.height ?? 120,

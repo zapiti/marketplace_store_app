@@ -9,27 +9,21 @@ import 'home_page.dart';
 
 class HomeModule extends Module {
   @override
-  List<Bind> get binds =>
-      [
-
-
-      ];
+  List<Bind> get binds => [];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => HomePage(), children: [
-      ModuleRoute(ConstantsRoutes.HOMEPAGE,
-          module: HomePageModule(),
-          transition: TransitionType.fadeIn),
-      ModuleRoute(ConstantsRoutes.STOREPAGE,
-          module: StoreModule(),
-          transition: TransitionType.fadeIn),
-      ModuleRoute(ConstantsRoutes.ACCOUNTPAGE,
-          module: AccountModule(),
-          transition: TransitionType.fadeIn),
-
-    ],),
+    ChildRoute(
+      Modular.initialRoute,
+      child: (_, args) => HomePage(),
+      children: [
+        ModuleRoute(ConstantsRoutes.HOMEPAGE,
+            module: HomePageModule(), transition: TransitionType.fadeIn),
+        ModuleRoute(ConstantsRoutes.STOREPAGE,
+            module: StoreModule(), transition: TransitionType.fadeIn),
+        ModuleRoute(ConstantsRoutes.ACCOUNTPAGE,
+            module: AccountModule(), transition: TransitionType.fadeIn),
+      ],
+    ),
   ];
-
-
 }
