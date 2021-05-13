@@ -45,6 +45,18 @@ class ConstantsRoutes {
   static const String NEWPRODUCTBARCODE = "/new_product_barcode";
   static const String CALL_NEWPRODUCTBARCODE =  CALL_STOREPAGE+NEWPRODUCTBARCODE;
 
+  static const String ALTERPASS = "/alter_pass";
+  static const String CALL_ALTERPASS =  CALL_ACCOUNTPAGE+ALTERPASS;
+
+  static const String HELP = "/help";
+  static const String CALL_HELP =  CALL_ACCOUNTPAGE+HELP;
+
+  static const String WALLET = "/wallet";
+  static const String CALL_WALLET =  CALL_ACCOUNTPAGE+WALLET;
+
+  static const String MYBANK = "/mybank";
+  static const String CALL_MYBANK=  CALL_ACCOUNTPAGE+MYBANK;
+
   ///***passe @route
   ///para pegar o nome da rota
   static String getNameByRoute(

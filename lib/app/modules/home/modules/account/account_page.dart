@@ -24,21 +24,27 @@ class _AccountPageState extends ModularState<AccountPage, AccountController> {
             titleDescriptionMobileWidget(
               context,
               title: "Alterar senha",
-              action: () {},
+              action: () {
+                Modular.to.pushNamed(ConstantsRoutes.CALL_ALTERPASS);
+              },
               iconData: MaterialCommunityIcons.lock_outline,
             ),
             lineViewWidget(),
             titleDescriptionMobileWidget(
               context,
               title: "Minha carteira",
-              action: () {},
+              action: () {
+                Modular.to.pushNamed(ConstantsRoutes.CALL_WALLET);
+              },
               iconData: MaterialCommunityIcons.cash_usd,
             ),
             lineViewWidget(),
             titleDescriptionMobileWidget(
               context,
               title: "Ajuda",
-              action: () {},
+              action: () {
+                Modular.to.pushNamed(ConstantsRoutes.CALL_HELP);
+              },
               iconData: MaterialCommunityIcons.information_outline,
             ),
             lineViewWidget(),
