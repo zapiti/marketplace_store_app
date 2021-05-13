@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/builder/builder_component.dart';
-import 'package:marketplace_entregador/app/component/builder/builder_infinity_listView_component.dart';
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
-import 'package:marketplace_entregador/app/modules/home/modules/home/home_controller.dart';
+import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
+import 'package:marketplace_store_app/app/component/builder/builder_infinity_listView_component.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/home_controller.dart';
 
 import 'item/item_pending_widget.dart';
 

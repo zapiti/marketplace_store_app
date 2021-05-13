@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
 
 
 class ObjectUtils {

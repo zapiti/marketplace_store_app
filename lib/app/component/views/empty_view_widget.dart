@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:marketplace_entregador/app/image/image_path.dart';
+import 'package:marketplace_store_app/app/image/image_path.dart';
 
 class EmptyViewWidget extends StatelessWidget {
   final String text;

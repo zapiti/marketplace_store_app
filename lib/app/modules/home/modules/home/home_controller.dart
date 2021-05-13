@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
 
-import 'package:marketplace_entregador/app/modules/home/modules/home/repository/home_repository.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/repository/home_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeController extends Disposable {

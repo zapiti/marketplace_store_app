@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_entregador/app/component/simple/line_view_widget.dart';
-import 'package:marketplace_entregador/app/modules/home/item/item_product.dart';
-import 'package:marketplace_entregador/app/modules/home/modules/home/model/order.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/component/simple/line_view_widget.dart';
+import 'package:marketplace_store_app/app/modules/home/item/item_product.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/model/order.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class DetailHistoryPage extends StatefulWidget {
   final Order _order;

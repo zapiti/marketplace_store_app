@@ -1,5 +1,5 @@
 
-import 'package:marketplace_entregador/app/models/user_entity.dart';
+import 'package:marketplace_store_app/app/models/user_entity.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class SecurityPreference {

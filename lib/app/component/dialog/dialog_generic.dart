@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_entregador/app/component/load/load_elements.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
-import 'package:marketplace_entregador/app/utils/string/string_file.dart';
+import 'package:marketplace_store_app/app/component/load/load_elements.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/utils/string/string_file.dart';
 
 void showGenericDialog(
     {IconData iconData,

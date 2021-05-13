@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/load/load_elements.dart';
-import 'package:marketplace_entregador/app/image/image_logo_widget.dart';
-import 'package:marketplace_entregador/app/modules/login/login_bloc.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/component/load/load_elements.dart';
+import 'package:marketplace_store_app/app/image/image_logo_widget.dart';
+import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class LoginPage extends StatefulWidget {
   @override

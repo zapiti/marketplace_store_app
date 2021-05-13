@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/mobile/title_descritption_mobile_widget.dart';
-import 'package:marketplace_entregador/app/component/simple/line_view_widget.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/component/mobile/title_descritption_mobile_widget.dart';
+import 'package:marketplace_store_app/app/component/simple/line_view_widget.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'account_controller.dart';
 
 class AccountPage extends StatefulWidget {

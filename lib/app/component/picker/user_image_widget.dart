@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:marketplace_entregador/app/component/builder/builder_component.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 
 class UserImageWidget extends StatefulWidget {
@@ -40,7 +40,7 @@ class _UserImageWidgetState extends State<UserImageWidget> {
     var pickedFile;
     File photo2;
     try {
-      pickedFile = await ImagePicker.pickImage(
+      pickedFile = await ImagePicker().getImage(
           source: source, maxWidth: 300, maxHeight: 300);
 
       photo2 = File(pickedFile.path);

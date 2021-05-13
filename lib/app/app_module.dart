@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:marketplace_entregador/app/modules/login/login_module.dart';
-import 'package:marketplace_entregador/app/modules/login/page/login_remember/login_remember_bloc.dart';
-import 'package:marketplace_entregador/app/modules/onboard/onboard_module.dart';
+import 'package:marketplace_store_app/app/modules/login/login_module.dart';
+import 'package:marketplace_store_app/app/modules/login/page/login_remember/login_remember_bloc.dart';
+import 'package:marketplace_store_app/app/modules/onboard/onboard_module.dart';
 
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 
 import 'app_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_entregador/app/app_widget.dart';
-import 'package:marketplace_entregador/app/modules/home/home_module.dart';
+import 'package:marketplace_store_app/app/app_widget.dart';
+import 'package:marketplace_store_app/app/modules/home/home_module.dart';
 
 import 'core/request_core.dart';
 import 'guard/router_login_guard.dart';

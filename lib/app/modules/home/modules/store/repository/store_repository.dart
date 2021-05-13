@@ -1,5 +1,5 @@
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
-import 'package:marketplace_entregador/app/modules/home/model/product.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/modules/home/model/product.dart';
 
 class StoreRepository {
   Future<ResponsePaginated> getListProducts() async {

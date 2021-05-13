@@ -1,5 +1,5 @@
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
-import 'package:marketplace_entregador/app/modules/home/modules/home/model/order.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/model/order.dart';
 
 
 class HomeRepository {

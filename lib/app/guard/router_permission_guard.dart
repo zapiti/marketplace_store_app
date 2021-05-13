@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 
 import '../app_bloc.dart';
 

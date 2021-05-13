@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/select/select_button.dart';
-import 'package:marketplace_entregador/app/models/pairs.dart';
-import 'package:marketplace_entregador/app/modules/home/modules/home/widget/history/history_home_page.dart';
-import 'package:marketplace_entregador/app/modules/home/modules/home/widget/pending/pending_home_page.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/component/select/select_button.dart';
+import 'package:marketplace_store_app/app/models/pairs.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/widget/history/history_home_page.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/widget/pending/pending_home_page.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import 'home_controller.dart';
 
 class HomeInitialPage extends StatefulWidget {

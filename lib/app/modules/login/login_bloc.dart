@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/dialog/dialog_generic.dart';
-import 'package:marketplace_entregador/app/component/generic_dialog_widget.dart';
-import 'package:marketplace_entregador/app/models/current_user.dart';
-import 'package:marketplace_entregador/app/models/user_entity.dart';
-import 'package:marketplace_entregador/app/modules/login/page/user_term.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
-import 'package:marketplace_entregador/app/utils/preferences/cd_preferences.dart';
-import 'package:marketplace_entregador/app/utils/preferences/local_data_store.dart';
-import 'package:marketplace_entregador/app/utils/preferences/security_preference.dart';
+import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
+import 'package:marketplace_store_app/app/component/generic_dialog_widget.dart';
+import 'package:marketplace_store_app/app/models/current_user.dart';
+import 'package:marketplace_store_app/app/models/user_entity.dart';
+import 'package:marketplace_store_app/app/modules/login/page/user_term.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/utils/preferences/cd_preferences.dart';
+import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dart';
+import 'package:marketplace_store_app/app/utils/preferences/security_preference.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'core/auth_repository.dart';

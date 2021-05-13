@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_entregador/app/component/load/load_elements.dart';
+import 'package:marketplace_store_app/app/component/load/load_elements.dart';
 
 
 Widget builderComponentFuture<T>(

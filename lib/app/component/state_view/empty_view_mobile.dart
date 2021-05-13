@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_entregador/app/image/image_path.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/image/image_path.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 Widget emptyViewMobile(BuildContext context,
     {String emptyMessage,

@@ -1,4 +1,4 @@
-import 'package:marketplace_entregador/app/utils/object/object_utils.dart';
+import 'package:marketplace_store_app/app/utils/object/object_utils.dart';
 
 import '../code_response.dart';
 

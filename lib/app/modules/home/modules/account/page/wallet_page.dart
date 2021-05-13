@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import 'package:timelines/timelines.dart';
 
 import '../account_controller.dart';

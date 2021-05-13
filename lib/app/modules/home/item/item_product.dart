@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_entregador/app/component/simple/line_view_widget.dart';
-import 'package:marketplace_entregador/app/modules/home/model/product.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/component/simple/line_view_widget.dart';
+import 'package:marketplace_store_app/app/modules/home/model/product.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class ItemProduct extends StatefulWidget {
   final Product product;

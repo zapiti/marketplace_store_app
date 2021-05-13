@@ -1,6 +1,6 @@
 
 
-import 'package:marketplace_entregador/app/modules/home/model/product.dart';
+import 'package:marketplace_store_app/app/modules/home/model/product.dart';
 
 class Order {
   DateTime dtCreate = DateTime.now().add(Duration(minutes: -20));

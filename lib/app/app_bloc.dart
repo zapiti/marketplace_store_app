@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/configuration/app_configuration.dart';
+import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
 
-import 'package:marketplace_entregador/app/modules/login/login_bloc.dart';
+import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
 
 import 'package:rxdart/rxdart.dart';
 

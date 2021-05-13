@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/dialog/dialog_generic.dart';
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
-import 'package:marketplace_entregador/app/modules/home/modules/store/repository/store_repository.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/store/repository/store_repository.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StoreController extends Disposable {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class UserTerm extends StatefulWidget {
   String title;

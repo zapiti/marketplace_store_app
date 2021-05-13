@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/core/auth/auth_repository_interface.dart';
-import 'package:marketplace_entregador/app/image/image_path.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/core/auth/auth_repository_interface.dart';
+import 'package:marketplace_store_app/app/image/image_path.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 
 import '../../app_bloc.dart';
 import 'widget/animated_splash.dart';

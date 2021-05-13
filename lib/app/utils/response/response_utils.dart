@@ -1,6 +1,6 @@
-import 'package:marketplace_entregador/app/models/code_response.dart';
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
-import 'package:marketplace_entregador/app/utils/object/object_utils.dart';
+import 'package:marketplace_store_app/app/models/code_response.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/utils/object/object_utils.dart';
 
 class ResponseUtils {
   ///***@response e a resposta do servidor e @funcFromMap converte a resposta do servidor em algo @namedResponse e caso o servidor tenha um nome na resposta

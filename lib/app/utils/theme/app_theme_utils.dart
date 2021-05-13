@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:marketplace_entregador/app/utils/colors/hex_color_utils.dart';
+import 'package:marketplace_store_app/app/utils/colors/hex_color_utils.dart';
 
 enum ThemeSize { BIG, MEDIUM, SMALL }
 enum ThemeLayoutType { WEB, ANDROID, IOS }

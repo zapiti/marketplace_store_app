@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:marketplace_entregador/app/modules/login/page/alter_pass/sucess_pass_page.dart';
-import 'package:marketplace_entregador/app/modules/login/page/registre/registre_one_page.dart';
-import 'package:marketplace_entregador/app/modules/login/page/registre/registre_three_page.dart';
-import 'package:marketplace_entregador/app/modules/login/page/registre/registre_two_page.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/modules/login/page/alter_pass/sucess_pass_page.dart';
+import 'package:marketplace_store_app/app/modules/login/page/registre/registre_one_page.dart';
+import 'package:marketplace_store_app/app/modules/login/page/registre/registre_three_page.dart';
+import 'package:marketplace_store_app/app/modules/login/page/registre/registre_two_page.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 
 import 'login_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';

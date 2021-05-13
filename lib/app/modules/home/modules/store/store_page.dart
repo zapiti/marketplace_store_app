@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/builder/builder_component.dart';
-import 'package:marketplace_entregador/app/component/builder/builder_infinity_listView_component.dart';
-import 'package:marketplace_entregador/app/component/load/load_elements.dart';
-import 'package:marketplace_entregador/app/component/picker/user_image_widget.dart';
-import 'package:marketplace_entregador/app/models/page/response_paginated.dart';
-import 'package:marketplace_entregador/app/modules/home/item/item_product_edit.dart';
-import 'package:marketplace_entregador/app/routes/constants_routes.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
+import 'package:marketplace_store_app/app/component/builder/builder_infinity_listView_component.dart';
+import 'package:marketplace_store_app/app/component/load/load_elements.dart';
+import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/modules/home/item/item_product_edit.dart';
+import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import 'store_controller.dart';
 
 class StorePage extends StatefulWidget {

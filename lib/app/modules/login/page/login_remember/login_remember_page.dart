@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_entregador/app/component/input_data/simple_text_form_field_widget.dart';
-import 'package:marketplace_entregador/app/component/loading/simple_loading_widget.dart';
-import 'package:marketplace_entregador/app/component/navigation_bar/simple_navigation_bar_widget.dart';
-import 'package:marketplace_entregador/app/modules/login/page/login_remember/login_remember_bloc.dart';
+import 'package:marketplace_store_app/app/component/input_data/simple_text_form_field_widget.dart';
+import 'package:marketplace_store_app/app/component/loading/simple_loading_widget.dart';
+import 'package:marketplace_store_app/app/component/navigation_bar/simple_navigation_bar_widget.dart';
+import 'package:marketplace_store_app/app/modules/login/page/login_remember/login_remember_bloc.dart';
 
 class LoginRememberPage extends StatefulWidget {
   final String email;

@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:marketplace_entregador/app/extension/string_extension.dart';
-import 'package:marketplace_entregador/app/utils/theme/app_theme_utils.dart';
+import 'package:marketplace_store_app/app/extension/string_extension.dart';
+import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class SimpleImageFieldWidget extends StatelessWidget {
   final String image;
