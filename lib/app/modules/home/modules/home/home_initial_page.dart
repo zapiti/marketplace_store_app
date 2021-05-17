@@ -17,7 +17,7 @@ class HomeInitialPage extends StatefulWidget {
 class _HomeInitialPageState
     extends ModularState<HomeInitialPage, HomeController> {
   int selectedIndex = 0;
-  final controller = Modular.get<HomeController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,8 @@ class _HomeInitialPageState
                       return FadeTransition(child: child, opacity: animation);
                     },
                     child: selectedIndex == 0
-                        ? PendingHomePage()
-                        : HistoryHomePage())),
+                        ? PendingHomePage(controller)
+                        : HistoryHomePage(controller))),
             StreamBuilder<double>(
                 stream: controller.revenue,
                 initialData: 0,

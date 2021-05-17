@@ -17,7 +17,7 @@ class StorePage extends StatefulWidget {
 
 class _StorePageState extends ModularState<StorePage, StoreController> {
   int selectedIndex = 0;
-  final controller = Modular.get<StoreController>();
+
 
   @override
   Widget build(BuildContext context) {

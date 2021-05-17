@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
-import 'package:marketplace_store_app/app/component/select/custom_drop_menu.dart';
-import 'package:marketplace_store_app/app/component/select/select_button.dart';
 import 'package:marketplace_store_app/app/image/image_path.dart';
-import 'package:marketplace_store_app/app/models/pairs.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import '../store_controller.dart';
 

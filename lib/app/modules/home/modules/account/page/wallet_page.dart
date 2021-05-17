@@ -32,13 +32,6 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Container(
-            //     margin: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-            //     child: Text(
-            //       "Alter Senha",
-            //       style: AppThemeUtils.normalBoldSize(fontSize: 18),
-            //     )),
-
             Container(
               child: Stack(
                 children: [
@@ -120,7 +113,6 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
                   "Últimas transações",
                   style: AppThemeUtils.normalBoldSize(fontSize: 18),
                 )),
-
             Container(
                 margin: EdgeInsets.only(left: 35, right: 20, top: 10),
                 child: FixedTimeline.tileBuilder(

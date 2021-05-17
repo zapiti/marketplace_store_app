@@ -20,14 +20,14 @@ class AppBloc extends Disposable {
 
     var localUser = await loginBloc.getToken();
 
-    return AppConfiguration.userTest;
+    return currentUser.stream.value;
   }
 
-  Future<CurrentUser> setCurrentUserFutureValue(CurrentUser currentUser) async {
+  Future<CurrentUser> setCurrentUserFutureValue(CurrentUser _currentUser) async {
     var loginBloc = Modular.get<LoginBloc>();
 
-    var localUser = await loginBloc.setToken(currentUser);
-    return AppConfiguration.userTest;
+    var localUser = await loginBloc.setToken(_currentUser);
+    return currentUser.stream.value;
   }
 
   void setTokenUser(token) {
@@ -38,6 +38,6 @@ class AppBloc extends Disposable {
   }
 
  Future<bool> getFirstAcess() async{
-    return false;
+    return true;
   }
 }

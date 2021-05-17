@@ -7,21 +7,18 @@ import 'package:marketplace_store_app/app/modules/home/modules/home/home_control
 
 import 'item/item_pending_widget.dart';
 
-class PendingHomePage extends StatefulWidget {
-  @override
-  _PendingHomePageState createState() => _PendingHomePageState();
-}
+class PendingHomePage extends StatelessWidget {
+  final HomeController controller;
 
-class _PendingHomePageState extends State<PendingHomePage> {
-  final _homeController = Modular.get<HomeController>();
+  PendingHomePage(this.controller);
 
   @override
   Widget build(BuildContext context) {
     return builderComponent<ResponsePaginated>(
-        stream: _homeController.listPendingOrders,
+        stream: controller.listPendingOrders,
         emptyMessage:
             "Seu estabelecimento ainda não recebeu pedidos. Não esqueça de atualizar os produtos da sua loja.",
-        initCallData: () => _homeController.getListPendingOrder(),
+        initCallData: () => controller.getListPendingOrder(),
         // tryAgain: () {
         //   _blocFaq.getListFaq();
         // },

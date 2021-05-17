@@ -9,7 +9,7 @@ import 'home_initial_page.dart';
 class HomePageModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => HomeController()),
+    Bind((i) => HomeController()),
   ];
 
   @override

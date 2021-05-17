@@ -40,7 +40,7 @@ class _UserImageWidgetState extends State<UserImageWidget> {
     var pickedFile;
     File photo2;
     try {
-      pickedFile = await ImagePicker().getImage(
+      pickedFile = await ImagePicker.pickImage(
           source: source, maxWidth: 300, maxHeight: 300);
 
       photo2 = File(pickedFile.path);

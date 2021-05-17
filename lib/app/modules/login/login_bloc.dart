@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:marketplace_store_app/app/app_bloc.dart';
 import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
 import 'package:marketplace_store_app/app/component/generic_dialog_widget.dart';
+import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
 import 'package:marketplace_store_app/app/models/current_user.dart';
 import 'package:marketplace_store_app/app/models/user_entity.dart';
 import 'package:marketplace_store_app/app/modules/login/page/user_term.dart';
@@ -54,6 +56,8 @@ class LoginBloc extends Disposable {
     loadingSubject.sink.add(true);
     Future.delayed(Duration(seconds: 2),(){
       loadingSubject.sink.add(false);
+      var appBloc = Modular.get<AppBloc>();
+      appBloc.currentUser.sink.add(AppConfiguration.userTest);
       Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
     });
     // var response = await _authRepository.getLogin(

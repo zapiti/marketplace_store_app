@@ -24,12 +24,7 @@ class _AlterBankPageState
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Container(
-            //     margin: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-            //     child: Text(
-            //       "Alter Senha",
-            //       style: AppThemeUtils.normalBoldSize(fontSize: 18),
-            //     )),
+
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: Text(
