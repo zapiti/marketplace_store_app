@@ -171,60 +171,69 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                           OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide()),
-                                                      labelText: 'Confirmar Senha'),
+                                                      labelText:
+                                                          'Confirmar Senha'),
                                                 ))),
                                     _isLoadRequest
                                         ? SizedBox()
-                                        :Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 15),
-                                      child: Row(
-                                            children: [
-                                           Expanded(child:   RichText(
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 3,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  text: TextSpan(
-                                                    text:
-                                                        StringFile.leEConcordo,
-                                                    style: AppThemeUtils
-                                                        .normalSize(
-                                                      color: Colors.grey[700],
-                                                    ),
-                                                    children: <TextSpan>[
-                                                      TextSpan(
+                                        : Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 15),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                    child: RichText(
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        maxLines: 3,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        text: TextSpan(
                                                           text: StringFile
-                                                              .politicaDePrivacidade,
+                                                              .leEConcordo,
                                                           style: AppThemeUtils
-                                                              .normalBoldSize(),
-                                                          recognizer:
-                                                              TapGestureRecognizer()
-                                                                ..onTap = () {
-                                                                  goToTerm(
-                                                                          StringFile
-                                                                              .politicaDePrivacidade,
-                                                                          context)
-                                                                      .then(
-                                                                          (value) {
-                                                                    bloc.userTermAccept.add(
-                                                                        value ??
-                                                                            false);
-                                                                  });
-                                                                }),
-                                                    ],
-                                                  ))),
-                                              StreamBuilder<bool>(
-                                                  stream: bloc.userTermAccept,
-                                                  initialData: false,
-                                                  builder: (context,
-                                                          snapshot) =>
-                                                      Switch(
-                                                          value: snapshot.data,hoverColor: AppThemeUtils.colorPrimary,activeColor:AppThemeUtils.colorPrimary,
-                                                          onChanged: bloc
-                                                              .userTermAccept
-                                                              .add))
-                                            ],
-                                      )),
+                                                              .normalSize(
+                                                            color: Colors
+                                                                .grey[700],
+                                                          ),
+                                                          children: <TextSpan>[
+                                                            TextSpan(
+                                                                text: StringFile
+                                                                    .politicaDePrivacidade,
+                                                                style: AppThemeUtils
+                                                                    .normalBoldSize(),
+                                                                recognizer:
+                                                                    TapGestureRecognizer()
+                                                                      ..onTap =
+                                                                          () {
+                                                                        goToTerm(StringFile.politicaDePrivacidade,
+                                                                                context)
+                                                                            .then((value) {
+                                                                          bloc.userTermAccept.add(value ??
+                                                                              false);
+                                                                        });
+                                                                      }),
+                                                          ],
+                                                        ))),
+                                                StreamBuilder<bool>(
+                                                    stream: bloc.userTermAccept,
+                                                    initialData: false,
+                                                    builder: (context,
+                                                            snapshot) =>
+                                                        Switch(
+                                                            value:
+                                                                snapshot.data,
+                                                            hoverColor:
+                                                                AppThemeUtils
+                                                                    .colorPrimary,
+                                                            activeColor:
+                                                                AppThemeUtils
+                                                                    .colorPrimary,
+                                                            onChanged: bloc
+                                                                .userTermAccept
+                                                                .add))
+                                              ],
+                                            )),
                                     _isLoadRequest
                                         ? loadElements(context)
                                         : Padding(
@@ -245,7 +254,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                               .whiteColor),
                                                 ),
                                                 onPressed: () {
-                                                  bloc.getLogin(context);
+                                                  bloc.getRegistre(context);
                                                 },
                                               ),
                                             ),

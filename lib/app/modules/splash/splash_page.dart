@@ -38,7 +38,7 @@ Future<void> redirectToPage(BuildContext context) async {
 
 void _redirectToAuth(
     BuildContext context, IAuthRepository auth, AppBloc appBloc) {
-  appBloc.getFirstAcess().then((access) {
+  appBloc.getFirstAccess().then((access) {
     if (access ?? false) {
       Modular.to.pushReplacementNamed(ConstantsRoutes.ONBOARD);
     } else {

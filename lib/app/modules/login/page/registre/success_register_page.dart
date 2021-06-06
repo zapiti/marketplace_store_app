@@ -5,12 +5,12 @@ import 'package:marketplace_store_app/app/image/image_path.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
-class SucessPassPage extends StatefulWidget {
+class SuccessRegisterPage extends StatefulWidget {
   @override
-  _SucessPassPageState createState() => _SucessPassPageState();
+  _SuccessRegisterPageState createState() => _SuccessRegisterPageState();
 }
 
-class _SucessPassPageState extends State<SucessPassPage> {
+class _SuccessRegisterPageState extends State<SuccessRegisterPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _SucessPassPageState extends State<SucessPassPage> {
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               child: Text(
-                "Senha alterada com sucesso!",
+                "Cadastro efetuado sucesso!",
                 style: AppThemeUtils.normalBoldSize(fontSize: 20),textAlign: TextAlign.center,
               ),
             ),
@@ -46,7 +46,7 @@ class _SucessPassPageState extends State<SucessPassPage> {
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.only(right: 20,left: 20,bottom: MediaQuery.of(context).size.height * 0.15),
               child: Text(
-                "Deu tudo certo! Volte ao login e entre com sua nova senha.",
+                "Aguarde a aprovação que logo entraremos em contato por E-mail liberando o seu acesso.",
                 style: AppThemeUtils.normalSize(fontSize: 18),textAlign: TextAlign.center,
               ),
             )
@@ -57,11 +57,12 @@ class _SucessPassPageState extends State<SucessPassPage> {
           width: MediaQuery.of(context).size.width,
           margin: EdgeInsets.symmetric(horizontal: 20),
           child: ElevatedButton(
-            child: Text("ENTRAR"),
+            child: Text("Confirmar"),
             style:
                 ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
             onPressed: () {
-              Modular.to.pushReplacementNamed(ConstantsRoutes.LOGIN);
+              Navigator.of(context)
+                  .popUntil((route) => route.isFirst);
             },
           )),
     );

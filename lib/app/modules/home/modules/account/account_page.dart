@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/mobile/title_descritption_mobile_widget.dart';
 import 'package:marketplace_store_app/app/component/simple/line_view_widget.dart';
+import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'account_controller.dart';
 
@@ -51,7 +52,11 @@ class _AccountPageState extends ModularState<AccountPage, AccountController> {
             titleDescriptionMobileWidget(
               context,
               title: "Sair",
-              action: () {},
+              action: () {
+                var loginBloc = Modular.get<LoginBloc>();
+                loginBloc.getLogout();
+
+              },
               iconData: MaterialCommunityIcons.exit_to_app,
             ),
             lineViewWidget(),

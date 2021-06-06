@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/app_bloc.dart';
-import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
-import 'package:marketplace_store_app/app/component/generic_dialog_widget.dart';
 import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
 import 'package:marketplace_store_app/app/models/current_user.dart';
-import 'package:marketplace_store_app/app/models/user_entity.dart';
+
 import 'package:marketplace_store_app/app/modules/login/page/user_term.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/preferences/cd_preferences.dart';
+
 import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dart';
-import 'package:marketplace_store_app/app/utils/preferences/security_preference.dart';
+import 'package:marketplace_store_app/app/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'core/auth_repository.dart';
@@ -34,9 +33,33 @@ class LoginBloc extends Disposable {
 
   var nameControler = TextEditingController();
 
-  var restoreIndex  = BehaviorSubject<int>.seeded(0);
+  var restoreIndex = BehaviorSubject<int>.seeded(0);
 
   var codeController = TextEditingController();
+
+  var zipCodeController = MaskedTextController(mask: Utils.geMaskCep());
+
+  var addressController = TextEditingController();
+
+  var stateController = TextEditingController();
+
+  var cityController = TextEditingController();
+
+  var numberController = TextEditingController();
+
+  var complementController = TextEditingController();
+
+  var neighborhoodController = TextEditingController();
+
+  var phoneController = MaskedTextController(mask: Utils.getPhoneMask());
+
+  var descriptionController = TextEditingController();
+
+  var responsableController = TextEditingController();
+
+  var typeController = TextEditingController();
+
+  var cnpjController = MaskedTextController(mask: Utils.getMaskCnpj());
 
   @override
   void dispose() {
@@ -54,7 +77,7 @@ class LoginBloc extends Disposable {
 
   Future<void> getLogin(BuildContext context) async {
     loadingSubject.sink.add(true);
-    Future.delayed(Duration(seconds: 2),(){
+    Future.delayed(Duration(seconds: 2), () {
       loadingSubject.sink.add(false);
       var appBloc = Modular.get<AppBloc>();
       appBloc.currentUser.sink.add(AppConfiguration.userTest);
@@ -112,17 +135,28 @@ class LoginBloc extends Disposable {
     _authRepository.setToken(currentUser);
   }
 
-  void nextActionRestore( Function() success) {
+  void nextActionRestore(Function() success) {
     var index = restoreIndex.stream.value;
 
-    if(index >= 2 ){
+    if (index >= 2) {
       success();
       restoreIndex.sink.add(0);
       Modular.to.pushNamed(ConstantsRoutes.CALL_SUCESS_ALTERPASS);
-
-    }else{
-      restoreIndex.sink.add(index+1);
+    } else {
+      restoreIndex.sink.add(index + 1);
     }
+  }
 
+  void getRegistre(BuildContext context) {
+    if (passController.text.isEmpty) {
+      Utils.showSnackbar(context, "Senha não pode ser vazia");
+    } else if (passController.text != passControllerConfirm.text) {
+      Utils.showSnackbar(context, "Senha não pode ser diferentes");
+    } else if (!userTermAccept.stream.value) {
+      Utils.showSnackbar(
+          context, "Ë necessario aceitar os termos de uso para se registrar");
+    } else {
+      Modular.to.pushNamed(ConstantsRoutes.CALL_SUCESS_REGISTER);
+    }
   }
 }

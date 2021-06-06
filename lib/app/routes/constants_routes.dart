@@ -27,6 +27,9 @@ class ConstantsRoutes {
   static const String REGISTRE_PASS = '/registre_pass';
   static const String CALL_REGISTRE_PASS  =  LOGIN+REGISTRE_PASS;
 
+  static const String SUCESS_REGISTER = '/registre_sucess';
+  static const String CALL_SUCESS_REGISTER  =  LOGIN+SUCESS_REGISTER;
+
   static const String SUCESS_ALTERPASS = '/sucess_alter';
   static const String CALL_SUCESS_ALTERPASS  =  LOGIN+SUCESS_ALTERPASS;
 

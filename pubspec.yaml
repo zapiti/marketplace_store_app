@@ -5,7 +5,9 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.7.0 <3.0.0"
 dependencies:
-
+  another_flushbar:
+  cpf_cnpj_validator:
+  search_cep:
   timelines:
   flutter_barcode_scanner: 1.0.2
   image_cropper:
