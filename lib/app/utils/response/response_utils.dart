@@ -27,12 +27,14 @@ class ResponseUtils {
       return ResponsePaginated(
           error: response.error ?? "Sem resposta do servidor!");
     }
-    if (response.sucess.length == 0) {
+    final resulted = response?.sucess.toString().contains("data")
+        ? response.sucess["data"]
+        : response.sucess;
+
+    if (resulted.length == 0) {
       return ResponsePaginated.fromMapSimple(List<T>());
     }
-    var tempResp = namedResponse != null
-        ? response?.sucess[namedResponse]
-        : response?.sucess;
+    var tempResp = namedResponse != null ? resulted[namedResponse] : resulted;
     List<T> listElementGeneric = List<T>();
     List listElement = ObjectUtils.parseToObjectList<T>(tempResp,
         defaultValue: tempResp, isContent: true);
@@ -43,7 +45,7 @@ class ResponseUtils {
         listElementGeneric.add(order);
       }
     }
-    return ResponsePaginated.fromMapSimple(listElementGeneric);
+    return ResponsePaginated.fromMap(response?.sucess, listElementGeneric);
   }
 
   ///***@response e a resposta do servidor e @funcFromMap converte a resposta do servidor em algo
@@ -58,19 +60,25 @@ class ResponseUtils {
         return ResponsePaginated(
             error: response.error ?? "Sem resposta do servidor!");
       }
+      final resulted = response?.sucess.toString().contains("data")
+          ? response.sucess["data"]
+          : response.sucess;
       var tempResp = namedResponse != null
-          ? response?.sucess[namedResponse]
-          : response?.sucess;
-      var object = ObjectUtils.parseToMap(response?.sucess,
-          defaultValue: response?.sucess);
+          ? resulted[namedResponse]
+          : resulted;
+      var object = ObjectUtils.parseToMap(tempResp, defaultValue: tempResp);
 
       return ResponsePaginated.fromMapSimple(funcFromMap(object));
     }
   }
 
   ///***@service e o nome do servico  @body e o body passado na requisicao  @result e o resultado do servidor
-  static String getErrorBody( dynamic result) {
+  static String getErrorBody(dynamic result) {
     var error = ObjectUtils.parseToMap(result, defaultValue: result) ?? result;
+
+    if (error.toString().contains("data")) {
+      error = error["data"];
+    }
 
     if (error is Map && error != null) {
       return error["message"]?.toString() ??

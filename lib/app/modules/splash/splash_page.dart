@@ -46,6 +46,7 @@ void _redirectToAuth(
         print("user ${currentUser?.toMap()}");
 
         if (currentUser != null) {
+          appBloc.getCurrentUser();
           try {
             appBloc.currentUser.sink.add(currentUser);
 

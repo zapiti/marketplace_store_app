@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/address/address_cep_component.dart';
 
-import 'package:marketplace_store_app/app/component/store/store_tyoe.dart';
+import 'package:marketplace_store_app/app/component/store/store_type.dart';
 
 import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';

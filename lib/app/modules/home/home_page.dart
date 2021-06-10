@@ -6,18 +6,19 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
+import '../../app_bloc.dart';
+
 
 
 class HomePage extends StatefulWidget {
-  final String title;
 
-  const HomePage({Key key, this.title = "Home"}) : super(key: key);
+
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState  extends State<HomePage> {
   var currentIndex = 0;
 
 
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     Modular.to.navigate(ConstantsRoutes.CALL_HOMEPAGE);
+
   }
 
 

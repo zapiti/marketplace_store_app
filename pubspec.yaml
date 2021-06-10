@@ -5,6 +5,7 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.7.0 <3.0.0"
 dependencies:
+  jwt_decode:
   another_flushbar:
   cpf_cnpj_validator:
   search_cep:
@@ -36,7 +37,7 @@ dependencies:
   connectivity:
 
   ## Lib de requisição
-  dio:
+  dio: ^3.0.10
 
   ## Lib de icones (Facebook e instagram)
   flutter_feather_icons: ^1.0.3

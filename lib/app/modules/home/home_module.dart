@@ -6,10 +6,13 @@ import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'home_page.dart';
+import 'modules/account/account_controller.dart';
 
 class HomeModule extends Module {
   @override
-  List<Bind> get binds => [];
+  List<Bind> get binds => [
+    Bind.lazySingleton((i) => AccountController()),
+  ];
 
   @override
   final List<ModularRoute> routes = [

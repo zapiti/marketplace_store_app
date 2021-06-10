@@ -11,10 +11,9 @@ class CepController {
       Function(bool) enableField}) {
     zipCodeController.addListener(() async {
       if (zipCodeController.text.length == 10) {
-        final call = await ViaCepSearchCep().searchInfoByCep(
-            cep:
-                zipCodeController.text.replaceAll(".", "").replaceAll("-", ""));
-        var result = call.getOrElse(() => null);
+        var result = await ViaCepSearchCep.searchInfoByCep(
+            cep: zipCodeController.text.replaceAll(".", "").replaceAll("-", ""));
+        // var result = call.getOrElse(() => null);
         if (result == null) {
           enableField(true);
         } else {

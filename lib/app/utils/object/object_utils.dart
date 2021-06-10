@@ -72,11 +72,11 @@ class ObjectUtils {
     if (data == null) {
       return true;
     } else if (data is ResponsePaginated) {
-      if (data.content == null) {
+      if (data.data == null) {
         return true;
       }
-      if (data.content is List) {
-        return data.content.isEmpty;
+      if (data.data is List) {
+        return data.data.isEmpty;
       } else {
         return false;
       }

@@ -3,11 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
+import 'package:marketplace_store_app/app/utils/image_utils.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
-
 
 class UserImageWidget extends StatefulWidget {
   final double height;
@@ -15,15 +13,17 @@ class UserImageWidget extends StatefulWidget {
   final bool isRounded;
 
   final Function(String) changeImage;
-  final Stream userImage;
+  final String userImage;
   final String addButtom;
+  final bool enable;
 
   UserImageWidget({
     this.height,
-    this.width,this.isRounded = true,
-
+    this.width,
+    this.isRounded = true,
     this.changeImage,
-    this.userImage, this. addButtom,
+    this.userImage,
+    this.addButtom, this.enable = true,
   });
 
   @override
@@ -40,46 +40,29 @@ class _UserImageWidgetState extends State<UserImageWidget> {
     var pickedFile;
     File photo2;
     try {
-      pickedFile = await ImagePicker.pickImage(
-          source: source, maxWidth: 300, maxHeight: 300);
+      pickedFile = await ImagePicker
+          .pickImage(source: source, maxWidth: 300, maxHeight: 300);
 
-      photo2 = File(pickedFile.path);
+      photo2 = pickedFile;
     } catch (e) {
       print(e);
     }
 
     if (photo2 != null) {
-      File photo = await ImageCropper.cropImage(
-          sourcePath: photo2.path,
-          aspectRatioPresets: [
-            CropAspectRatioPreset.square,
-            CropAspectRatioPreset.ratio3x2,
-            CropAspectRatioPreset.original,
-            CropAspectRatioPreset.ratio4x3,
-            CropAspectRatioPreset.ratio16x9
-          ],
-          androidUiSettings: AndroidUiSettings(
-              toolbarTitle: 'Cortar',
-              toolbarColor: AppThemeUtils.colorPrimary,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.original,
-              lockAspectRatio: false),
-          iosUiSettings: IOSUiSettings(
-            minimumAspectRatio: 1.0,
-          ));
-      if (photo != null) {
-        final bytes = photo.readAsBytesSync();
+      if (photo2 != null) {
+        final bytes = await photo2.readAsBytes();
 
         String img64 = base64Encode(bytes);
-        salvarImage(img64, photo);
+        salvarImage(img64);
       }
     }
     if (_base64 != null) {
-      salvarImage(_base64, null);
+      salvarImage(_base64);
     }
   }
 
-  void salvarImage(String img64, File photo) {
+  void salvarImage(String img64) {
+    debugPrint(img64);
     widget.changeImage(img64);
   }
 
@@ -132,71 +115,75 @@ class _UserImageWidgetState extends State<UserImageWidget> {
             child: Container(
                 color: Colors.grey[200],
                 child: InkWell(
-                    onTap: kIsWeb
-                        ? null
-                        : () {
-                            _settingModalBottomSheet(context);
-                          },
+                    onTap: !widget.enable ? null: () {
+                      _settingModalBottomSheet(context);
+                    },
                     child: Stack(children: <Widget>[
-                      widget.addButtom == null ? SizedBox():    Center(
-                child:Opacity(opacity: 0.6,child:   ElevatedButton(
-                        child: Text(
-                         widget.addButtom,
-                          style: AppThemeUtils.normalSize(color: Colors.white),
-                        ),
-                        onPressed: (){
-                          _settingModalBottomSheet(context);
-                        },
-                        style: ElevatedButton.styleFrom(primary: Colors.grey,elevation: 0),
-                      ))),
-                      _images == null
-                          ? builderComponent<String>(
-                              stream: widget.userImage,
-                              enableLoad: false,
-                              initCallData: () {},
-                              buildBodyFunc: (context, response) => Center(
-                                  child: response == null
-                                      ? Center(
-                                          child: Icon(
-                                          Icons.person,
-                                          size: 60,
-                                        ))
-                                      : (response ?? "").isEmpty ? SizedBox():Image.network(
-                                    (response ?? ""), fit: BoxFit.fill,
 
-                                    width: widget.width ?? 120,
-                                    height: widget.height ?? 120,
-                                          //
-                                          // placeholder: (context, url) =>
-                                          //     new CircularProgressIndicator(),
-                                          // errorWidget:
-                                          //     (context, url, error) =>
-                                          //         new Icon(
-                                          //   Icons.person,
-                                          //   size: 60,
-                                          // ),
-                                        )))
-                          : _images == null
+                      _images == null
+                          ? Center(
+                          child: widget.userImage == null
+                              ? Center(
+                              child: Icon(
+                                Icons.person,
+                                size: 60,
+                              ))
+                              : (widget.userImage ?? "").isEmpty
                               ? SizedBox()
-                              : Image.file(
-                                  _images,
-                                  width: 120,
-                                  height: 120,
-                                  fit: BoxFit.fill,
-                                ),
-                      !widget.isRounded ? SizedBox()
+                              : ImageUtils.imageFromBase64String(
+                            (widget.userImage ?? ""),
+                            fit: BoxFit.cover,
+
+                            width: widget.width ?? 120,
+                            height: widget.height ?? 120,
+                            //
+                            // placeholder: (context, url) =>
+                            //     new CircularProgressIndicator(),
+                            // errorWidget:
+                            //     (context, url, error) =>
+                            //         new Icon(
+                            //   Icons.person,
+                            //   size: 60,
+                            // ),
+                          ))
+                          : _images == null
+                          ? SizedBox()
+                          : Image.file(
+                        _images,
+                        width: 120,
+                        height: 120,
+                        fit: BoxFit.fill,
+                      ),
+                      !widget.isRounded || !widget.enable
+                          ? SizedBox()
                           : Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Opacity(
-                                  opacity: 0.7,
-                                  child: Container(
-                                    color: Colors.white,
-                                    width: 200,
-                                    child: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.black,
-                                    ),
-                                  ))),
+                          alignment: Alignment.bottomCenter,
+                          child: Opacity(
+                              opacity: 0.7,
+                              child: Container(
+                                color: Colors.white,
+                                width: 200,
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  color: Colors.black,
+                                ),
+                              ))),     widget.addButtom == null
+                          ? SizedBox()
+                          : Center(
+                          child: Opacity(
+                              opacity: 0.6,
+                              child: ElevatedButton(
+                                child: Text(
+                                  widget.addButtom,
+                                  style: AppThemeUtils.normalSize(
+                                      color: Colors.white),
+                                ),
+                                onPressed:!widget.enable ? null: () {
+                                  _settingModalBottomSheet(context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.grey, elevation: 0),
+                              ))),
                     ])))));
   }
 }

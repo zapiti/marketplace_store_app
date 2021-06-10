@@ -9,10 +9,10 @@ import 'package:marketplace_store_app/app/models/pairs.dart';
 
 class ImageUtils {
   static Image imageFromBase64String(String base64String,
-      {double height, fit}) {
+      {double height, fit,double width}) {
     return Image.memory(
       base64Decode(base64String),
-      height: height,
+      height: height,width:width,
       fit: fit,
     );
   }

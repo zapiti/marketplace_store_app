@@ -4,16 +4,21 @@ import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/app_bloc.dart';
 import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
+import 'package:marketplace_store_app/app/models/address/address.dart';
 import 'package:marketplace_store_app/app/models/current_user.dart';
+import 'package:marketplace_store_app/app/models/store/store.dart';
+import 'package:marketplace_store_app/app/models/user_entity.dart';
 
 import 'package:marketplace_store_app/app/modules/login/page/user_term.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 
 import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dart';
+import 'package:marketplace_store_app/app/utils/preferences/security_preference.dart';
 import 'package:marketplace_store_app/app/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'core/auth_repository.dart';
+import 'core/login_repository.dart';
 
 class LoginBloc extends Disposable {
   var emailController = TextEditingController();
@@ -76,39 +81,25 @@ class LoginBloc extends Disposable {
   }
 
   Future<void> getLogin(BuildContext context) async {
-    loadingSubject.sink.add(true);
-    Future.delayed(Duration(seconds: 2), () {
-      loadingSubject.sink.add(false);
-      var appBloc = Modular.get<AppBloc>();
-      appBloc.currentUser.sink.add(AppConfiguration.userTest);
-      Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
-    });
-    // var response = await _authRepository.getLogin(
-    //     username: emailController.text.toLowerCase(),
-    //     password: passController.text);
+    // loadingSubject.sink.add(true);
+    // Future.delayed(Duration(seconds: 2), () {
+    //   loadingSubject.sink.add(false);
+    //   var appBloc = Modular.get<AppBloc>();
+    //   appBloc.currentUser.sink.add(AppConfiguration.userTest);
+    //   Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
+    // });
+    var response = await _authRepository.getLogin(
+        username: emailController.text.toLowerCase(),
+        password: passController.text);
     // loadingSubject.sink.add(false);
-    // if (response.error == null) {
-    //   var user = response.content;
-    //   var current = CurrentUser.fromMap(user);
-    //   await SecurityPreference.save(UserEntity(
-    //       username: emailController.text.toLowerCase(),
-    //       password: passController.text));
-    //
-    //   if (current.firstAccess ?? false) {
-    //     await goToTerm();
-    //   } else {
-    //     Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
-    //   }
-    // } else {
-    //   var erro = response.error == "Bad credentials"
-    //       ? "Login ou senha incorretos"
-    //       : response.error;
-    //   showGenericDialog(
-    //       context: context,
-    //       title: "Ops!!!",
-    //       description: erro,
-    //       positiveCallback: () {});
-    // }
+    if (response.error == null) {
+      SecurityPreference.save(UserEntity(
+          username: emailController.text.toLowerCase(),
+          password: passController.text));
+      Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
+    } else {
+      Utils.showSnackbar(context, response.error);
+    }
   }
 
   Future goToTerm() async {
@@ -127,7 +118,7 @@ class LoginBloc extends Disposable {
     return group;
   }
 
-  Future<CurrentUser> getToken() {
+  Future<String> getToken() {
     return _authRepository.getToken();
   }
 
@@ -147,7 +138,7 @@ class LoginBloc extends Disposable {
     }
   }
 
-  void getRegistre(BuildContext context) {
+  void getRegistre(BuildContext context) async {
     if (passController.text.isEmpty) {
       Utils.showSnackbar(context, "Senha não pode ser vazia");
     } else if (passController.text != passControllerConfirm.text) {
@@ -156,7 +147,57 @@ class LoginBloc extends Disposable {
       Utils.showSnackbar(
           context, "Ë necessario aceitar os termos de uso para se registrar");
     } else {
-      Modular.to.pushNamed(ConstantsRoutes.CALL_SUCESS_REGISTER);
+      final Address address = Address(
+          zipCode: zipCodeController.text,
+          address: addressController.text,
+          number: numberController.text,
+          complement: complementController.text,
+          neighborhood: neighborhoodController.text,
+          city: cityController.text,
+          state: stateController.text);
+
+      final Store store = Store(
+          cnpj: Utils.removeMask(cnpjController.text),
+          companyName: nameControler.text,
+          email: emailController.text,
+          password: passController.text,
+          phone: Utils.removeMask(phoneController.text),
+          responsible: responsableController.text,
+          description: descriptionController.text,
+          type: typeController.text,
+          address: address);
+
+      final _result = await LoginRepository.registerStore(store);
+      if (_result.error == null) {
+        zipCodeController.clear();
+        addressController.clear();
+        numberController.clear();
+        complementController.clear();
+        neighborhoodController.clear();
+        cityController.clear();
+        stateController.clear();
+        cnpjController.clear();
+        nameControler.clear();
+        emailController.clear();
+        passController.clear();
+        phoneController.clear();
+        responsableController.clear();
+        descriptionController.clear();
+        typeController.clear();
+
+        Modular.to.pushNamed(ConstantsRoutes.CALL_SUCESS_REGISTER);
+      } else {
+        Utils.showErrorDialog(context, _result.error);
+      }
+    }
+  }
+
+ Future<CurrentUser> getCurrentUser() async{
+    final _result = await LoginRepository.getCurrentUser();
+    if (_result.error == null) {
+      return _result.data;
+    }else{
+      return null;
     }
   }
 }

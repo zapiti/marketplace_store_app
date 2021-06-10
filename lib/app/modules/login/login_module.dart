@@ -19,11 +19,22 @@ class LoginModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => LoginPage()),
-    ChildRoute(ConstantsRoutes.LOGIN_PASS, child: (_, args) => LoginPassPage(),  transition: TransitionType.fadeIn),
-    ChildRoute(ConstantsRoutes.REGISTRE, child: (_, args) => RegistreOnePage(),  transition: TransitionType.fadeIn),
-    ChildRoute(ConstantsRoutes.REGISTRE_EMAIL, child: (_, args) => RegistreTwoPage(),  transition: TransitionType.fadeIn),
-    ChildRoute(ConstantsRoutes.REGISTRE_PASS, child: (_, args) => RegistreThreePage(),  transition: TransitionType.fadeIn),
-    ChildRoute(ConstantsRoutes.SUCESS_REGISTER, child: (_, args) => SuccessRegisterPage(),  transition: TransitionType.fadeIn),
-    ChildRoute(ConstantsRoutes.SUCESS_ALTERPASS, child: (_, args) => SuccessPassPage(),  transition: TransitionType.fadeIn),
+    ChildRoute(ConstantsRoutes.LOGIN_PASS,
+        child: (_, args) => LoginPassPage(), transition: TransitionType.fadeIn),
+    ChildRoute(ConstantsRoutes.REGISTRE,
+        child: (_, args) => RegistreOnePage(),
+        transition: TransitionType.fadeIn),
+    ChildRoute(ConstantsRoutes.REGISTRE_EMAIL,
+        child: (_, args) => RegistreTwoPage(),
+        transition: TransitionType.fadeIn),
+    ChildRoute(ConstantsRoutes.REGISTRE_PASS,
+        child: (_, args) => RegistreThreePage(),
+        transition: TransitionType.fadeIn),
+    ChildRoute(ConstantsRoutes.SUCESS_REGISTER,
+        child: (_, args) => SuccessRegisterPage(),
+        transition: TransitionType.fadeIn),
+    ChildRoute(ConstantsRoutes.SUCESS_ALTERPASS,
+        child: (_, args) => SuccessPassPage(),
+        transition: TransitionType.fadeIn),
   ];
 }

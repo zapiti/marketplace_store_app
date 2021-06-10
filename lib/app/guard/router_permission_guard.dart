@@ -11,6 +11,10 @@ class RouterPermissionGuard implements RouteGuard {
     // TODO: implement canActivate
     return true;
   }
+
+  @override
+  // TODO: implement guardedRoute
+  String get guardedRoute => "";
   // @override
   // bool canActivate(String url,r) {
   //   return true;

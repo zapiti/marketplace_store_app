@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/utils/utils_market.dart';
+import 'package:marketplace_store_app/app/utils/market/utils_market.dart';
 
 class StoreType extends StatefulWidget {
   final TextEditingController typeController;

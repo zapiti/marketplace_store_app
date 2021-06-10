@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:jwt_decode/jwt_decode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/core/auth/auth_repository_interface.dart';
 import 'package:marketplace_store_app/app/core/request_core.dart';
@@ -14,27 +14,26 @@ import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dar
 import '../../../app_bloc.dart';
 
 class AuthRepository implements IAuthRepository {
-  static const SERVICELOGIN = "/login";
+  static const SERVICELOGIN = "/api/estab/auth/login";
   var _requestManager = Modular.get<RequestCore>();
 
   @override
   Future<ResponsePaginated> getLogin({String username, String password}) async {
-    //
-    // username = "leandro.gomes@datatech.page";
-    // password = "Abc@123";
-    var body = {};
     var result = await _requestManager.requestWithTokenToForm(
-      serviceName: SERVICELOGIN + "?username=$username&password=$password",
-      body: body,
+      serviceName: SERVICELOGIN,
+      body: {"username": username, "password": password},
       funcFromMap: (data) => data,
-      typeRequest: TYPEREQUEST.GET,
+      typeRequest: TYPEREQUEST.POST,
     );
     if (result.error == null) {
-      var user = result.content;
-      var current = CurrentUser.fromMap(user);
-      var appBloc = Modular.get<AppBloc>();
-      appBloc.currentUser.sink.add(current);
-      _setUser(current);
+      if(result.data.toString().contains("access_token")){
+        var token = result.data["access_token"];
+        var current = CurrentUser.fromMap(Jwt.parseJwt(token));
+        var appBloc = Modular.get<AppBloc>();
+        appBloc.currentUser.sink.add(current);
+        _setToken(token);
+      }
+
     }
 
     return result;
@@ -47,21 +46,19 @@ class AuthRepository implements IAuthRepository {
     // }
   }
 
-  Future<String> _setUser(CurrentUser currentUser) async {
-    var user = currentUser?.toMap();
+  Future<String> _setToken(String  token) async {
+
     return await codePreferences.set(
-        key: UserEntity.USERLOG, value: jsonEncode(user));
+        key: UserEntity.USERLOG, value: token);
   }
 
   @override
-  Future<CurrentUser> getToken() async {
+  Future<String> getToken() async {
     var user = await codePreferences.getString(key: UserEntity.USERLOG);
     if (user == null) {
       return null;
     } else {
-      Map userMap = jsonDecode(user);
-      var currentUser = CurrentUser.fromMap(userMap);
-      return currentUser;
+       return user;
     }
   }
 

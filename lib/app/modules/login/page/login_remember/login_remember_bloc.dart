@@ -32,7 +32,7 @@ class LoginRememberBloc extends Disposable {
       showGenericDialog(
           context: context,
           title: "Sucesso",
-          description: response.content,
+          description: response.data,
           positiveCallback: () {});
 
       Modular.to.pop();

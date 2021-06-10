@@ -6,12 +6,12 @@ class HomeRepository {
   Future<ResponsePaginated> getListPendingOrder() async {
     await Future.delayed(Duration(seconds: 1));
 
-    return ResponsePaginated(content: [Order(), Order()]);
+    return ResponsePaginated(data: [Order(), Order()]);
   }
 
   Future<ResponsePaginated>  getListHistoryOrder() async{
     await Future.delayed(Duration(seconds: 1));
 
-    return ResponsePaginated(content: [Order(), Order(),Order(), Order(),Order(), Order()]);
+    return ResponsePaginated(data: [Order(), Order(),Order(), Order(),Order(), Order()]);
   }
 }

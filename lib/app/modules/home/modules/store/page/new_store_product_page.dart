@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
 import 'package:marketplace_store_app/app/component/select/custom_drop_menu.dart';
+import 'package:marketplace_store_app/app/component/store/product_type.dart';
 import 'package:marketplace_store_app/app/models/pairs.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import '../store_controller.dart';
@@ -29,17 +30,18 @@ class _NewStoreProductPageState
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(
-
-                      child: UserImageWidget(
-                        changeImage: (txt) {},
-                        width: MediaQuery.of(context).size.width,
-                        height: 160,
-                        isRounded: false,
-                        addButtom: "Adicionar foto do produto",
-                        userImage: controller.imageTempProduct.stream,
-                      ),
-                    ),
+                    StreamBuilder(
+                        stream: controller.imageTempProduct,
+                        builder: (context, snapshot) => Container(
+                              child: UserImageWidget(
+                                changeImage: (txt) {},
+                                width: MediaQuery.of(context).size.width,
+                                height: 160,
+                                isRounded: false,
+                                addButtom: "Adicionar foto do produto",
+                                userImage: snapshot.data ?? "",
+                              ),
+                            )),
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -92,30 +94,7 @@ class _NewStoreProductPageState
                         )
                       ],
                     ),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 0),
-                        child: CustomDropMenuWidget(
-                          controller: controller.categoryController,
-                          isExpanded: true,
-                          title: "Categoria*",
-                          listElements: [
-                            Pairs("Comida", "Comida"),
-                            Pairs("Bebida", "Bebida"),
-                          ],
-                        )),
-                    Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                        child: TextField(
-                          controller: controller.setorProductController,
-                          onChanged: (text) {},
-                          decoration: InputDecoration(
-                              errorText: errorNameProduct,
-                              border:
-                                  OutlineInputBorder(borderSide: BorderSide()),
-                              labelText: 'Setor onde o produto se localiza'),
-                        )),
+                    ProductType(controller.categoryController),
                     Padding(
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -140,12 +119,14 @@ class _NewStoreProductPageState
               child: ElevatedButton(
                 child: Text(
                   "CONTINUAR",
-                  style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
+                  style:
+                      AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
                 ),
                 onPressed: () {
                   controller.nextToQuantity(context);
                 },
-                style: ElevatedButton.styleFrom(primary:  AppThemeUtils.colorPrimary),
+                style: ElevatedButton.styleFrom(
+                    primary: AppThemeUtils.colorPrimary),
               ),
             )
           ],

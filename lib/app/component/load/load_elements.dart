@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 Widget loadElements(BuildContext context,
     {double size = 80,
@@ -15,7 +14,7 @@ Widget loadElements(BuildContext context,
     alignment: Alignment.center,
     child: CircularProgressIndicator(
       valueColor:
-          AlwaysStoppedAnimation<Color>(AppThemeUtils.colorPrimary),
+          AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColorLight),
       strokeWidth: 4,
     ),
   );

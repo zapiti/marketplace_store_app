@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:marketplace_store_app/app/app_bloc.dart';
 import 'package:marketplace_store_app/app/component/select/select_button.dart';
+import 'package:marketplace_store_app/app/models/current_user.dart';
 import 'package:marketplace_store_app/app/models/pairs.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/home/widget/history/history_home_page.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/home/widget/pending/pending_home_page.dart';
@@ -18,6 +20,7 @@ class _HomeInitialPageState
     extends ModularState<HomeInitialPage, HomeController> {
   int selectedIndex = 0;
 
+  final appController = Modular.get<AppBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,12 +53,13 @@ class _HomeInitialPageState
                     child: selectedIndex == 0
                         ? PendingHomePage(controller)
                         : HistoryHomePage(controller))),
-            StreamBuilder<double>(
-                stream: controller.revenue,
-                initialData: 0,
+            StreamBuilder<CurrentUser>(
+                stream: appController.currentUser,
                 builder: (context, snapshot) => Container(
                       color: AppThemeUtils.colorGreenSuccess,
-                      width: MediaQuery.of(context).size.width,padding: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
+                      width: MediaQuery.of(context).size.width,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                       child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
@@ -73,7 +77,9 @@ class _HomeInitialPageState
                                           decimalSeparator: '.',
                                           thousandSeparator: ',',
                                           leftSymbol: "R\$ ",
-                                          initialValue: snapshot.data)
+                                          initialValue: snapshot.data
+                                                  ?.establishment?.wallet ??
+                                              0.0)
                                       .text,
                                   style: AppThemeUtils.normalBoldSize(
                                       color: AppThemeUtils.whiteColor,

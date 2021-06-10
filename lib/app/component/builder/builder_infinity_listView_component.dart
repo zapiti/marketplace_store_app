@@ -6,21 +6,19 @@ import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
 Widget builderInfinityListViewComponent(ResponsePaginated response,
     {Function callMoreElements, Function buildBody, Function headerWidget,String errorResponse ,String  emptyMessage}) {
   return ListView.builder(
-      padding: EdgeInsets.only(bottom: (response?.last ?? true) ? 80 : 0),
+      padding: EdgeInsets.only(bottom:  80 ),
       reverse: false,
-      itemCount: response.content.length + 1,
+      itemCount: response.data.length + 1,
       itemBuilder: (context, index) {
-        if (index < (response.content.length ?? 0)) {
+        if (index < (response.data.length ?? 0)) {
           return Flex(direction: Axis.vertical, children: [
             headerWidget != null && index == 0 ? headerWidget() : SizedBox(),
-            buildBody(response.content[index])
+            buildBody(response.data[index])
           ]);
         } else {
-          if (response.content.length >= 1) {
-            var _page = (response?.number ?? 0) + 1;
-            if (!(response?.last ?? true) &&
-                response.numberOfElements > 0 &&
-                response.totalpages != _page) {
+          if (response.data.length >= 1) {
+            var _page = (response?.page ?? 0) + 1;
+            if (!(response?.page  == response.total)) {
               callMoreElements(_page);
               return loadElements(context, size: 80);
             } else {
@@ -43,18 +41,16 @@ GridView builderInfinityGridViewComponent(
         crossAxisCount: 2,
         childAspectRatio: cardWidth / cardHeight,
       ),
-      padding: EdgeInsets.only(bottom: response.last ? 80 : 0),
+      padding: EdgeInsets.only(bottom: 80 ),
       reverse: false,
-      itemCount: response.content.length + 1,
+      itemCount: response.data.length + 1,
       itemBuilder: (context, index) {
-        if (index < (response.content.length ?? 0)) {
-          return buildBody(response.content[index]);
+        if (index < (response.data.length ?? 0)) {
+          return buildBody(response.data[index]);
         } else {
-          if (response.content.length >= 1) {
-            var _page = response?.number ?? 0 + 1;
-            if (!response.last &&
-                response.numberOfElements > 0 &&
-                response.totalpages != _page) {
+          if (response.data.length >= 1) {
+            var _page = (response?.page ?? 0) + 1;
+            if (!(response?.page  == response.total)) {
               callMoreElements(_page);
               return loadElements(context, size: 80);
             } else {

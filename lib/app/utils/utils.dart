@@ -1,5 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
 
 class Utils {
   static double percentage(partialValue, totalValue) {
@@ -33,5 +34,13 @@ class Utils {
 
   static String  getPhoneMask() {
     return '(00) 0 0000-0000';
+  }
+
+  static void showErrorDialog(BuildContext context, String s) {
+    showGenericDialog(
+        context: context,
+        title: "Opps",
+        description: s,
+        positiveCallback: () {});
   }
 }

@@ -123,7 +123,7 @@ class _NewStoreProductBarCodePageState
                       AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
                 ),
                 onPressed: () {
-                  controller.saveProduct(context);
+                  controller.saveProducts(context);
                 },
                 style:
                     ElevatedButton.styleFrom(primary: AppThemeUtils.greyColor),

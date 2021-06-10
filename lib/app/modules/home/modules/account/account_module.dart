@@ -11,7 +11,7 @@ import 'account_page.dart';
 class AccountModule extends Module {
   @override
   final List<Bind> binds = [
-    Bind.lazySingleton((i) => AccountController()),
+
   ];
 
   @override

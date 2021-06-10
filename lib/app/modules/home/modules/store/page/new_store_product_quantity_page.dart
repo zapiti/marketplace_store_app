@@ -30,16 +30,18 @@ class _NewStoreProductQuantityPageState
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(
+                   StreamBuilder<String>(
+                       stream:  controller.imageTempProduct.stream,
+                       builder: (context,snapshot) => Container(
                       child: UserImageWidget(
                         changeImage: (txt) {},
                         width: MediaQuery.of(context).size.width,
                         height: 160,
                         isRounded: false,
                         addButtom: "Adicionar foto do produto",
-                        userImage: controller.imageTempProduct.stream,
+                        userImage: snapshot.data ?? "",
                       ),
-                    ),
+                    )),
                     Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 5),

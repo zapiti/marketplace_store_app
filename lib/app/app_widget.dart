@@ -2,25 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/app_bloc.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
-
+import 'component/load/load_view_element.dart';
 
 class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-
-    return MaterialApp(
-      title: 'Marketplace',theme:AppThemeUtils.customTheme(),
-      initialRoute: '/',
-      supportedLocales: [const Locale('pt', 'BR')],
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
+    return Stack(
+      children: [
+        MaterialApp(
+          title: 'Marketplace',
+          theme: AppThemeUtils.customTheme(),
+          initialRoute: '/',
+          supportedLocales: [const Locale('pt', 'BR')],
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          debugShowCheckedModeBanner: false,
+        ).modular(),
+        LoadViewElement(SizedBox()),
       ],
-      debugShowCheckedModeBanner: false,
-    ).modular();
+    );
   }
 }

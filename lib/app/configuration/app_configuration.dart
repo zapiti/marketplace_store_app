@@ -8,10 +8,10 @@ class AppConfiguration {
   static final SOCKET_ATTENDANCE_PORT = "SOCKET_ATTENDANCE_PORT";
   static final pushApi = "3e264704-d426-4bce-8581-357afba8afae";
 
-  static CurrentUser userTest = CurrentUser(firstAccess: true);
+  static CurrentUser userTest = CurrentUser();
 
-  static Future<String> baseUrl() async {
-    return "https://fintechbackoffice-api.herokuapp.com/backoffice-api/";
+  static String baseUrl()  {
+    return "https://njs-marketplace-api.herokuapp.com";
   }
   static final isMockDevTest = false;
 

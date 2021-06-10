@@ -10,6 +10,10 @@ class RouterLoginGuard implements RouteGuard {
     return true;
   }
 
+  @override
+  // TODO: implement guardedRoute
+  String get guardedRoute => "";
+
   // @override
   // // TODO: implement executors
   // List<GuardExecutor> get executors => [HomeExecutor()];

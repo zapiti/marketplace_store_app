@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:marketplace_store_app/app/component/simple/line_view_widget.dart';
 import 'package:marketplace_store_app/app/modules/home/model/product.dart';
+import 'package:marketplace_store_app/app/utils/image_utils.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class ItemProductEdit extends StatefulWidget {
@@ -35,7 +36,7 @@ class _ItemProductEditState extends State<ItemProductEdit> {
                   ),
                   Container(
                     child: Text(
-                      widget.product.descricao,
+                      widget.product.description,
                       style: AppThemeUtils.normalSize(fontSize: 12),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -48,7 +49,7 @@ class _ItemProductEditState extends State<ItemProductEdit> {
                               decimalSeparator: '.',
                               thousandSeparator: ',',
                               leftSymbol: "R\$ ",
-                              initialValue: widget.product.valor)
+                              initialValue: widget.product.value)
                           .text,
                       style: AppThemeUtils.normalBoldSize(
                           color: AppThemeUtils.colorGreenSuccess, fontSize: 18),
@@ -63,8 +64,8 @@ class _ItemProductEditState extends State<ItemProductEdit> {
                       Container(
                         margin: EdgeInsets.only(left: 10, top: 20),
                         child: Center(
-                            child: Image.network(
-                          widget.product.imageUrl,
+                            child: ImageUtils.imageFromBase64String(
+                          widget.product.image,
                           height: 180,
                           fit: BoxFit.cover,
                           width: 150,
