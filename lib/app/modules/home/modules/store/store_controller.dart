@@ -33,6 +33,10 @@ class StoreController extends Disposable {
 
   var quantityProductController = TextEditingController();
 
+  var minQuantityProductController = TextEditingController();
+
+  var maxQuantityProductController = TextEditingController();
+
   @override
   void dispose() {
     listProducts.close();
@@ -70,7 +74,6 @@ class StoreController extends Disposable {
     }
   }
 
-
   void nextToQuantity(BuildContext context) {
     Modular.to.pushNamed(ConstantsRoutes.CALL_NEWPRODUCTQUANTITY);
   }
@@ -78,7 +81,6 @@ class StoreController extends Disposable {
   void nextToQrcode(BuildContext context) {
     Modular.to.pushNamed(ConstantsRoutes.CALL_NEWPRODUCTBARCODE);
   }
-
 
   void saveProductToDigite(BuildContext context) {
     final controller = TextEditingController();
