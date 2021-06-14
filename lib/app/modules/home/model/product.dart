@@ -1,15 +1,11 @@
-
-
-
 class Product {
-
   String name;
   double value;
   double promotionalValue;
   String category;
   String sector;
   String description;
-  String quantity;
+  String quantityType;
   double stock;
   String specification;
   double qtdMin;
@@ -18,19 +14,20 @@ class Product {
   String image;
 
   Product({
-      this.name,
-      this.value,
-      this.promotionalValue,
-      this.category,
-      this.sector,
-      this.description,
-      this.quantity,
-      this.stock,
-      this.specification,
-      this.qtdMin,
-      this.qtdMax,
-      this.barCode,
-      this.image});
+    this.name,
+    this.value,
+    this.promotionalValue,
+    this.category,
+    this.sector,
+    this.description,
+    this.quantityType,
+    this.stock,
+    this.specification,
+    this.qtdMin,
+    this.qtdMax,
+    this.barCode,
+    this.image,
+  });
 
   factory Product.fromMap(dynamic map) {
     if (null == map) return null;
@@ -46,7 +43,7 @@ class Product {
       category: map['category']?.toString(),
       sector: map['sector']?.toString(),
       description: map['description']?.toString(),
-      quantity: map['quantity']?.toString(),
+      quantityType: map['quantityType']?.toString(),
       stock: null == (temp = map['stock'])
           ? null
           : (temp is num ? temp.toDouble() : double.tryParse(temp)),
@@ -70,7 +67,7 @@ class Product {
       'category': category,
       'sector': sector,
       'description': description,
-      'quantity': quantity,
+      'quantityType': quantityType,
       'stock': stock,
       'specification': specification,
       'qtdMin': qtdMin,

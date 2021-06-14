@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
 import 'package:marketplace_store_app/app/component/store/product_type.dart';
@@ -109,6 +110,8 @@ class _NewStoreProductPageState
       child: Padding(
         padding: EdgeInsets.only(right: 20, left: 5),
         child: TextField(
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           controller: controller.valuePromotionController,
           onChanged: (text) {},
           decoration: InputDecoration(
@@ -126,6 +129,8 @@ class _NewStoreProductPageState
       child: Padding(
         padding: EdgeInsets.only(left: 20, right: 5),
         child: TextField(
+          keyboardType: TextInputType.number,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           controller: controller.valueProductController,
           onChanged: (text) {},
           decoration: InputDecoration(

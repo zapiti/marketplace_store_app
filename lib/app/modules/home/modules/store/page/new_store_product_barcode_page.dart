@@ -16,120 +16,154 @@ class _NewStoreProductBarCodePageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Novo produto"),
-          centerTitle: true,
+      appBar: buildAppBar(),
+      body: buildBody(context),
+    );
+  }
+
+  Column buildBody(BuildContext context) {
+    return Column(
+      children: [
+        buildImageAndTextWidget(),
+        buildTypeAndReadCodeButtons(context),
+        buildCodeLessProductButton(context)
+      ],
+    );
+  }
+
+  Container buildCodeLessProductButton(BuildContext context) {
+    return Container(
+      height: 70,
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      width: double.infinity,
+      child: ElevatedButton(
+        child: Text(
+          "PRODUTO SEM CÓDIGO",
+          style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
         ),
-        body: Column(
+        onPressed: () {
+          controller.saveProducts(context);
+        },
+        style: ElevatedButton.styleFrom(primary: AppThemeUtils.greyColor),
+      ),
+    );
+  }
+
+  Row buildTypeAndReadCodeButtons(BuildContext context) {
+    return Row(
+      children: [buildTypeCodeButton(context), buildReadCodeButton(context)],
+    );
+  }
+
+  Expanded buildReadCodeButton(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 70,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        width: double.infinity,
+        child: ElevatedButton(
+          child: Text(
+            "LER CÓDIGO",
+            style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
+          ),
+          onPressed: () {
+            controller.saveProductToCode(context);
+          },
+          style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+        ),
+      ),
+    );
+  }
+
+  Expanded buildTypeCodeButton(BuildContext context) {
+    return Expanded(
+      child: Container(
+        height: 70,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        width: double.infinity,
+        child: ElevatedButton(
+          child: Text(
+            "DIGITAR CÓDIGO",
+            style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
+          ),
+          onPressed: () {
+            controller.saveProductToDigite(context);
+          },
+          style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+        ),
+      ),
+    );
+  }
+
+  Expanded buildImageAndTextWidget() {
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 56),
-                      child: Stack(
-                        children: [
-                          Center(
-                              child: SvgPicture.asset(
-                            ImagePath.bg_barcode,
-                            width: 270,
-                            height: 270,
-                          )),
-                          Center(
-                              child: SvgPicture.asset(
-                            ImagePath.ic_barcode,
-                            width: 170,
-                            height: 170,
-                          )),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      width: double.infinity,
-                      child: Text(
-                        "Código de barras",
-                        textAlign: TextAlign.center,
-                        style: AppThemeUtils.normalBoldSize(
-                            color: AppThemeUtils.black, fontSize: 18),
-                      ),
-                    ),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                      width: double.infinity,
-                      child: Text(
-                        "Para a segurança dos produtos, escaneie o código de barras do item.",
-                        textAlign: TextAlign.center,
-                        style: AppThemeUtils.normalSize(),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: Container(
-                  height: 70,
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    child: Text(
-                      "DIGITAR CÓDIGO",
-                      style: AppThemeUtils.normalSize(
-                          color: AppThemeUtils.whiteColor),
-                    ),
-                    onPressed: () {
-                      controller.saveProductToDigite(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        primary: AppThemeUtils.colorPrimary),
-                  ),
-                )),
-                Expanded(
-                    child: Container(
-                  height: 70,
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    child: Text(
-                      "LER CÓDIGO",
-                      style: AppThemeUtils.normalSize(
-                          color: AppThemeUtils.whiteColor),
-                    ),
-                    onPressed: () {
-                      controller.saveProductToCode(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        primary: AppThemeUtils.colorPrimary),
-                  ),
-                ))
-              ],
-            ),
-            Container(
-              height: 70,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              width: double.infinity,
-              child: ElevatedButton(
-                child: Text(
-                  "PRODUTO SEM CÓDIGO",
-                  style:
-                      AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
-                ),
-                onPressed: () {
-                  controller.saveProducts(context);
-                },
-                style:
-                    ElevatedButton.styleFrom(primary: AppThemeUtils.greyColor),
-              ),
-            )
+            buildImage(),
+            buildTitle(),
+            buildDescription(),
           ],
-        ));
+        ),
+      ),
+    );
+  }
+
+  Container buildDescription() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+      width: double.infinity,
+      child: Text(
+        "Para a segurança dos produtos, escaneie o código de barras do item.",
+        textAlign: TextAlign.center,
+        style: AppThemeUtils.normalSize(),
+      ),
+    );
+  }
+
+  Container buildTitle() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      width: double.infinity,
+      child: Text(
+        "Código de barras",
+        textAlign: TextAlign.center,
+        style: AppThemeUtils.normalBoldSize(
+            color: AppThemeUtils.black, fontSize: 18),
+      ),
+    );
+  }
+
+  Container buildImage() {
+    return Container(
+      margin: EdgeInsets.only(top: 56),
+      child: Stack(
+        children: [
+          Center(
+            child: SvgPicture.asset(
+              ImagePath.bg_barcode,
+              width: 270,
+              height: 270,
+            ),
+          ),
+          Center(
+            child: SvgPicture.asset(
+              ImagePath.ic_barcode,
+              width: 170,
+              height: 170,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      title: Text("Novo produto"),
+      centerTitle: true,
+    );
   }
 }

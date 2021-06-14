@@ -6,6 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
 import 'package:marketplace_store_app/app/models/current_user.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/models/pairs.dart';
 import 'package:marketplace_store_app/app/modules/home/model/product.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/store/repository/store_repository.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
@@ -18,24 +19,19 @@ class StoreController extends Disposable {
   final listProducts = BehaviorSubject<ResponsePaginated>();
 
   final _repository = StoreRepository();
-
-  final descrProductController = TextEditingController();
-
-  final setorProductController = TextEditingController();
-
-  final categoryController = TextEditingController();
-
-  final valuePromotionController = MoneyMaskedTextController(leftSymbol: "R\$");
-
-  final valueProductController = MoneyMaskedTextController(leftSymbol: "R\$");
+  Pairs newStoreUnity;
 
   final nomeProductController = TextEditingController();
-
-  var quantityProductController = TextEditingController();
-
-  var minQuantityProductController = TextEditingController();
-
-  var maxQuantityProductController = TextEditingController();
+  final valueProductController = MoneyMaskedTextController(leftSymbol: "R\$");
+  final valuePromotionController = MoneyMaskedTextController(leftSymbol: "R\$");
+  final categoryController = TextEditingController();
+  final setorProductController = TextEditingController();
+  final descrProductController = TextEditingController();
+  final quantityProductController = TextEditingController();
+  final specificationProductController = TextEditingController();
+  final minQuantityProductController = TextEditingController();
+  final maxQuantityProductController = TextEditingController();
+  final barCodeController = TextEditingController();
 
   @override
   void dispose() {
@@ -50,7 +46,7 @@ class StoreController extends Disposable {
   }
 
   saveProducts(BuildContext context) async {
-    final product = Product();
+    final product = _buildProduct();
 
     var response = await _repository.saveProducts(product);
 
@@ -83,8 +79,6 @@ class StoreController extends Disposable {
   }
 
   void saveProductToDigite(BuildContext context) {
-    final controller = TextEditingController();
-
     showGenericDialog(
         context: context,
         title: "Digite o código",
@@ -92,7 +86,8 @@ class StoreController extends Disposable {
         positiveText: "Confirmar",
         containsPop: false,
         positiveCallback: () {
-          Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
+          saveProducts(context);
+          Navigator.of(context, rootNavigator: true).pop();
         },
         negativeText: "Cancelar",
         negativeCallback: () {
@@ -107,7 +102,7 @@ class StoreController extends Disposable {
             child: CupertinoTextField(
               placeholder: "Código do produto",
               keyboardType: TextInputType.number,
-              controller: controller,
+              controller: this.barCodeController,
               decoration: BoxDecoration(),
               style: AppThemeUtils.normalSize(color: AppThemeUtils.black),
             ),
@@ -128,4 +123,39 @@ class StoreController extends Disposable {
   void updateImageStore(String txt) {}
 
   void updateImageBg(String txt) {}
+
+  _buildProduct() {
+    return Product(
+        name: this.nomeProductController.text,
+        value: this.valueProductController.numberValue,
+        promotionalValue: this.valuePromotionController.numberValue,
+        category: this.categoryController.text,
+        sector: this.setorProductController.text,
+        description: this.descrProductController.text,
+        quantityType: _getProductQuantity(),
+        stock: null,
+        specification: this.specificationProductController.text,
+        qtdMax: _getQtdMax(),
+        qtdMin: _getQtdMin(),
+        barCode: this.barCodeController.text,
+        image: null);
+  }
+
+  double _getQtdMin() {
+    return this.newStoreUnity.first == "Unidade"
+        ? null
+        : double.parse(this.minQuantityProductController.text);
+  }
+
+  double _getQtdMax() {
+    return this.newStoreUnity.first == "Unidade"
+        ? null
+        : double.parse(this.maxQuantityProductController.text);
+  }
+
+  String _getProductQuantity() {
+    return this.newStoreUnity.first == "Unidade"
+        ? this.quantityProductController.text
+        : null;
+  }
 }

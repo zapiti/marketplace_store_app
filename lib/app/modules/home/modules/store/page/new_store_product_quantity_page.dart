@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
 import 'package:marketplace_store_app/app/component/select/custom_drop_menu.dart';
@@ -16,8 +17,6 @@ class NewStoreProductQuantityPage extends StatefulWidget {
 
 class _NewStoreProductQuantityPageState
     extends ModularState<NewStoreProductQuantityPage, StoreController> {
-  Pairs newStoreUnity;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +35,9 @@ class _NewStoreProductQuantityPageState
                 buildProductImageWidget(),
                 buildTitleTag(),
                 buildUnityAndWeightButtons(),
-                newStoreUnity == null
+                controller.newStoreUnity == null
                     ? SizedBox()
-                    : newStoreUnity.first == "Unidade"
+                    : controller.newStoreUnity.first == "Unidade"
                         ? buildUnityChoosedBodyWidget()
                         : buildWeightChoosedBodyWidget(),
               ],
@@ -60,7 +59,7 @@ class _NewStoreProductQuantityPageState
           "ADICIONAR",
           style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
         ),
-        onPressed: newStoreUnity == null ? null : onPressedMethod(),
+        onPressed: controller.newStoreUnity == null ? null : onPressedMethod(),
         style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
       ),
     );
@@ -68,7 +67,6 @@ class _NewStoreProductQuantityPageState
 
   Function onPressedMethod() {
     return () {
-      print(controller.quantityProductController.text);
       if (verifyEmptyFields) {
         Utils.showSnackbar(context, "Preencha os Campos Obrigatorios");
       } else {
@@ -78,9 +76,13 @@ class _NewStoreProductQuantityPageState
   }
 
   bool get verifyEmptyFields {
-    return controller.categoryController.text == "" ||
-        controller.maxQuantityProductController.text == "" ||
-        controller.minQuantityProductController.text == "";
+    if (controller.newStoreUnity.first == "Unidade") {
+      return controller.quantityProductController.text == "";
+    } else {
+      return controller.specificationProductController.text == "" ||
+          controller.maxQuantityProductController.text == "" ||
+          controller.minQuantityProductController.text == "";
+    }
   }
 
   Padding buildWeightChoosedBodyWidget() {
@@ -89,9 +91,9 @@ class _NewStoreProductQuantityPageState
       child: Column(
         children: [
           CustomDropMenuWidget(
-            controller: controller.categoryController,
+            controller: controller.specificationProductController,
             isExpanded: true,
-            title: "Espeficações*",
+            title: "Especificações*",
             listElements: [
               Pairs("Gramas", "Gramas"),
               Pairs("Kilos", "Kilos"),
@@ -102,6 +104,8 @@ class _NewStoreProductQuantityPageState
               Expanded(
                 child: TextField(
                   controller: controller.minQuantityProductController,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  keyboardType: TextInputType.number,
                   onChanged: (text) {},
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -116,6 +120,8 @@ class _NewStoreProductQuantityPageState
               Expanded(
                 child: TextField(
                   controller: controller.maxQuantityProductController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   onChanged: (text) {},
                   decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -135,6 +141,8 @@ class _NewStoreProductQuantityPageState
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: TextField(
+        keyboardType: TextInputType.number,
+        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         controller: controller.quantityProductController,
         onChanged: (text) {},
         decoration: InputDecoration(
@@ -153,7 +161,7 @@ class _NewStoreProductQuantityPageState
         title: [Pairs("Unidade", "Unidade"), Pairs("Peso", "Peso")],
         tapIndex: (myPairs) {
           setState(() {
-            newStoreUnity = myPairs;
+            controller.newStoreUnity = myPairs;
           });
         },
       ),

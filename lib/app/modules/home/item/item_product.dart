@@ -43,7 +43,7 @@ class _ItemProductState extends State<ItemProduct> {
                   ),
                   Container(
                     child: Text(
-                      widget.product.quantity,
+                      widget.product.quantityType,
                       style: AppThemeUtils.normalBoldSize(
                           color: AppThemeUtils.black),
                     ),
