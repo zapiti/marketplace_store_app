@@ -77,7 +77,7 @@ class _NewStoreProductQuantityPageState
 
   bool get verifyEmptyFields {
     if (controller.newStoreUnity.first == "Unidade") {
-      return controller.quantityProductController.text == "";
+      return controller.stockProductController.text == "";
     } else {
       return controller.specificationProductController.text == "" ||
           controller.maxQuantityProductController.text == "" ||
@@ -143,7 +143,7 @@ class _NewStoreProductQuantityPageState
       child: TextField(
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        controller: controller.quantityProductController,
+        controller: controller.stockProductController,
         onChanged: (text) {},
         decoration: InputDecoration(
             border: OutlineInputBorder(
@@ -158,10 +158,15 @@ class _NewStoreProductQuantityPageState
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: SelectButton(
-        title: [Pairs("Unidade", "Unidade"), Pairs("Peso", "Peso")],
+        title: [
+          Pairs("Unidade", "Unidade"),
+          Pairs("Peso", "Peso"),
+        ],
         tapIndex: (myPairs) {
           setState(() {
+            print(myPairs.first);
             controller.newStoreUnity = myPairs;
+            controller.first = controller.newStoreUnity.first;
           });
         },
       ),

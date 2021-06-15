@@ -4,7 +4,6 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
-import 'package:marketplace_store_app/app/models/current_user.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
 import 'package:marketplace_store_app/app/models/pairs.dart';
 import 'package:marketplace_store_app/app/modules/home/model/product.dart';
@@ -20,6 +19,7 @@ class StoreController extends Disposable {
 
   final _repository = StoreRepository();
   Pairs newStoreUnity;
+  String first;
 
   final nomeProductController = TextEditingController();
   final valueProductController = MoneyMaskedTextController(leftSymbol: "R\$");
@@ -28,6 +28,7 @@ class StoreController extends Disposable {
   final setorProductController = TextEditingController();
   final descrProductController = TextEditingController();
   final quantityProductController = TextEditingController();
+  final stockProductController = TextEditingController();
   final specificationProductController = TextEditingController();
   final minQuantityProductController = TextEditingController();
   final maxQuantityProductController = TextEditingController();
@@ -132,7 +133,7 @@ class StoreController extends Disposable {
         category: this.categoryController.text,
         sector: this.setorProductController.text,
         description: this.descrProductController.text,
-        quantityType: _getProductQuantity(),
+        quantityType: this.first,
         stock: null,
         specification: this.specificationProductController.text,
         qtdMax: _getQtdMax(),
