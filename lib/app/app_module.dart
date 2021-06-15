@@ -22,8 +22,7 @@ import 'utils/preferences/local_data_store.dart';
 
 class AppModule extends Module {
   @override
-  List<Bind> get binds =>
-      [
+  List<Bind> get binds => [
         Bind((i) => AppBloc()),
         Bind((i) => LocalDataStore()),
         Bind((i) => LoginBloc()),
@@ -34,22 +33,21 @@ class AppModule extends Module {
       ];
 
   @override
-  List<ModularRoute> get routes =>
-      [
+  List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
           child: (_, args) => SplashPage(),
           transition: TransitionType.fadeIn,
         ),
-        ModuleRoute(ConstantsRoutes.ONBOARD,
-          module: OnboardModule(),),
+        ModuleRoute(
+          ConstantsRoutes.ONBOARD,
+          module: OnboardModule(),
+        ),
         ModuleRoute(ConstantsRoutes.HOME,
             module: HomeModule(),
             transition: TransitionType.fadeIn,
             guards: [RouterPermissionGuard()]),
-
         ModuleRoute(ConstantsRoutes.LOGIN,
             module: LoginModule(), guards: [RouterLoginGuard()]),
       ];
-
 }
