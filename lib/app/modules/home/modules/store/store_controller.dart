@@ -133,24 +133,36 @@ class StoreController extends Disposable {
         category: this.categoryController.text,
         sector: this.setorProductController.text,
         description: this.descrProductController.text,
-        quantityType: this.first,
-        stock: null,
-        specification: this.specificationProductController.text,
+        quantityType: this.first.toUpperCase(),
+        stock: double.parse(stockProductController.text),
+        specification: _getSpecification(),
         qtdMax: _getQtdMax(),
         qtdMin: _getQtdMin(),
         barCode: this.barCodeController.text,
         image: null);
   }
 
-  double _getQtdMin() {
+  double _getStock() {
+    return this.newStoreUnity.first == "Unidade"
+        ? double.parse(stockProductController.text)
+        : null;
+  }
+
+  String _getSpecification() {
     return this.newStoreUnity.first == "Unidade"
         ? null
+        : this.specificationProductController.text;
+  }
+
+  double _getQtdMin() {
+    return this.newStoreUnity.first == "Unidade"
+        ? 0.0
         : double.parse(this.minQuantityProductController.text);
   }
 
   double _getQtdMax() {
     return this.newStoreUnity.first == "Unidade"
-        ? null
+        ? 0.0
         : double.parse(this.maxQuantityProductController.text);
   }
 

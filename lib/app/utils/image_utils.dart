@@ -2,19 +2,22 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/widgets.dart';
-import 'package:marketplace_store_app/app/models/pairs.dart';
-
-
-
 
 class ImageUtils {
-  static Image imageFromBase64String(String base64String,
-      {double height, fit,double width}) {
-    return Image.memory(
-      base64Decode(base64String),
-      height: height,width:width,
-      fit: fit,
-    );
+  static Image imageFromBase64String(
+    String base64String, {
+    double height,
+    fit,
+    double width,
+  }) {
+    return base64String == null
+        ? null
+        : Image.memory(
+            base64Decode(base64String),
+            height: height,
+            width: width,
+            fit: fit,
+          );
   }
 
   static Uint8List dataFromBase64String(String base64String) {
@@ -24,10 +27,6 @@ class ImageUtils {
   static String base64String(Uint8List data) {
     return base64Encode(data);
   }
-
-
-
-
 
 //  static Future<String> openFileExplorer() async {
 //    var _path = await FilePicker.getFilePath(type: null, fileExtension: null);
