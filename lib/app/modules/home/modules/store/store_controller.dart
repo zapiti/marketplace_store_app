@@ -81,44 +81,48 @@ class StoreController extends Disposable {
 
   void saveProductToDigite(BuildContext context) {
     showGenericDialog(
-        context: context,
-        title: "Digite o código",
-        description: "",
-        positiveText: "Confirmar",
-        containsPop: false,
-        positiveCallback: () {
-          saveProducts(context);
-          Navigator.of(context, rootNavigator: true).pop();
-        },
-        negativeText: "Cancelar",
-        negativeCallback: () {
-          Navigator.of(context, rootNavigator: true).pop();
-        },
-        iconData: Icons.error_outline,
-        customWidget: Container(
-          color: Colors.white,
-          child: Container(
-            padding: EdgeInsets.all(10),
-            color: Colors.grey[200],
-            child: CupertinoTextField(
-              placeholder: "Código do produto",
-              keyboardType: TextInputType.number,
-              controller: this.barCodeController,
-              decoration: BoxDecoration(),
-              style: AppThemeUtils.normalSize(color: AppThemeUtils.black),
-            ),
+      context: context,
+      title: "Digite o código",
+      description: "",
+      positiveText: "Confirmar",
+      containsPop: false,
+      positiveCallback: () {
+        saveProducts(context);
+        Navigator.of(context, rootNavigator: true).pop();
+        Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
+      },
+      negativeText: "Cancelar",
+      negativeCallback: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+      iconData: Icons.error_outline,
+      customWidget: Container(
+        color: Colors.white,
+        child: Container(
+          padding: EdgeInsets.all(10),
+          color: Colors.grey[200],
+          child: CupertinoTextField(
+            placeholder: "Código do produto",
+            keyboardType: TextInputType.number,
+            controller: this.barCodeController,
+            decoration: BoxDecoration(),
+            style: AppThemeUtils.normalSize(color: AppThemeUtils.black),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   void saveProductToCode(BuildContext context) {
     FlutterBarcodeScanner.scanBarcode(
             "#ff6666", "Cancelar", true, ScanMode.BARCODE)
-        .then((barcode) {
-      if (barcode != null && barcode != "-1") {
-        Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
-      }
-    });
+        .then(
+      (barcode) {
+        if (barcode != null && barcode != "-1") {
+          Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
+        }
+      },
+    );
   }
 
   void updateImageStore(String txt) {}
@@ -127,48 +131,44 @@ class StoreController extends Disposable {
 
   _buildProduct() {
     return Product(
-        name: this.nomeProductController.text,
-        value: this.valueProductController.numberValue,
-        promotionalValue: this.valuePromotionController.numberValue,
-        category: this.categoryController.text,
-        sector: this.setorProductController.text,
-        description: this.descrProductController.text,
-        quantityType: this.first.toUpperCase(),
-        stock: double.parse(stockProductController.text),
-        specification: _getSpecification(),
-        qtdMax: _getQtdMax(),
-        qtdMin: _getQtdMin(),
-        barCode: this.barCodeController.text,
-        image: null);
+      name: this.nomeProductController.text,
+      value: this.valueProductController.numberValue,
+      promotionalValue: this.valuePromotionController.numberValue,
+      category: this.categoryController.text,
+      sector: this.setorProductController.text,
+      description: this.descrProductController.text,
+      quantityType: this.first.toUpperCase(),
+      stock: _getStock(),
+      specification: _getSpecification(),
+      qtdMax: _getQtdMax(),
+      qtdMin: _getQtdMin(),
+      barCode: this.barCodeController.text,
+      image: imageTempProduct.value,
+    );
   }
 
   double _getStock() {
-    return this.newStoreUnity.first == "Unidade"
-        ? double.parse(stockProductController.text)
-        : null;
+    print(imageTempProduct.stream.value);
+    return isUnitySelected() ? double.parse(stockProductController.text) : 0.0;
   }
 
   String _getSpecification() {
-    return this.newStoreUnity.first == "Unidade"
+    return isUnitySelected()
         ? null
-        : this.specificationProductController.text;
+        : this.specificationProductController.text.toUpperCase();
   }
 
   double _getQtdMin() {
-    return this.newStoreUnity.first == "Unidade"
-        ? 0.0
+    return isUnitySelected()
+        ? null
         : double.parse(this.minQuantityProductController.text);
   }
 
   double _getQtdMax() {
-    return this.newStoreUnity.first == "Unidade"
-        ? 0.0
+    return isUnitySelected()
+        ? null
         : double.parse(this.maxQuantityProductController.text);
   }
 
-  String _getProductQuantity() {
-    return this.newStoreUnity.first == "Unidade"
-        ? this.quantityProductController.text
-        : null;
-  }
+  bool isUnitySelected() => this.newStoreUnity.first == "Unidade";
 }

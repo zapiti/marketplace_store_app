@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:marketplace_store_app/app/component/load/load_elements.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
 
-
 Widget builderInfinityListViewComponent(ResponsePaginated response,
-    {Function callMoreElements, Function buildBody, Function headerWidget,String errorResponse ,String  emptyMessage}) {
+    {Function callMoreElements,
+    Function buildBody,
+    Function headerWidget,
+    String errorResponse,
+    String emptyMessage}) {
   return ListView.builder(
-      padding: EdgeInsets.only(bottom:  80 ),
+      padding: EdgeInsets.only(bottom: 80),
       reverse: false,
       itemCount: response.data.length + 1,
       itemBuilder: (context, index) {
@@ -18,7 +21,7 @@ Widget builderInfinityListViewComponent(ResponsePaginated response,
         } else {
           if (response.data.length >= 1) {
             var _page = (response?.page ?? 0) + 1;
-            if (!(response?.page  == response.total)) {
+            if (!(response?.page == response.total)) {
               callMoreElements(_page);
               return loadElements(context, size: 80);
             } else {
@@ -41,7 +44,7 @@ GridView builderInfinityGridViewComponent(
         crossAxisCount: 2,
         childAspectRatio: cardWidth / cardHeight,
       ),
-      padding: EdgeInsets.only(bottom: 80 ),
+      padding: EdgeInsets.only(bottom: 80),
       reverse: false,
       itemCount: response.data.length + 1,
       itemBuilder: (context, index) {
@@ -50,7 +53,7 @@ GridView builderInfinityGridViewComponent(
         } else {
           if (response.data.length >= 1) {
             var _page = (response?.page ?? 0) + 1;
-            if (!(response?.page  == response.total)) {
+            if (!(response?.page == response.total)) {
               callMoreElements(_page);
               return loadElements(context, size: 80);
             } else {

@@ -23,7 +23,8 @@ class UserImageWidget extends StatefulWidget {
     this.isRounded = true,
     this.changeImage,
     this.userImage,
-    this.addButtom, this.enable = true,
+    this.addButtom,
+    this.enable = true,
   });
 
   @override
@@ -40,8 +41,8 @@ class _UserImageWidgetState extends State<UserImageWidget> {
     var pickedFile;
     File photo2;
     try {
-      pickedFile = await ImagePicker
-          .pickImage(source: source, maxWidth: 300, maxHeight: 300);
+      pickedFile = await ImagePicker.pickImage(
+          source: source, maxWidth: 300, maxHeight: 300);
 
       photo2 = pickedFile;
     } catch (e) {
@@ -78,112 +79,129 @@ class _UserImageWidgetState extends State<UserImageWidget> {
 
   void _settingModalBottomSheet(context) {
     showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return Container(
-            child: new Wrap(
-              children: <Widget>[
-                new ListTile(
-                  leading: new Icon(Icons.camera_alt),
-                  title: new Text("Camera"),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    _onImageButtonPressed(ImageSource.camera);
-                  },
-                ),
-                new ListTile(
-                    leading: new Icon(Icons.photo_library),
-                    title: new Text("Galeria"),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      _onImageButtonPressed(ImageSource.gallery,
-                          singleImage: true);
-                    }),
-              ],
-            ),
-          );
-        });
+      context: context,
+      builder: (BuildContext bc) {
+        return Container(
+          child: new Wrap(
+            children: <Widget>[
+              new ListTile(
+                leading: new Icon(Icons.camera_alt),
+                title: new Text("Camera"),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _onImageButtonPressed(ImageSource.camera);
+                },
+              ),
+              new ListTile(
+                leading: new Icon(Icons.photo_library),
+                title: new Text("Galeria"),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  _onImageButtonPressed(ImageSource.gallery, singleImage: true);
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: widget.width ?? 120,
-        height: widget.height ?? 120,
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(widget.isRounded ? 100.0 : 0),
-            child: Container(
-                color: Colors.grey[200],
-                child: InkWell(
-                    onTap: !widget.enable ? null: () {
-                      _settingModalBottomSheet(context);
-                    },
-                    child: Stack(children: <Widget>[
-
-                      _images == null
-                          ? Center(
-                          child: widget.userImage == null
-                              ? Center(
-                              child: Icon(
-                                Icons.person,
-                                size: 60,
-                              ))
-                              : (widget.userImage ?? "").isEmpty
-                              ? SizedBox()
-                              : ImageUtils.imageFromBase64String(
-                            (widget.userImage ?? ""),
-                            fit: BoxFit.cover,
-
-                            width: widget.width ?? 120,
-                            height: widget.height ?? 120,
-                            //
-                            // placeholder: (context, url) =>
-                            //     new CircularProgressIndicator(),
-                            // errorWidget:
-                            //     (context, url, error) =>
-                            //         new Icon(
-                            //   Icons.person,
-                            //   size: 60,
-                            // ),
-                          ))
-                          : _images == null
-                          ? SizedBox()
-                          : Image.file(
-                        _images,
-                        width: 120,
-                        height: 120,
-                        fit: BoxFit.fill,
-                      ),
-                      !widget.isRounded || !widget.enable
-                          ? SizedBox()
-                          : Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Opacity(
-                              opacity: 0.7,
-                              child: Container(
-                                color: Colors.white,
-                                width: 200,
+      width: widget.width ?? 120,
+      height: widget.height ?? 120,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(widget.isRounded ? 100.0 : 0),
+        child: Container(
+          color: Colors.grey[200],
+          child: InkWell(
+            onTap: !widget.enable
+                ? null
+                : () {
+                    _settingModalBottomSheet(context);
+                  },
+            child: Stack(
+              children: <Widget>[
+                _images == null
+                    ? Center(
+                        child: widget.userImage == null
+                            ? Center(
                                 child: Icon(
-                                  Icons.camera_alt,
-                                  color: Colors.black,
+                                  Icons.person,
+                                  size: 60,
                                 ),
-                              ))),     widget.addButtom == null
-                          ? SizedBox()
-                          : Center(
-                          child: Opacity(
-                              opacity: 0.6,
-                              child: ElevatedButton(
-                                child: Text(
-                                  widget.addButtom,
-                                  style: AppThemeUtils.normalSize(
-                                      color: Colors.white),
-                                ),
-                                onPressed:!widget.enable ? null: () {
-                                  _settingModalBottomSheet(context);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.grey, elevation: 0),
-                              ))),
-                    ])))));
+                              )
+                            : (widget.userImage ?? "").isEmpty
+                                ? SizedBox()
+                                : ImageUtils.imageFromBase64String(
+                                    (widget.userImage ?? ""),
+                                    fit: BoxFit.cover,
+
+                                    width: widget.width ?? 120,
+                                    height: widget.height ?? 120,
+                                    //
+                                    // placeholder: (context, url) =>
+                                    //     new CircularProgressIndicator(),
+                                    // errorWidget:
+                                    //     (context, url, error) =>
+                                    //         new Icon(
+                                    //   Icons.person,
+                                    //   size: 60,
+                                    // ),
+                                  ),
+                      )
+                    : _images == null
+                        ? SizedBox()
+                        : Image.file(
+                            _images,
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.fill,
+                          ),
+                !widget.isRounded || !widget.enable
+                    ? SizedBox()
+                    : Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Opacity(
+                          opacity: 0.7,
+                          child: Container(
+                            color: Colors.white,
+                            width: 200,
+                            child: Icon(
+                              Icons.camera_alt,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                widget.addButtom == null
+                    ? SizedBox()
+                    : Center(
+                        child: Opacity(
+                          opacity: 0.6,
+                          child: ElevatedButton(
+                            child: Text(
+                              widget.addButtom,
+                              style:
+                                  AppThemeUtils.normalSize(color: Colors.white),
+                            ),
+                            onPressed: !widget.enable
+                                ? null
+                                : () {
+                                    _settingModalBottomSheet(context);
+                                  },
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.grey, elevation: 0),
+                          ),
+                        ),
+                      ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -63,13 +63,7 @@ class _ItemProductEditState extends State<ItemProductEdit> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(left: 10, top: 20),
-                        child: Center(
-                            child: ImageUtils.imageFromBase64String(
-                          widget.product.image,
-                          height: 180,
-                          fit: BoxFit.cover,
-                          width: 150,
-                        )),
+                        child: Center(child: buildImage()),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 10),
@@ -98,5 +92,18 @@ class _ItemProductEditState extends State<ItemProductEdit> {
         lineViewWidget()
       ],
     );
+  }
+
+  buildImage() {
+    try {
+      return ImageUtils.imageFromBase64String(
+        widget.product.image,
+        height: 180,
+        fit: BoxFit.cover,
+        width: 150,
+      );
+    } catch (e) {
+      return Container();
+    }
   }
 }
