@@ -13,9 +13,7 @@ class AccountController extends Disposable {
 
   var controllerConfirmPass = TextEditingController();
 
-  var controllerPassActualPass  = TextEditingController();
-
-
+  var controllerPassActualPass = TextEditingController();
 
   @override
   void dispose() {
