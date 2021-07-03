@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 extension StringExtension on String {
-  Uint8List getImage() {
-    if (this != null && this.isNotEmpty) {
+  Uint8List? getImage() {
+    if ( this.isNotEmpty) {
       if (this.contains(",")) {
         return Base64Decoder().convert(this.replaceAll("\n", "").split(",")[1]);
       } else {

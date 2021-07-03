@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class SimpleButtonOutlineWidget extends StatelessWidget {
-  SimpleButtonOutlineWidget({@required this.text, this.onPressed});
+  SimpleButtonOutlineWidget({required this.text, this.onPressed});
 
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SimpleButtonOutlineWidget extends StatelessWidget {
         color: AppThemeUtils.whiteColor,
         onPressed: () {
           if (onPressed != null) {
-            onPressed();
+            onPressed?.call();
           }
         },
         child: Text(

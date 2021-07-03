@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class TitleDescriptionBigMobileWidget extends StatelessWidget {
-  String title;
-  Widget customIcon;
-  Function action;
+  String? title;
+  Widget? customIcon;
+  Function()? action;
 
   TitleDescriptionBigMobileWidget(
       {this. title, this. action, this.customIcon});

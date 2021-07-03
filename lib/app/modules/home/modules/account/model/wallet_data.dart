@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 import 'transaction.dart';
 
@@ -6,14 +5,14 @@ class WalletData {
   final int wallet;
   final List<Transaction> transactions;
   WalletData({
-    @required this.wallet,
-    @required this.transactions,
+    required this.wallet,
+    required this.transactions,
   });
 
   Map<String, dynamic> toMap() {
     return {
       'wallet': wallet,
-      'transactions': transactions?.map((x) => x.toMap())?.toList(),
+      'transactions': transactions.map((x) => x.toMap()).toList(),
     };
   }
 

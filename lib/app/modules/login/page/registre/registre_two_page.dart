@@ -17,7 +17,7 @@ class RegistreTwoPage extends StatefulWidget {
 class _RegistreTwoPageState extends State<RegistreTwoPage> {
   var bloc = Modular.get<LoginBloc>();
 
-  String errorEmail;
+  String? errorEmail;
 
   @override
   Widget build(BuildContext context) {

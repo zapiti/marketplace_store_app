@@ -36,8 +36,8 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
     );
   }
 
-  StreamBuilder<CurrentUser> buildBody() {
-    return StreamBuilder<CurrentUser>(
+  StreamBuilder<CurrentUser?> buildBody() {
+    return StreamBuilder<CurrentUser?>(
       stream: appBloc.currentUser,
       builder: (context, snapshotUser) {
         return buildBodyPage(context, snapshotUser);
@@ -46,7 +46,7 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
   }
 
   StatefulWrapper buildBodyPage(
-      BuildContext context, AsyncSnapshot<CurrentUser> snapshotUser) {
+      BuildContext context, AsyncSnapshot<CurrentUser?> snapshotUser) {
     return StatefulWrapper(
       onInit: () {},
       child: Column(
@@ -66,7 +66,7 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
 
   Expanded buildProductListWidget() {
     return Expanded(
-      child: builderComponent<ResponsePaginated>(
+      child: builderComponent<ResponsePaginated?>(
         stream: controller.listProducts,
         emptyMessage: "Seu estabelecimento ainda não possui produtos.",
         initCallData: () => controller.getListProducts(),
@@ -106,7 +106,7 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
     );
   }
 
-  Row buildTitleTile(AsyncSnapshot<CurrentUser> snapshotUser) {
+  Row buildTitleTile(AsyncSnapshot<CurrentUser?> snapshotUser) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,9 +116,9 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
           child: Center(
             child: UserImageWidget(
               changeImage: (txt) {
-                controller.updateImageStore(txt);
+                controller.updateImageStore(txt ?? '');
               },
-              userImage: snapshotUser.data?.establishment?.image,
+              userImage: snapshotUser.data?.establishment?.image ?? '',
             ),
           ),
         ),
@@ -161,17 +161,17 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
   }
 
   Container buildWallpaper(
-      BuildContext context, AsyncSnapshot<CurrentUser> snapshotUser) {
+      BuildContext context, AsyncSnapshot<CurrentUser?> snapshotUser) {
     return Container(
       child: UserImageWidget(
         changeImage: (txt) {
-          controller.updateImageBg(txt);
+          controller.updateImageBg(txt ?? '');
         },
         width: MediaQuery.of(context).size.width,
         height: 160,
         isRounded: false,
         addButtom: "Imagem de fundo",
-        userImage: snapshotUser.data?.establishment?.coverImage,
+        userImage: snapshotUser.data?.establishment?.coverImage ?? '',
       ),
     );
   }

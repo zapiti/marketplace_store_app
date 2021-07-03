@@ -1,7 +1,7 @@
 class CustomAttach {
-  String name;
-  String type;
-  String data;
+  String? name;
+  String? type;
+  String? data;
 
   Map<String, dynamic> toMap() {
     return {

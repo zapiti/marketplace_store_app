@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
@@ -14,12 +14,12 @@ import 'package:marketplace_store_app/app/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StoreController extends Disposable {
-  final imageTempProduct = BehaviorSubject<String>();
-  final listProducts = BehaviorSubject<ResponsePaginated>();
+  final imageTempProduct = BehaviorSubject<String?>();
+  final listProducts = BehaviorSubject<ResponsePaginated?>();
 
   final _repository = StoreRepository();
-  Pairs newStoreUnity;
-  String first;
+  Pairs? newStoreUnity;
+  String? first;
 
   final nomeProductController = TextEditingController();
   final valueProductController = MoneyMaskedTextController(leftSymbol: "R\$");
@@ -50,13 +50,11 @@ class StoreController extends Disposable {
     final product = _buildProduct();
 
     var response = await _repository.saveProducts(product);
-
-    if (response.error == null) {
+    if (response?.error == null) {
       getListProducts();
-      Navigator.of(context).popUntil((route) => route.isFirst);
-      // Modular.to.navigate(ConstantsRoutes.CALL_STOREPAGE);
+      Modular.to.navigate(ConstantsRoutes.CALL_STOREPAGE);
     } else {
-      Utils.showSnackbar(context, response.error);
+      Utils.showSnackbar(context, response?.error);
     }
   }
 
@@ -64,11 +62,11 @@ class StoreController extends Disposable {
     final product = Product();
     var response = await _repository.updateProducts(product);
 
-    if (response.error == null) {
+    if (response?.error == null) {
       Navigator.of(context).popUntil((route) => route.isFirst);
       getListProducts();
     } else {
-      Utils.showSnackbar(context, response.error);
+      Utils.showSnackbar(context, response?.error);
     }
   }
 
@@ -138,38 +136,37 @@ class StoreController extends Disposable {
       category: this.categoryController.text,
       sector: this.setorProductController.text,
       description: this.descrProductController.text,
-      quantityType: this.first.toUpperCase(),
+      quantityType: this.first?.toUpperCase(),
       stock: _getStock(),
       specification: _getSpecification(),
       qtdMax: _getQtdMax(),
       qtdMin: _getQtdMin(),
       barCode: this.barCodeController.text,
-      image: imageTempProduct.value,
+      image: imageTempProduct.stream.valueOrNull,
     );
   }
 
-  double _getStock() {
-    print(imageTempProduct.stream.value);
+  double? _getStock() {
     return isUnitySelected() ? double.parse(stockProductController.text) : 0.0;
   }
 
-  String _getSpecification() {
+  String? _getSpecification() {
     return isUnitySelected()
         ? null
         : this.specificationProductController.text.toUpperCase();
   }
 
-  double _getQtdMin() {
+  double? _getQtdMin() {
     return isUnitySelected()
         ? null
         : double.parse(this.minQuantityProductController.text);
   }
 
-  double _getQtdMax() {
+  double? _getQtdMax() {
     return isUnitySelected()
         ? null
         : double.parse(this.maxQuantityProductController.text);
   }
 
-  bool isUnitySelected() => this.newStoreUnity.first == "Unidade";
+  bool isUnitySelected() => this.newStoreUnity?.first == "Unidade";
 }

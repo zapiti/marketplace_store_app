@@ -8,13 +8,13 @@ import 'package:marketplace_store_app/app/utils/image_utils.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class UserImageWidget extends StatefulWidget {
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
   final bool isRounded;
 
-  final Function(String) changeImage;
-  final String userImage;
-  final String addButtom;
+  final Function(String?)? changeImage;
+  final String? userImage;
+  final String? addButtom;
   final bool enable;
 
   UserImageWidget({
@@ -33,15 +33,15 @@ class UserImageWidget extends StatefulWidget {
 
 class _UserImageWidgetState extends State<UserImageWidget> {
   final ImagePicker _picker = ImagePicker();
-  File _images;
-  Image _image;
-  String _base64;
+  File? _images;
+  Image? _image;
+  String? _base64;
 
   _onImageButtonPressed(ImageSource source, {bool singleImage = false}) async {
     var pickedFile;
-    File photo2;
+    File? photo2;
     try {
-      pickedFile = await ImagePicker.pickImage(
+      pickedFile = await ImagePicker().getImage(
           source: source, maxWidth: 300, maxHeight: 300);
 
       photo2 = pickedFile;
@@ -50,21 +50,21 @@ class _UserImageWidgetState extends State<UserImageWidget> {
     }
 
     if (photo2 != null) {
-      if (photo2 != null) {
+
         final bytes = await photo2.readAsBytes();
 
         String img64 = base64Encode(bytes);
         salvarImage(img64);
-      }
+
     }
     if (_base64 != null) {
       salvarImage(_base64);
     }
   }
 
-  void salvarImage(String img64) {
+  void salvarImage(String? img64) {
     debugPrint(img64);
-    widget.changeImage(img64);
+    widget.changeImage?.call(img64);
   }
 
   @override
@@ -155,7 +155,7 @@ class _UserImageWidgetState extends State<UserImageWidget> {
                     : _images == null
                         ? SizedBox()
                         : Image.file(
-                            _images,
+                            _images!,
                             width: 120,
                             height: 120,
                             fit: BoxFit.fill,
@@ -183,7 +183,7 @@ class _UserImageWidgetState extends State<UserImageWidget> {
                           opacity: 0.6,
                           child: ElevatedButton(
                             child: Text(
-                              widget.addButtom,
+                              widget.addButtom ?? '',
                               style:
                                   AppThemeUtils.normalSize(color: Colors.white),
                             ),

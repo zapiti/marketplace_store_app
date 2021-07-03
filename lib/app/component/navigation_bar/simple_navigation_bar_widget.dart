@@ -4,9 +4,9 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 class SimpleNavigationBarWidget extends StatelessWidget
     implements ObstructingPreferredSizeWidget {
   final String title;
-  final Widget trailing;
+  final Widget? trailing;
 
-  SimpleNavigationBarWidget({@required this.title, this.trailing});
+  SimpleNavigationBarWidget({required this.title, this.trailing});
 
   @override
   Widget build(BuildContext context) {

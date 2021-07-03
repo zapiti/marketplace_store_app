@@ -1,17 +1,17 @@
 class Product {
-  String name;
-  double value;
-  double promotionalValue;
-  String category;
-  String sector;
-  String description;
-  String quantityType;
-  double stock;
-  String specification;
-  double qtdMin;
-  double qtdMax;
-  String barCode;
-  String image;
+  String? name;
+  double? value;
+  double? promotionalValue;
+  String? category;
+  String? sector;
+  String? description;
+  String? quantityType;
+  double? stock;
+  String? specification;
+  double? qtdMin;
+  double? qtdMax;
+  String? barCode;
+  String? image;
 
   Product({
     this.name,
@@ -29,7 +29,7 @@ class Product {
     this.image,
   });
 
-  factory Product.fromMap(dynamic map) {
+  static Product? fromMap(dynamic map) {
     if (null == map) return null;
     var temp;
     return Product(

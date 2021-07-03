@@ -3,37 +3,42 @@ import 'package:search_cep/search_cep.dart';
 
 class CepController {
   static getCepController(
-      {TextEditingController zipCodeController,
-      TextEditingController addressController,
-      TextEditingController neighborhoodController,
-      TextEditingController cityController,
-      TextEditingController stateController,
-      Function(bool) enableField}) {
+      {required TextEditingController zipCodeController,
+      required TextEditingController addressController,
+      required TextEditingController neighborhoodController,
+      required TextEditingController cityController,
+      required TextEditingController stateController,
+      required Function(bool) enableField}) {
     zipCodeController.addListener(() async {
       if (zipCodeController.text.length == 10) {
-        var result = await ViaCepSearchCep.searchInfoByCep(
-            cep: zipCodeController.text.replaceAll(".", "").replaceAll("-", ""));
-        // var result = call.getOrElse(() => null);
-        if (result == null) {
+        var resulted = await ViaCepSearchCep().searchInfoByCep(
+            cep:
+                zipCodeController.text.replaceAll(".", "").replaceAll("-", ""));
+
+        if (resulted.isRight()) {
           enableField(true);
         } else {
           cleanFields(zipCodeController, addressController,
               neighborhoodController, cityController, stateController);
           enableField(false);
         }
-        if (result != null) {
-          if (result?.logradouro != null && result.logradouro.isNotEmpty) {
-            addressController.text = result.logradouro;
-          }
-          if (result?.bairro != null && result.bairro.isNotEmpty) {
-            neighborhoodController.text = result.bairro;
-          }
-          if (result?.localidade != null && result.localidade.isNotEmpty) {
-            cityController.text = result?.localidade;
-          }
-          if (result?.uf != null && result.uf.isNotEmpty) {
-            stateController.text = result?.uf;
-          }
+        if (resulted.isRight()) {
+          resulted.fold((l) => l, (result) {
+            if (result.logradouro != null &&
+                (result.logradouro ?? '').isNotEmpty) {
+              addressController.text = result.logradouro ?? '';
+            }
+            if (result.bairro != null && (result.bairro ?? '').isNotEmpty) {
+              neighborhoodController.text = result.bairro ?? '';
+            }
+            if (result.localidade != null &&
+                (result.localidade ?? '').isNotEmpty) {
+              cityController.text = result.localidade ?? '';
+            }
+            if (result.uf != null && (result.uf ?? '').isNotEmpty) {
+              stateController.text = result.uf ?? '';
+            }
+          });
         }
       } else {
         cleanFields(zipCodeController, addressController,

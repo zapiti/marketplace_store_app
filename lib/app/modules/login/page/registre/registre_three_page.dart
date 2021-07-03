@@ -21,8 +21,8 @@ class RegistreThreePage extends StatefulWidget {
 class _RegistreThreePageState extends State<RegistreThreePage> {
   var bloc = Modular.get<LoginBloc>();
 
-  String errorPass;
-  String errorPassConfirm;
+  String? errorPass;
+  String? errorPassConfirm;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
           var _isLoadRequest = snapshot.data;
           return WillPopScope(
               onWillPop: () async {
-                return !_isLoadRequest;
+                return !(_isLoadRequest ?? false);
               },
               child: Scaffold(
                 backgroundColor: Colors.white,
@@ -91,7 +91,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                     left: 10,
                                                     right: 10),
                                                 child: TextField(
-                                                  enabled: !_isLoadRequest,
+                                                  enabled: !(_isLoadRequest ?? false),
                                                   obscureText: snapshot.data,
                                                   controller:
                                                       bloc.passController,
@@ -137,7 +137,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                     left: 10,
                                                     right: 10),
                                                 child: TextField(
-                                                  enabled: !_isLoadRequest,
+                                                  enabled: !(_isLoadRequest ?? false),
                                                   obscureText: snapshot.data,
                                                   controller: bloc
                                                       .passControllerConfirm,
@@ -174,7 +174,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                       labelText:
                                                           'Confirmar Senha'),
                                                 ))),
-                                    _isLoadRequest
+                                    (_isLoadRequest ?? false)
                                         ? SizedBox()
                                         : Padding(
                                             padding: EdgeInsets.symmetric(
@@ -209,8 +209,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                                         goToTerm(StringFile.politicaDePrivacidade,
                                                                                 context)
                                                                             .then((value) {
-                                                                          bloc.userTermAccept.add(value ??
-                                                                              false);
+                                                                          bloc.userTermAccept.add(value );
                                                                         });
                                                                       }),
                                                           ],
@@ -222,7 +221,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                             snapshot) =>
                                                         Switch(
                                                             value:
-                                                                snapshot.data,
+                                                                snapshot.data ?? false,
                                                             hoverColor:
                                                                 AppThemeUtils
                                                                     .colorPrimary,
@@ -234,7 +233,7 @@ class _RegistreThreePageState extends State<RegistreThreePage> {
                                                                 .add))
                                               ],
                                             )),
-                                    _isLoadRequest
+                                    (_isLoadRequest ?? false)
                                         ? loadElements(context)
                                         : Padding(
                                             padding: EdgeInsets.only(

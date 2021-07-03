@@ -14,16 +14,16 @@ class LoginRememberBloc extends Disposable {
 
   Stream<bool> get outStateController => _stateController.stream;
 
-  sendEmail(BuildContext context, {@required String email}) {
+  sendEmail(BuildContext context, {required String email}) {
     _putData(isLoading: true);
     LoginRepository.sendRecoverEmail(email: email).then((response) {
       _putData();
 
-      if (response.error != null) {
+      if (response?.error != null) {
         showGenericDialog(
             context: context,
             title: "Erro",
-            description: response.error,
+            description: response?.error,
             positiveCallback: () {});
 
         return;
@@ -32,7 +32,7 @@ class LoginRememberBloc extends Disposable {
       showGenericDialog(
           context: context,
           title: "Sucesso",
-          description: response.data,
+          description: response?.data,
           positiveCallback: () {});
 
       Modular.to.pop();

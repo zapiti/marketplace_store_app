@@ -4,12 +4,12 @@ import 'package:marketplace_store_app/app/image/image_path.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 Widget emptyViewMobile(BuildContext context,
-    {String emptyMessage,
-      VoidCallback tentarNovamente,
+    {String? emptyMessage,
+      VoidCallback? tentarNovamente,
       bool isError = false,
-      double height = 130.0,
-      double heightImage = 50,
-      double size, String buttomText}) {
+      double? height = 130.0,
+      double? heightImage = 50,
+      double? size, String? buttomText}) {
   return Container(
       width: MediaQuery.of(context).size.width,
       child:SingleChildScrollView(child:  Column(
@@ -34,7 +34,7 @@ Widget emptyViewMobile(BuildContext context,
               style: AppThemeUtils.normalSize(
                   color: isError
                       ? AppThemeUtils.colorError
-                      : Theme.of(context).textTheme.bodyText1.color),
+                      : Theme.of(context).textTheme.bodyText1?.color),
             ),
           ),
           SizedBox(height: 15,),

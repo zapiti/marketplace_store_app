@@ -12,13 +12,13 @@ class AddressCepComponent extends StatefulWidget {
   final TextEditingController stateController;
 
   AddressCepComponent(
-      {this.zipCodeController,
-      this.addressController,
-      this.numberController,
-      this.complementController,
-      this.neighborhoodController,
-      this.cityController,
-      this.stateController});
+      {required this.zipCodeController,
+      required this.addressController,
+      required this.numberController,
+      required this.complementController,
+      required this.neighborhoodController,
+      required this.cityController,
+      required this.stateController});
 
   @override
   _AddressCepComponentState createState() => _AddressCepComponentState();

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:marketplace_store_app/app/core/util/color_util.dart';
 
 class SearchWidget extends StatelessWidget {
-  final String hint;
-  final Function(String) onSubmitted;
-  final Function(String) onChanged;
+  final String? hint;
+  final Function(String)? onSubmitted;
+  final Function(String)? onChanged;
 
   SearchWidget({this.hint, this.onSubmitted, this.onChanged});
 
@@ -28,10 +28,10 @@ class SearchWidget extends StatelessWidget {
               placeholder: hint ?? "Pesquisar",
               decoration: BoxDecoration(),
               onSubmitted: (text) {
-                onSubmitted(text);
+                onSubmitted?.call(text);
               },
               onChanged: (text) {
-                onChanged(text);
+                onChanged?.call(text);
               },
               textInputAction: TextInputAction.search,
             ),

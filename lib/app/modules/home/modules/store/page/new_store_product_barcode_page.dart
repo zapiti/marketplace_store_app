@@ -44,7 +44,6 @@ class _NewStoreProductBarCodePageState
         ),
         onPressed: () {
           controller.saveProducts(context);
-          Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
         },
         style: ElevatedButton.styleFrom(primary: AppThemeUtils.greyColor),
       ),

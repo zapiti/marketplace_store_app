@@ -1,17 +1,17 @@
 class Address {
-  String zipCode;
-  String address;
-  String number;
-  String complement;
-  String neighborhood;
-  String city;
-  String state;
+  String? zipCode;
+  String? address;
+  String? number;
+  String? complement;
+  String? neighborhood;
+  String? city;
+  String? state;
 
   Address({this.zipCode, this.address, this.number, this.complement,
       this.neighborhood, this.city, this.state});
 
 
-  factory Address.fromMap(dynamic map) {
+  static Address? fromMap(dynamic map) {
     if (null == map) return null;
     var temp;
     return Address(

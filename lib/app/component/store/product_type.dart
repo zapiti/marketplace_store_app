@@ -42,7 +42,7 @@ class _ProductTypeState extends State<ProductType> {
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(valueProduct ?? "Categoria do produto")),
             onChanged: (value) {
-              widget.typeController.text = value;
+              widget.typeController.text = value ?? '';
 
               setState(() {
                 valueProduct = value;

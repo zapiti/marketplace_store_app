@@ -5,7 +5,7 @@ class Pairs {
   dynamic four;
   bool selected;
 
-  Pairs(this.first, this.second, {this.third, this.selected, this.four});
+  Pairs(this.first, this.second, {this.third,  this.selected = false, this.four});
 
   static Pairs fromMap(
     Map<String, dynamic> map,

@@ -4,11 +4,11 @@ import 'dart:typed_data';
 import 'package:flutter/widgets.dart';
 
 class ImageUtils {
-  static Image imageFromBase64String(
-    String base64String, {
-    double height,
+  static Image? imageFromBase64String(
+    String? base64String, {
+    double? height,
     fit,
-    double width,
+    double? width,
   }) {
     return base64String == null
         ? null

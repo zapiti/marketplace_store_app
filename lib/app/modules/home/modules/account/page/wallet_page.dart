@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
@@ -34,9 +34,9 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
   }
 
   Widget buildBody() {
-    return builderComponent<ResponsePaginated>(
+    return builderComponent<ResponsePaginated?>(
       stream: accountController.walletInfo.stream,
-      buildBodyFunc: (context, response) => buildWalletPage(response.data),
+      buildBodyFunc: (context, response) => buildWalletPage(response?.data),
     );
   }
 

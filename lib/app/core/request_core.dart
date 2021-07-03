@@ -2,18 +2,17 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:marketplace_store_app/app/component/load/dialog_loading.dart';
 import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
 import 'package:marketplace_store_app/app/models/code_response.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/modules/login/core/auth_repository.dart';
+
 import 'package:marketplace_store_app/app/utils/network/network_service.dart';
-import 'package:marketplace_store_app/app/utils/preferences/security_preference.dart';
+
 import 'package:marketplace_store_app/app/utils/response/response_utils.dart';
 import 'package:marketplace_store_app/app/utils/string/string_file.dart';
 
-import 'auth/auth_repository_interface.dart';
 import 'client/api_client.dart';
 
 enum TYPEREQUEST { PATCH, POST, PUT, GET, DELETE }
@@ -31,16 +30,16 @@ class RequestCore {
   ///@namedResponse e se a requisicao tem um nome
   ///@isImage e caso o enviado seja multpartFile
   ///isJsonResponse e caso nao precise dar parce no body pra json
-  Future<ResponsePaginated> requestWithTokenToForm(
-      {@required serviceName,
-      @required funcFromMap,
+  Future<ResponsePaginated?> requestWithTokenToForm(
+      {required serviceName,
+      required funcFromMap,
       dynamic body,
-      @required TYPEREQUEST typeRequest,
-      String namedResponse,
+      required TYPEREQUEST typeRequest,
+      String? namedResponse,
       bool isImage = false,
       bool isJsonResponse = true,
       bool isObject = true,
-      String url,
+      String? url,
       String app = "backoffice-api"}) async {
     var checkCelular = await NetWorkService.check();
     if (!checkCelular) {
@@ -75,29 +74,17 @@ class RequestCore {
         } on DioError catch (e) {
           showLoading(false);
           print(
-              "***RETORNO-SERVICO (Erro)(${typeRequest.toString()}) = $serviceName body = ${showBody ? e?.response ?? e : {}}");
+              "***RETORNO-SERVICO (Erro)(${typeRequest.toString()}) = $serviceName body = ${showBody ? e.response ?? e : {}}");
 
-          if (e.response?.statusCode == 403) {
-            return tryAgainElement(
-                typeRequest,
-                api,
-                serviceName,
-                isJsonResponse,
-                isImage,
-                body,
-                funcFromMap,
-                namedResponse,
-                isObject);
-          } else {
+
             var msg = ResponseUtils.getErrorBody(e.response?.data);
             return ResponseUtils.getResponsePaginatedObject(
                 CodeResponse(error: msg), funcFromMap,
-                status: e?.response?.statusCode);
-          }
+                status: e.response?.statusCode ?? 500);
+
         } on Exception catch (e) {
           showLoading(false);
-          var msg = ResponseUtils.getErrorBody(e?.toString()) ??
-              "Sem descrição de erro";
+          var msg = ResponseUtils.getErrorBody(e.toString());
           return ResponseUtils.getResponsePaginatedObject(
               CodeResponse(error: msg), funcFromMap,
               status: 500);
@@ -106,7 +93,7 @@ class RequestCore {
     }
   }
 
-  Future<ResponsePaginated> requestMyApp(
+  Future<ResponsePaginated?> requestMyApp(
       TYPEREQUEST typeRequest,
       Dio api,
       serviceName,
@@ -114,7 +101,7 @@ class RequestCore {
       bool isImage,
       body,
       funcFromMap,
-      String namedResponse,
+      String? namedResponse,
       bool isObject) async {
     Response response;
 
@@ -206,7 +193,7 @@ class RequestCore {
         break;
     }
 
-    var statusCode = response?.statusCode;
+    var statusCode = response.statusCode;
     print("Current status code: $statusCode");
 
     print(
@@ -217,51 +204,51 @@ class RequestCore {
         statusCode == 203 ||
         statusCode == 204) {
       return ResponseUtils.getResponsePaginatedObject(
-          CodeResponse(sucess: response?.data), funcFromMap,
+          CodeResponse(sucess: response.data), funcFromMap,
           namedResponse: namedResponse,
           isObject: isObject,
-          status: response?.statusCode);
+          status: response.statusCode);
 
       // return tryAgainElement(typeRequest, api, serviceName, isJsonResponse, isImage, body, funcFromMap, namedResponse, isObject);
 
     } else {
       return ResponseUtils.getResponsePaginatedObject(
           CodeResponse(error: response), funcFromMap,
-          status: response?.statusCode);
+          status: response.statusCode);
     }
   }
 
-  Future<ResponsePaginated> tryAgainElement(
-      TYPEREQUEST typeRequest,
-      Dio api,
-      serviceName,
-      bool isJsonResponse,
-      bool isImage,
-      body,
-      funcFromMap,
-      String namedResponse,
-      bool isObject) async {
-    var user = await SecurityPreference.getUser();
-    var auth = Modular.get<AuthRepository>();
-
-    ResponsePaginated codeReponse = await auth.getLogin(
-      username: user.username,
-      password: user.password,
-    );
-    if (codeReponse.error != null) {
-      auth.getLogout();
-      return ResponsePaginated(error: "Falha ao logar");
-    } else {
-      try {
-        return await requestMyApp(typeRequest, api, serviceName, isJsonResponse,
-            isImage, body, funcFromMap, namedResponse, isObject);
-      } on DioError catch (e) {
-        // auth.getLogout();
-        return ResponsePaginated(error: "Falha ao logar");
-      } on Exception catch (exe) {
-        //   auth.getLogout();
-        return ResponsePaginated(error: "Falha ao logar");
-      }
-    }
-  }
+  // Future<ResponsePaginated?> tryAgainElement(
+  //     TYPEREQUEST typeRequest,
+  //     Dio api,
+  //     serviceName,
+  //     bool isJsonResponse,
+  //     bool isImage,
+  //     body,
+  //     funcFromMap,
+  //     String namedResponse,
+  //     bool isObject) async {
+  //   var user = await SecurityPreference.getUser();
+  //   var auth = Modular.get<AuthRepository>();
+  //
+  //   ResponsePaginated codeReponse = await auth.getLogin(
+  //     username: user.username,
+  //     password: user.password,
+  //   );
+  //   if (codeReponse.error != null) {
+  //     auth.getLogout();
+  //     return ResponsePaginated(error: "Falha ao logar");
+  //   } else {
+  //     try {
+  //       return await requestMyApp(typeRequest, api, serviceName, isJsonResponse,
+  //           isImage, body, funcFromMap, namedResponse, isObject);
+  //     } on DioError catch (e) {
+  //       // auth.getLogout();
+  //       return ResponsePaginated(error: "Falha ao logar");
+  //     } on Exception catch (exe) {
+  //       //   auth.getLogout();
+  //       return ResponsePaginated(error: "Falha ao logar");
+  //     }
+  //   }
+  // }
 }

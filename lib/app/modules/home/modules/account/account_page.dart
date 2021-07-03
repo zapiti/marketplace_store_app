@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/mobile/title_descritption_mobile_widget.dart';
 import 'package:marketplace_store_app/app/component/simple/line_view_widget.dart';
@@ -35,7 +34,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountController> {
             action: () {
               Modular.to.pushNamed(ConstantsRoutes.CALL_ALTERPASS);
             },
-            iconData: MaterialCommunityIcons.lock_outline,
+            iconData: Icons.lock_outline,
           ),
           lineViewWidget(),
           titleDescriptionMobileWidget(
@@ -44,7 +43,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountController> {
             action: () {
               Modular.to.pushNamed(ConstantsRoutes.CALL_WALLET);
             },
-            iconData: MaterialCommunityIcons.cash_usd,
+            iconData: Icons.monetization_on,
           ),
           lineViewWidget(),
           titleDescriptionMobileWidget(
@@ -53,7 +52,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountController> {
             action: () {
               Modular.to.pushNamed(ConstantsRoutes.CALL_HELP);
             },
-            iconData: MaterialCommunityIcons.information_outline,
+            iconData: Icons.info,
           ),
           lineViewWidget(),
           titleDescriptionMobileWidget(
@@ -63,7 +62,7 @@ class _AccountPageState extends ModularState<AccountPage, AccountController> {
               var loginBloc = Modular.get<LoginBloc>();
               loginBloc.getLogout();
             },
-            iconData: MaterialCommunityIcons.exit_to_app,
+            iconData: Icons.exit_to_app,
           ),
           lineViewWidget(),
         ],

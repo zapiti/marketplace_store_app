@@ -4,10 +4,10 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 
 Widget titleDescriptionWebWidget(BuildContext context,
-    {String title,
-    String description,
-    GestureTapCallback action,
-    Widget customIcon}) {
+    {String? title,
+    String? description,
+    GestureTapCallback? action,
+    Widget? customIcon}) {
   return Container(
     margin: EdgeInsets.symmetric(horizontal: 15),
     child: Column(
@@ -29,7 +29,7 @@ Widget titleDescriptionWebWidget(BuildContext context,
         description == null ? SizedBox():  Container(
             width: MediaQuery.of(context).size.width,
             child: SelectableText(
-              description ?? "--",
+              description ,
               style: AppThemeUtils.normalBoldSize(),
             )),
         SizedBox(width: 10),
@@ -41,10 +41,10 @@ Widget titleDescriptionWebWidget(BuildContext context,
 }
 
 Widget titleDescriptionMobileWidget(BuildContext context,
-    {String title,
-    String description,
-    GestureTapCallback action,
-    Widget customIcon, IconData iconData}) {
+    {String? title,
+    String? description,
+    GestureTapCallback? action,
+    Widget? customIcon, IconData? iconData}) {
   return InkWell(
     onTap: action,
     child:

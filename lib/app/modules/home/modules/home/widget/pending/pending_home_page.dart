@@ -14,7 +14,7 @@ class PendingHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return builderComponent<ResponsePaginated>(
+    return builderComponent<ResponsePaginated?>(
         stream: controller.listPendingOrders,
         emptyMessage:
             "Seu estabelecimento ainda não recebeu pedidos. Não esqueça de atualizar os produtos da sua loja.",

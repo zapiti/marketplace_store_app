@@ -1,13 +1,13 @@
-import 'package:email_validator/email_validator.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/load/load_elements.dart';
-import 'package:marketplace_store_app/app/image/image_logo_widget.dart';
+
 import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
 import 'package:marketplace_store_app/app/modules/login/page/alter_pass/alter_pass_bottom_sheet.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class LoginPassPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class LoginPassPage extends StatefulWidget {
 class _LoginPassPageState extends State<LoginPassPage> {
   var bloc = Modular.get<LoginBloc>();
 
-  String errorPass;
+  String? errorPass;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _LoginPassPageState extends State<LoginPassPage> {
         stream: bloc.loadingSubject,
         initialData: false,
         builder: (context, snapshot) {
-          var _isLoadRequest = snapshot.data;
+          var _isLoadRequest = snapshot.data ?? false;
           return WillPopScope(
               onWillPop: ()async  {
                return  !_isLoadRequest;

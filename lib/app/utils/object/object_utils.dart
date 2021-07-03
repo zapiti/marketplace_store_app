@@ -25,7 +25,7 @@ class ObjectUtils {
     }
   }
   ///***pega um objeto e converte para double
-  static double parseToDouble(data, {dynamic defaultValue = 0.0}) {
+  static double? parseToDouble(data, {dynamic defaultValue = 0.0}) {
     if (data == null) return defaultValue;
     try {
       if (data is double) {

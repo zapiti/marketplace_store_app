@@ -39,7 +39,7 @@ class _StoreTypeState extends State<StoreType> {
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child:  Text(valueStableciment ?? "Tipo de estabelecimento")),
             onChanged: (value) {
-              widget.typeController.text = value;
+              widget.typeController.text = value ?? '';
 
               setState(() {
                 valueStableciment = value;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget lineViewWidget(
-    {Color color,
+    {Color? color,
     double width = 2000,
     double boarder = 0,
     double height = 1,

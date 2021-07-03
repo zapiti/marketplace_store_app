@@ -3,7 +3,7 @@ import 'package:marketplace_store_app/app/component/load/load_elements.dart';
 
 
 Widget builderComponentFuture<T>(
-    {Future<T> future, Function buildBodyFunc, bool enableLoad = true}) {
+    {required Future<T> future, required Function buildBodyFunc, bool enableLoad = true}) {
   return FutureBuilder<dynamic>(
       future: future,
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {

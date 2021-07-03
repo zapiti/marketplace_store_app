@@ -1,46 +1,54 @@
-import 'package:localstorage/localstorage.dart';
-LocalStorage storage = LocalStorage('score_client_app_flutter');
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 class LocalDataStore {
+  static setData({required String key, required String value}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  setData({String key, dynamic value}) async {
-    await storage.ready.then((_) => _printStorage(key));
-    await storage.setItem(key, value);
+    prefs.setString(key, value);
   }
 
-  removeData({String key}) async {
-    await  storage.ready.then((_) => _printStorage(key));
-    storage.deleteItem(key);
+  static removeData({required String key}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(key);
   }
 
-  dynamic getData({String key}) async {
+  static deleteAll() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.clear();
+  }
+
+  static Future<String?> getValue({required String key}) async {
     try {
-      await storage.ready.then((_) => _printStorage(key));
-      return storage.getItem(key);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      return prefs.getString(key);
     } on Exception catch (_) {
       return null;
     }
   }
 
-  deleteAll() async {
-    await storage.ready;
-
-    return storage.clear();
-  }
-  dynamic getValue({String key})  {
+  static setListData({required String key, required List<Map> value}) async {
     try {
-      storage.ready.then((_) => _printStorage(key));
-      return storage.getItem(key);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      return prefs.setStringList(
+          key, value.map<String>((e) => jsonEncode(e)).toList());
     } on Exception catch (_) {
       return null;
     }
   }
-  void _printStorage(String key) async {
-    try {
-      //   print("before ready: " + storage.getItem(key).toString());
 
-      //wait until ready
-      await storage.ready;
-    } on Exception catch (_) {}
-    //this will still print null:
+  static Future<List<T>> getList<T>(
+      {required String key, required T Function(Map) fromMap}) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final listString = prefs.getStringList(key);
+      List<T> tempList =
+          listString?.map<T>((e) => fromMap(jsonDecode(e))).toList() ?? <T>[];
+
+      return tempList;
+    } on Exception catch (_) {
+      return <T>[];
+    }
   }
 }

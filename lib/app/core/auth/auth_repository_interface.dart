@@ -2,7 +2,7 @@ import 'package:marketplace_store_app/app/models/current_user.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
 
 abstract class IAuthRepository {
-  Future<ResponsePaginated> getLogin({String username, String password});
-  Future<String> getToken();
-  Future<ResponsePaginated>  getLogout();
+  Future<ResponsePaginated?> getLogin({String username, String password});
+  Future<String?> getToken();
+  Future<ResponsePaginated?>  getLogout();
 }

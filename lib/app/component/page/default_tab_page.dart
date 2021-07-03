@@ -4,14 +4,14 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 // ignore: must_be_immutable
 class DefaultTabPage extends StatefulWidget {
-  final List<String> title;
+  final List<String>? title;
 
-  final List<Widget> page;
+  final List<Widget>? page;
   final dynamic neverScroll;
-  final Function(TabController) changeTab;
-  final Function(int) tapIndex;
-  final int initialPage;
-  TabController tabController;
+  final Function(TabController)? changeTab;
+  final Function(int)? tapIndex;
+  final int? initialPage;
+  TabController? tabController;
 
   DefaultTabPage(
       {this.title,
@@ -27,7 +27,7 @@ class DefaultTabPage extends StatefulWidget {
 
 class _DefaultTabPageState extends State<DefaultTabPage>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
+  TabController? tabController;
   var index = 0;
 
   @override
@@ -35,23 +35,23 @@ class _DefaultTabPageState extends State<DefaultTabPage>
     super.initState();
     tabController = new TabController(
         vsync: this,
-        length: widget.page.length,
+        length: widget.page?.length ?? 0,
         initialIndex: widget.initialPage ?? 0)
       ..addListener(() {
         setState(() {
-          index = tabController.index;
+          index = tabController?.index ?? -1;
         });
       });
 
     if (widget.changeTab != null) {
       widget.tabController = tabController;
-      widget.changeTab(tabController);
+      widget.changeTab?.call(tabController!);
     }
   }
 
   @override
   void dispose() {
-    tabController.dispose();
+    tabController?.dispose();
     super.dispose();
   }
 
@@ -67,11 +67,11 @@ class _DefaultTabPageState extends State<DefaultTabPage>
                 padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                 child: Row(
                     children: widget.title
-                        .map<Widget>((e) =>
+                        ?.map<Widget>((e) =>
                         Expanded(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  primary: index == widget.title.indexOf(e)
+                                  primary: index == widget.title?.indexOf(e)
                                       ? Theme
                                       .of(context)
                                       .primaryColor
@@ -81,7 +81,7 @@ class _DefaultTabPageState extends State<DefaultTabPage>
                                       BorderRadius.all(Radius.circular(0)),
                                       side: BorderSide(
                                           color: index ==
-                                              widget.title.indexOf(e)
+                                              widget.title?.indexOf(e)
                                               ? Theme
                                               .of(context)
                                               .primaryColor
@@ -92,10 +92,10 @@ class _DefaultTabPageState extends State<DefaultTabPage>
 
                               onPressed: () {
                                 if (widget.tapIndex != null) {
-                                  widget.tapIndex(widget.title.indexOf(e));
+                                  widget.tapIndex?.call(widget.title?.indexOf(e) ?? 0 );
                                 }
-                                tabController.animateTo(widget.title.indexOf(
-                                    e));
+                                tabController?.animateTo(widget.title?.indexOf(
+                                    e) ?? 0);
                               },
                               child: Container(
                                 height: 40,
@@ -107,7 +107,7 @@ class _DefaultTabPageState extends State<DefaultTabPage>
                                     maxFontSize: 13,
                                     textAlign: TextAlign.center,
                                     style: AppThemeUtils.normalSize(
-                                        color: index == widget.title.indexOf(e)
+                                        color: index == widget.title?.indexOf(e)
                                             ? Colors.white
                                             : Theme
                                             .of(context)
@@ -117,12 +117,12 @@ class _DefaultTabPageState extends State<DefaultTabPage>
                                 ),
                               ),
                             )))
-                        .toList())),
+                        .toList() ?? [])),
             Expanded(
                 child: TabBarView(
                   physics: widget.neverScroll ?? ClampingScrollPhysics(),
                   controller: tabController,
-                  children: widget.page,
+                  children: widget.page  ?? [],
                 )),
           ],
         ));

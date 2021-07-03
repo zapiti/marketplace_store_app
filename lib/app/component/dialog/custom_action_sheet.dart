@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class CustomActionSheet extends StatelessWidget {
   final String title;
-  final String description;
+  final String? description;
   final List<CupertinoActionSheetAction> actions;
 
   CustomActionSheet(
-      {@required this.title, @required this.actions, this.description});
+      {required this.title, required this.actions, this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CustomActionSheet extends StatelessWidget {
               fontFamily: 'Sora'),
         ),
         message: description != null
-            ? Text(description,
+            ? Text(description!,
             style: CupertinoTheme.of(context).textTheme.textStyle)
             : Container(),
         cancelButton: CupertinoActionSheetAction(
@@ -38,9 +38,9 @@ class CustomActionSheet extends StatelessWidget {
   }
 
   static showModal(BuildContext buildContext,
-      {@required String title,
-        String description,
-        @required List<CupertinoActionSheetAction> actions}) {
+      {required String title,
+        String? description,
+        required List<CupertinoActionSheetAction> actions}) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: buildContext,
@@ -48,7 +48,7 @@ class CustomActionSheet extends StatelessWidget {
           return CustomActionSheet(
             actions: actions,
             title: title,
-            description: description,
+            description: description ?? '',
           );
         });
   }

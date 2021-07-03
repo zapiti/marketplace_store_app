@@ -7,8 +7,8 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import 'image_path.dart';
 
 class GetLogoIcon extends StatelessWidget {
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
 
   GetLogoIcon({this.width: 250, this.height: 130});
 
@@ -24,8 +24,8 @@ class GetLogoIcon extends StatelessWidget {
 }
 
 class GetLogoIcon2 extends StatelessWidget {
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
 
   GetLogoIcon2({this.width: 300, this.height: 80});
 

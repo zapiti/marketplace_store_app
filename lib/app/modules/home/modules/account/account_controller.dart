@@ -10,7 +10,7 @@ class AccountController extends Disposable {
   var showPassActual = BehaviorSubject<bool>.seeded(true);
   var showPass = BehaviorSubject<bool>.seeded(true);
   var showPassConfirm = BehaviorSubject<bool>.seeded(true);
-  final walletInfo = BehaviorSubject<ResponsePaginated>();
+  final walletInfo = BehaviorSubject<ResponsePaginated?>();
 
   var controllerPass = TextEditingController();
   var controllerConfirmPass = TextEditingController();

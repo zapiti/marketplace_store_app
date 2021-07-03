@@ -4,8 +4,8 @@ class ExpandablePageView extends StatefulWidget {
   final List<Widget> children;
 
   const ExpandablePageView({
-    Key key,
-    @required this.children,
+    Key? key,
+    required this.children,
   }) : super(key: key);
 
   @override
@@ -14,11 +14,11 @@ class ExpandablePageView extends StatefulWidget {
 
 class _ExpandablePageViewState extends State<ExpandablePageView>
     with TickerProviderStateMixin {
-  PageController _pageController;
-  List<double> _heights;
+  PageController? _pageController;
+  List<double>? _heights;
   int _currentPage = 0;
 
-  double get _currentHeight => _heights[_currentPage];
+  double? get _currentHeight => _heights![_currentPage];
 
   @override
   void initState() {
@@ -26,9 +26,9 @@ class _ExpandablePageViewState extends State<ExpandablePageView>
     super.initState();
     _pageController = PageController() //
       ..addListener(() {
-        final _newPage = _pageController.page.round();
+        final _newPage = _pageController?.page?.round();
         if (_currentPage != _newPage) {
-          setState(() => _currentPage = _newPage);
+          setState(() => _currentPage = _newPage ?? 0);
         }
       });
   }
@@ -38,7 +38,7 @@ class _ExpandablePageViewState extends State<ExpandablePageView>
     return TweenAnimationBuilder<double>(
       curve: Curves.easeInOutCubic,
       duration: const Duration(milliseconds: 100),
-      tween: Tween<double>(begin: _heights[0], end: _currentHeight),
+      tween: Tween<double>(begin: _heights![0], end: _currentHeight),
       builder: (context, value, child) => SizedBox(height: value, child: child),
       child: PageView(
         controller: _pageController,
@@ -63,7 +63,7 @@ class _ExpandablePageViewState extends State<ExpandablePageView>
             alignment: Alignment.topCenter,
             child: SizeReportingWidget(
               onSizeChange: (size) =>
-                  setState(() => _heights[index] = size?.height ?? 0),
+                  setState(() => _heights![index] = size?.height ?? 0),
               child: Align(child: child),
             ),
           ),
@@ -78,9 +78,9 @@ class SizeReportingWidget extends StatefulWidget {
   final ValueChanged<Size> onSizeChange;
 
   const SizeReportingWidget({
-    Key key,
-    @required this.child,
-    @required this.onSizeChange,
+    Key? key,
+    required this.child,
+    required this.onSizeChange,
   }) : super(key: key);
 
   @override
@@ -88,11 +88,11 @@ class SizeReportingWidget extends StatefulWidget {
 }
 
 class _SizeReportingWidgetState extends State<SizeReportingWidget> {
-  Size _oldSize;
+  Size? _oldSize;
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
       if (mounted) _notifySize();
     });
     return widget.child;
@@ -102,7 +102,7 @@ class _SizeReportingWidgetState extends State<SizeReportingWidget> {
     final size = context?.size;
     if (_oldSize != size) {
       _oldSize = size;
-      widget.onSizeChange(size);
+      widget.onSizeChange(size!);
     }
   }
 }

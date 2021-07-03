@@ -18,8 +18,8 @@ class LoadViewElement extends StatelessWidget {
       stream: appBloc.loadElement.stream,
       initialData: false,
       builder: (context, snapshot) => AbsorbPointer(
-          absorbing: snapshot.data,
-          child: !snapshot.data ? SizedBox(): Stack(children: [
+          absorbing: snapshot.data!,
+          child: !snapshot.data! ? SizedBox(): Stack(children: [
             child,
             Container(
                 alignment: Alignment.center,

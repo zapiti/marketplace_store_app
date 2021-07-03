@@ -18,20 +18,20 @@ class ApiClient {
       _dio.options.baseUrl = baseUrl;
       print("Url=> $baseUrl");
       _dio.interceptors
-          .add(InterceptorsWrapper(onRequest: (RequestOptions options) {
+          .add(InterceptorsWrapper(onRequest: (RequestOptions options,handler) {
         // Do something before request is sent
         var header = getHeaderToken(token: user);
         options.headers = header;
 
-        options.connectTimeout = 50 * 1000; // 60 seconds
-        options.receiveTimeout = 50 * 1000; // 60 seconds
+        options.connectTimeout = 15 * 1000; // 60 seconds
+        options.receiveTimeout = 15 * 1000; // 60 seconds
 
-        return options;
-      }, onResponse: (Response response) {
-        return response; // continue
-      }, onError: (DioError error) async {
+        handler.next(options);
+      }, onResponse: (Response response,handler) {
+        handler.next(response);
+      }, onError: (DioError error,handler) async {
         // Do something with response error
-        if (error?.response?.statusCode == 403) {
+        if (error.response?.statusCode == 403) {
           // _dio.interceptors.requestLock.lock();
           // _dio.interceptors.responseLock.lock();
           // print("refresh token");
@@ -57,20 +57,16 @@ class ApiClient {
           //
           //   options.headers.clear();
           //   options.headers = headers;
-        } else {
-          // Modular.get<LoginBloc>().getLogout();
-          return error;
         }
-
         _dio.interceptors.responseLock.unlock();
         _dio.interceptors.requestLock.unlock();
-        return error;
+        handler.next(error);
       }));
     } catch (e) {}
     return _dio;
   }
 
-  static Map<String, String> getHeaderToken({String token}) {
+  static Map<String, String> getHeaderToken({String? token}) {
     if (token == null) {
       return <String, String>{
         'content-Type': 'application/json',

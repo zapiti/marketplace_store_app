@@ -5,8 +5,8 @@ import 'package:marketplace_store_app/app/modules/home/modules/home/repository/h
 import 'package:rxdart/rxdart.dart';
 
 class HomeController extends Disposable {
-  final listPendingOrders = BehaviorSubject<ResponsePaginated>();
-  final listHistoryOrders = BehaviorSubject<ResponsePaginated>();
+  final listPendingOrders = BehaviorSubject<ResponsePaginated?>();
+  final listHistoryOrders = BehaviorSubject<ResponsePaginated?>();
 
   final _repository = HomeRepository();
 

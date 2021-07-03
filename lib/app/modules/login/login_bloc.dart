@@ -1,19 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/app_bloc.dart';
-import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
 import 'package:marketplace_store_app/app/models/address/address.dart';
 import 'package:marketplace_store_app/app/models/current_user.dart';
 import 'package:marketplace_store_app/app/models/store/store.dart';
-import 'package:marketplace_store_app/app/models/user_entity.dart';
+
 
 import 'package:marketplace_store_app/app/modules/login/page/user_term.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 
 import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dart';
-import 'package:marketplace_store_app/app/utils/preferences/security_preference.dart';
+
 import 'package:marketplace_store_app/app/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -76,7 +75,7 @@ class LoginBloc extends Disposable {
   }
 
   Future<void> getLogout() async {
-    await storage.clear();
+    await LocalDataStore?.deleteAll();
     Modular.to.pushReplacementNamed(ConstantsRoutes.LOGIN);
   }
 
@@ -92,13 +91,10 @@ class LoginBloc extends Disposable {
         username: emailController.text.toLowerCase(),
         password: passController.text);
     // loadingSubject.sink.add(false);
-    if (response.error == null) {
-      SecurityPreference.save(UserEntity(
-          username: emailController.text.toLowerCase(),
-          password: passController.text));
+    if (response?.error == null) {
       Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
     } else {
-      Utils.showSnackbar(context, response.error);
+      Utils.showSnackbar(context, response?.error);
     }
   }
 
@@ -107,7 +103,7 @@ class LoginBloc extends Disposable {
     if (termos) {
       Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
     } else {
-      storage.clear().then((value) {});
+      LocalDataStore.deleteAll().then((value) {});
     }
   }
 
@@ -118,7 +114,7 @@ class LoginBloc extends Disposable {
     return group;
   }
 
-  Future<String> getToken() {
+  Future<String?> getToken() {
     return _authRepository.getToken();
   }
 
@@ -127,7 +123,7 @@ class LoginBloc extends Disposable {
   }
 
   void nextActionRestore(Function() success) {
-    var index = restoreIndex.stream.value;
+    var index = (restoreIndex.stream.valueOrNull ?? 0);
 
     if (index >= 2) {
       success();
@@ -143,7 +139,7 @@ class LoginBloc extends Disposable {
       Utils.showSnackbar(context, "Senha não pode ser vazia");
     } else if (passController.text != passControllerConfirm.text) {
       Utils.showSnackbar(context, "Senha não pode ser diferentes");
-    } else if (!userTermAccept.stream.value) {
+    } else if (!(userTermAccept.stream.valueOrNull ?? false)) {
       Utils.showSnackbar(
           context, "Ë necessario aceitar os termos de uso para se registrar");
     } else {
@@ -168,7 +164,7 @@ class LoginBloc extends Disposable {
           address: address);
 
       final _result = await LoginRepository.registerStore(store);
-      if (_result.error == null) {
+      if (_result?.error == null) {
         zipCodeController.clear();
         addressController.clear();
         numberController.clear();
@@ -187,16 +183,16 @@ class LoginBloc extends Disposable {
 
         Modular.to.pushNamed(ConstantsRoutes.CALL_SUCESS_REGISTER);
       } else {
-        Utils.showErrorDialog(context, _result.error);
+        Utils.showErrorDialog(context, _result?.error);
       }
     }
   }
 
- Future<CurrentUser> getCurrentUser() async{
+  Future<CurrentUser?> getCurrentUser() async {
     final _result = await LoginRepository.getCurrentUser();
-    if (_result.error == null) {
-      return _result.data;
-    }else{
+    if (_result?.error == null) {
+      return _result?.data;
+    } else {
       return null;
     }
   }

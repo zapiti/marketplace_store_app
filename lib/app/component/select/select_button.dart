@@ -6,13 +6,13 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 
 class SelectButton extends StatefulWidget {
-  final List<Pairs> title;
-  final Function(Pairs) tapIndex;
-  final int initialItem;
+  final List<Pairs>? title;
+  final Function(Pairs)? tapIndex;
+  final int? initialItem;
   final bool everyEnable;
-  final Key key;
-  final Key keys1;
-  final Key keys2;
+  final Key? key;
+  final Key? keys1;
+  final Key? keys2;
   SelectButton({
     this.key,
     this.title,
@@ -83,7 +83,7 @@ class _SelectButtonState extends State<SelectButton>
                             // widget.tapIndex(null);
                           } else {
                             index = 0;
-                            widget.tapIndex(widget.title[0]);
+                            widget.tapIndex?.call(widget.title![0]);
                           }
                         });
                       }
@@ -92,7 +92,7 @@ class _SelectButtonState extends State<SelectButton>
                       height: 45,
                       child: Center(
                         child: AutoSizeText(
-                          widget.title[0].second,
+                          widget.title![0].second,
                           maxLines: 1,
                           minFontSize: 12,
                           maxFontSize: 16,
@@ -134,7 +134,7 @@ class _SelectButtonState extends State<SelectButton>
                             // widget.tapIndex(null);
                           } else {
                             index = 1;
-                            widget.tapIndex(widget.title[1]);
+                            widget.tapIndex?.call(widget.title![1]);
                           }
                         });
                       }
@@ -143,7 +143,7 @@ class _SelectButtonState extends State<SelectButton>
                       height: 45,
                       child: Center(
                         child: AutoSizeText(
-                          widget.title[1].second,
+                          widget.title![1].second,
                           maxLines: 1,
                           minFontSize: 12,
                           maxFontSize: 16,

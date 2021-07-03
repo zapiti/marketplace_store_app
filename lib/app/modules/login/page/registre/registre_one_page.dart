@@ -22,7 +22,7 @@ class RegistreOnePage extends StatefulWidget {
 class _RegistreOnePageState extends State<RegistreOnePage> {
   var bloc = Modular.get<LoginBloc>();
 
-  String errorName;
+  String? errorName;
 
   var errorDescription;
 

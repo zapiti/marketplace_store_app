@@ -58,20 +58,20 @@ class _NewStoreProductPageState
           "CONTINUAR",
           style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
         ),
-        onPressed: onPressedMethod(),
+        onPressed: onPressedMethod,
         style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
       ),
     );
   }
 
-  Function onPressedMethod() {
-    return () {
+  void onPressedMethod() {
+
       if (verifyEmptyFields) {
         Utils.showSnackbar(context, "Preencha os Campos Obrigatorios");
       } else {
         controller.nextToQuantity(context);
       }
-    };
+
   }
 
   bool get verifyEmptyFields {
@@ -172,8 +172,8 @@ class _NewStoreProductPageState
     );
   }
 
-  StreamBuilder<String> buildProductImageWidget() {
-    return StreamBuilder(
+  StreamBuilder<String?> buildProductImageWidget() {
+    return StreamBuilder<String?>(
       stream: controller.imageTempProduct,
       builder: (context, snapshot) => Container(
         child: UserImageWidget(

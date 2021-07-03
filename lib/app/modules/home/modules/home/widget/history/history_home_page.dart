@@ -14,7 +14,7 @@ class HistoryHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return builderComponent<ResponsePaginated>(
+    return builderComponent<ResponsePaginated?>(
         stream: controller.listHistoryOrders,
         emptyMessage:
             "Seu estabelecimento ainda não recebeu pedidos para ser exibidos pedidos anteriores.",

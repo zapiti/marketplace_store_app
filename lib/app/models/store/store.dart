@@ -1,20 +1,20 @@
 import 'package:marketplace_store_app/app/models/address/address.dart';
 
 class Store {
-  String cnpj;
-  String companyName;
-  String email;
-  String password;
-  String phone;
-  String responsible;
-  String description;
-  String type;
-  Address address;
+  String? cnpj;
+  String? companyName;
+  String? email;
+  String? password;
+  String? phone;
+  String? responsible;
+  String? description;
+  String? type;
+  Address? address;
 
   Store({this.cnpj, this.companyName, this.email, this.password, this.phone,
       this.responsible, this.description, this.type, this.address});
 
-  factory Store.fromMap(dynamic map) {
+  static Store? fromMap(dynamic map) {
     if (null == map) return null;
     var temp;
     return Store(

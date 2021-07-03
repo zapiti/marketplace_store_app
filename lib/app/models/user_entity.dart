@@ -11,7 +11,7 @@ class UserEntity {
 
   static var PASS = "MYPASS";
 
-  UserEntity({this.username, this.password});
+  UserEntity({required this.username, required this.password});
 
   Map<String, dynamic> toMap() {
     return {
@@ -20,12 +20,4 @@ class UserEntity {
     };
   }
 
-  factory UserEntity.fromMap(dynamic map) {
-    if (null == map) return null;
-    var temp;
-    return UserEntity(
-      username: map['username']?.toString(),
-      password: map['password']?.toString(),
-    );
-  }
 }

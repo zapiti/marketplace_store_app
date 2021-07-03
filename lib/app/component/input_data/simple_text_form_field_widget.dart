@@ -5,19 +5,19 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 class SimpleTextFormFieldWidget extends StatelessWidget {
   final String title;
   final TextEditingController controller;
-  final bool obscure;
-  final Function onTap;
-  final ValueChanged<String> onChange;
-  final TextInputType keyboard;
-  final InputDecoration decoration;
-  final IconData suffixIcon;
-  final IconData prefixIcon;
-  final Function(String) validator;
-  final bool enable;
+  final bool? obscure;
+  final Function()? onTap;
+  final ValueChanged<String>? onChange;
+  final TextInputType? keyboard;
+  final InputDecoration? decoration;
+  final IconData? suffixIcon;
+  final IconData? prefixIcon;
+  final Function(String)? validator;
+  final bool? enable;
 
   SimpleTextFormFieldWidget(
-      {@required this.title,
-      @required this.controller,
+      {required this.title,
+      required this.controller,
       this.decoration,
       this.keyboard,
       this.obscure,
@@ -52,7 +52,7 @@ class SimpleTextFormFieldWidget extends StatelessWidget {
                     margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                     child: TextFormField(
                       autocorrect: false,
-                      validator: validator,
+
                       controller: controller,
                       obscureText: obscure == true,
                       enabled: enable ?? onTap == null,

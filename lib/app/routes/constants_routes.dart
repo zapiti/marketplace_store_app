@@ -77,13 +77,13 @@ class ConstantsRoutes {
 
   ///*** verifica se a rota deve levar em conta a rota anterior (por causa dos tabs)
   static String getExtractRouteByContext(BuildContext context,
-      {@required String route}) {
-    String currentRoute = ModalRoute.of(context).settings.name;
+      {required String route}) {
+    String? currentRoute = ModalRoute.of(context)!.settings.name;
 
     if (currentRoute == "/") {
       return route;
     }
 
-    return currentRoute + route;
+    return (currentRoute ?? '') + route;
   }
 }

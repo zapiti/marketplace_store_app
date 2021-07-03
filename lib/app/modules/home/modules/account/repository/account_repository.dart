@@ -7,7 +7,7 @@ class AccountRepository {
   var _requestManager = Modular.get<RequestCore>();
   final String serviceName = "/api/establishment/getWallet";
 
-  Future<ResponsePaginated> getWalletInfo({int page = 0}) async {
+  Future<ResponsePaginated?> getWalletInfo({int page = 0}) async {
     return await _requestManager.requestWithTokenToForm(
       serviceName: serviceName,
       isObject: true,

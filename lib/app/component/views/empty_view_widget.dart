@@ -5,7 +5,7 @@ class EmptyViewWidget extends StatelessWidget {
   final String text;
   final String imageAsset;
 
-  EmptyViewWidget({@required this.text, @required this.imageAsset});
+  EmptyViewWidget({required this.text, required this.imageAsset});
 
   @override
   Widget build(BuildContext context) {

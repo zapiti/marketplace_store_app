@@ -37,7 +37,7 @@ class _NewStoreProductQuantityPageState
                 buildUnityAndWeightButtons(),
                 controller.newStoreUnity == null
                     ? SizedBox()
-                    : controller.newStoreUnity.first == "Unidade"
+                    : controller.newStoreUnity?.first == "Unidade"
                         ? buildUnityChoosedBodyWidget()
                         : buildWeightChoosedBodyWidget(),
               ],
@@ -59,24 +59,24 @@ class _NewStoreProductQuantityPageState
           "ADICIONAR",
           style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
         ),
-        onPressed: controller.newStoreUnity == null ? null : onPressedMethod(),
+        onPressed: controller.newStoreUnity == null ? null : onPressedMethod,
         style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
       ),
     );
   }
 
-  Function onPressedMethod() {
-    return () {
+  void onPressedMethod() {
+
       if (verifyEmptyFields) {
         Utils.showSnackbar(context, "Preencha os Campos Obrigatorios");
       } else {
         controller.nextToQrcode(context);
       }
-    };
+
   }
 
   bool get verifyEmptyFields {
-    if (controller.newStoreUnity.first == "Unidade") {
+    if (controller.newStoreUnity?.first == "Unidade") {
       return controller.stockProductController.text == "";
     } else {
       return controller.specificationProductController.text == "" ||
@@ -166,7 +166,7 @@ class _NewStoreProductQuantityPageState
           setState(() {
             print(myPairs.first);
             controller.newStoreUnity = myPairs;
-            controller.first = controller.newStoreUnity.first;
+            controller.first = controller.newStoreUnity?.first;
           });
         },
       ),
@@ -185,8 +185,8 @@ class _NewStoreProductQuantityPageState
     );
   }
 
-  StreamBuilder<String> buildProductImageWidget() {
-    return StreamBuilder<String>(
+  StreamBuilder<String?> buildProductImageWidget() {
+    return StreamBuilder<String?>(
       stream: controller.imageTempProduct.stream,
       builder: (context, snapshot) => Container(
         child: UserImageWidget(

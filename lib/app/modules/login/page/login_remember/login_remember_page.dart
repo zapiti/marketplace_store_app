@@ -7,9 +7,9 @@ import 'package:marketplace_store_app/app/component/navigation_bar/simple_naviga
 import 'package:marketplace_store_app/app/modules/login/page/login_remember/login_remember_bloc.dart';
 
 class LoginRememberPage extends StatefulWidget {
-  final String email;
+  final String? email;
 
-  const LoginRememberPage({Key key, this.email}) : super(key: key);
+  const LoginRememberPage({Key? key, this.email}) : super(key: key);
 
   @override
   _LoginRememberPageState createState() => _LoginRememberPageState();
@@ -26,7 +26,7 @@ class _LoginRememberPageState extends State<LoginRememberPage> {
     super.initState();
 
     if (widget.email != null) {
-      _emailController.text = widget.email;
+      _emailController.text = widget.email ?? '';
     }
   }
 
@@ -41,7 +41,7 @@ class _LoginRememberPageState extends State<LoginRememberPage> {
         initialData: false,
         builder: (streamContext, snapshot){
           if (snapshot.hasData && snapshot.data is bool){
-            bool isLoading = snapshot.data;
+            var isLoading = (snapshot.data ?? false);
 
             if (isLoading == false){
               return Padding(
@@ -69,7 +69,7 @@ class _LoginRememberPageState extends State<LoginRememberPage> {
                               child: CupertinoButton.filled(
                                 child: Text("Enviar senha"),
                                 onPressed: () {
-                                  if (_formKey.currentState.validate()) {
+                                  if (_formKey.currentState?.validate() ?? false) {
                                     _bloc.sendEmail(context,
                                         email: _emailController.text);
                                   }

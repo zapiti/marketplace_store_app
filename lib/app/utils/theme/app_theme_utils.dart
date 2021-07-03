@@ -12,18 +12,18 @@ class AppThemeUtils {
 
   static var yellow = Colors.yellow;
 
-  static TextStyle bigBoldSize({Color color, double fontSize = 22}) =>
+  static TextStyle bigBoldSize({Color? color, double? fontSize = 22}) =>
       GoogleFonts.openSans(
           decoration: TextDecoration.none,
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
           color: color);
 
-  static TextStyle bigSize({Color color, double fontSise = 22}) =>
+  static TextStyle bigSize({Color? color, double? fontSise = 22}) =>
       GoogleFonts.openSans(
           decoration: TextDecoration.none, fontSize: fontSise, color: color);
 
-  static TextStyle normalBoldSize({Color color, double fontSize = 14, TextDecoration decoration = TextDecoration.none}) =>
+  static TextStyle normalBoldSize({Color? color, double? fontSize = 14, TextDecoration decoration = TextDecoration.none}) =>
       GoogleFonts.openSans(
           decoration: decoration,
           fontSize: fontSize,
@@ -31,8 +31,8 @@ class AppThemeUtils {
           color: color);
 
   static TextStyle normalSize({
-    Color color,
-    double fontSize = 14,
+    Color? color,
+    double? fontSize = 14,
     TextDecoration decoration = TextDecoration.none,
     FontWeight fontWeight = FontWeight.normal,
   }) =>
@@ -42,7 +42,7 @@ class AppThemeUtils {
           fontWeight: fontWeight,
           color: color);
 
-  static TextStyle smallSize({Color color, double fontSize = 14, TextDecoration decoration = TextDecoration.none}) =>
+  static TextStyle smallSize({Color? color, double? fontSize = 14, TextDecoration decoration = TextDecoration.none}) =>
       GoogleFonts.openSans(
           decoration: decoration, fontSize: fontSize, color: color);
 
@@ -53,7 +53,7 @@ class AppThemeUtils {
 
   static Color colorError = Colors.grey;
   static Color greyColor = Colors.grey;
-  static Color greyLightColor = Colors.grey[400];
+  static Color greyLightColor = Colors.grey[400]!;
 
   static Color colorRedError = Color.fromARGB(255, 139, 0, 0);
   static Color colorGreenSuccess = Color.fromARGB(255, 53, 151, 90);

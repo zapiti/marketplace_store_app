@@ -3,11 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
 
 class Utils {
-  static double percentage(partialValue, totalValue) {
+  static double? percentage(partialValue, totalValue) {
     return (100 * partialValue) / totalValue;
   }
 
-  static String removeMask(String text) {
+  static String? removeMask(String? text) {
     var _phoneUnMask = text?.replaceAll('(', '');
     _phoneUnMask = _phoneUnMask?.replaceAll(')', '');
     _phoneUnMask = _phoneUnMask?.replaceAll(' ', '');

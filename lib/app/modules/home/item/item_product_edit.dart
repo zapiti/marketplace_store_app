@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:marketplace_store_app/app/component/simple/line_view_widget.dart';
 import 'package:marketplace_store_app/app/modules/home/model/product.dart';
 import 'package:marketplace_store_app/app/utils/image_utils.dart';
@@ -30,13 +30,13 @@ class _ItemProductEditState extends State<ItemProductEdit> {
                 children: [
                   Container(
                     child: Text(
-                      widget.product.name,
+                      widget.product.name ?? '',
                       style: AppThemeUtils.normalBoldSize(),
                     ),
                   ),
                   Container(
                     child: Text(
-                      widget.product.description,
+                      widget.product.description ?? '',
                       style: AppThemeUtils.normalSize(fontSize: 12),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -49,7 +49,7 @@ class _ItemProductEditState extends State<ItemProductEdit> {
                               decimalSeparator: '.',
                               thousandSeparator: ',',
                               leftSymbol: "R\$ ",
-                              initialValue: widget.product.value)
+                              initialValue: widget.product.value ?? 0)
                           .text,
                       style: AppThemeUtils.normalBoldSize(
                           color: AppThemeUtils.colorGreenSuccess, fontSize: 18),

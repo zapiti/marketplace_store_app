@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 
 class LocationUtils {
-  static void navigateTo(BuildContext context, double lat, double lng) async {
+  static void navigateTo(BuildContext context, double? lat, double? lng) async {
 
   }
 

@@ -29,13 +29,13 @@ class _ItemProductState extends State<ItemProduct> {
                 children: [
                   Container(
                     child: Text(
-                      widget.product.name,
+                      widget.product.name ?? '',
                       style: AppThemeUtils.normalBoldSize(),
                     ),
                   ),
                   Container(
                     child: Text(
-                      widget.product.description,
+                      widget.product.description ?? '',
                       style: AppThemeUtils.normalSize(fontSize: 12),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -43,7 +43,7 @@ class _ItemProductState extends State<ItemProduct> {
                   ),
                   Container(
                     child: Text(
-                      widget.product.quantityType,
+                      widget.product.quantityType ?? '',
                       style: AppThemeUtils.normalBoldSize(
                           color: AppThemeUtils.black),
                     ),

@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 import 'component/load/load_view_element.dart';
+import 'component/menu_bottom.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -20,7 +21,9 @@ class AppWidget extends StatelessWidget {
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
-          debugShowCheckedModeBanner: false,
+          debugShowCheckedModeBanner: false, builder: (_, child) {
+          return MenuBottom(child!);
+        },
         ).modular(),
         LoadViewElement(SizedBox()),
       ],

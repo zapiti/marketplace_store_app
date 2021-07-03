@@ -1,9 +1,9 @@
-import 'package:email_validator/email_validator.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/component/load/load_elements.dart';
+
 import 'package:marketplace_store_app/app/image/image_logo_widget.dart';
 import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
@@ -17,7 +17,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var bloc = Modular.get<LoginBloc>();
 
-  String errorEmail;
+  String? errorEmail;
 
   @override
   Widget build(BuildContext context) {

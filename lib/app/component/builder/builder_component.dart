@@ -8,15 +8,15 @@ import 'package:marketplace_store_app/app/utils/object/object_utils.dart';
 import 'package:marketplace_store_app/app/utils/response/response_utils.dart';
 
 Widget builderComponent<T>(
-    {Stream<T> stream,
-      Function(BuildContext, T) buildBodyFunc,
+    {required Stream<T> stream,
+      required Function(BuildContext, T) buildBodyFunc,
       bool enableLoad = true,
-      T defaultValue,
-      String emptyMessage,
-      Widget emptyWidget,
-      Function tryAgain,
-      VoidCallback initCallData,
-      Function headerWidget,  Function onEmptyAction, String buttomText}) {
+      T? defaultValue,
+      String? emptyMessage,
+      Widget? emptyWidget,
+      Function()? tryAgain,
+      VoidCallback? initCallData,
+      Function? headerWidget,  Function? onEmptyAction, String? buttomText}) {
   return StatefulWrapper(
       onInit: () {
         if (initCallData != null) {
@@ -67,12 +67,12 @@ Widget builderComponent<T>(
           }));
 }
 Widget builderComponentSimple<T>(
-    {Stream<T> stream,
-      Function(BuildContext, T) buildBodyFunc,
-      T defaultValue,
-      String emptyMessage,
-      Function tryAgain,
-      VoidCallback initCallData,
+    {required Stream<T> stream,
+      required Function(BuildContext, T) buildBodyFunc,
+      T? defaultValue,
+      String? emptyMessage,
+      Function? tryAgain,
+      VoidCallback? initCallData,
       bool enableError = true,
       bool enableLoad = true,
       bool enableEmpty = true}) {

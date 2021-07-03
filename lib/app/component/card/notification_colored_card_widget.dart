@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NotificationColoredCardWidget extends StatelessWidget {
-  final Widget child;
-  final Function action;
-  final Color color;
+  final Widget? child;
+  final Function()? action;
+  final Color? color;
 
   NotificationColoredCardWidget({this.child, this.action,this.color});
 

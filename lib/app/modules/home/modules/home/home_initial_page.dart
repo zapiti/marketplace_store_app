@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/app_bloc.dart';
 import 'package:marketplace_store_app/app/component/select/select_button.dart';
@@ -7,7 +7,6 @@ import 'package:marketplace_store_app/app/models/current_user.dart';
 import 'package:marketplace_store_app/app/models/pairs.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/home/widget/history/history_home_page.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/home/widget/pending/pending_home_page.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import 'home_controller.dart';
 
@@ -35,7 +34,7 @@ class _HomeInitialPageState
               initialItem: selectedIndex,
               tapIndex: (i) {
                 setState(() {
-                  selectedIndex = i?.first ?? 0;
+                  selectedIndex = i.first ?? 0;
                 });
               },
               title: [
@@ -53,7 +52,7 @@ class _HomeInitialPageState
                     child: selectedIndex == 0
                         ? PendingHomePage(controller)
                         : HistoryHomePage(controller))),
-            StreamBuilder<CurrentUser>(
+            StreamBuilder<CurrentUser?>(
                 stream: appController.currentUser,
                 builder: (context, snapshot) => Container(
                       color: AppThemeUtils.colorGreenSuccess,

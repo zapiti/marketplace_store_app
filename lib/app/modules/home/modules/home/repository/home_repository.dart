@@ -3,13 +3,13 @@ import 'package:marketplace_store_app/app/modules/home/modules/home/model/order.
 
 
 class HomeRepository {
-  Future<ResponsePaginated> getListPendingOrder() async {
+  Future<ResponsePaginated?> getListPendingOrder() async {
     await Future.delayed(Duration(seconds: 1));
 
     return ResponsePaginated(data: [Order(), Order()]);
   }
 
-  Future<ResponsePaginated>  getListHistoryOrder() async{
+  Future<ResponsePaginated?>  getListHistoryOrder() async{
     await Future.delayed(Duration(seconds: 1));
 
     return ResponsePaginated(data: [Order(), Order(),Order(), Order(),Order(), Order()]);

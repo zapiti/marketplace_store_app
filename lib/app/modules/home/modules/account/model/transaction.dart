@@ -1,15 +1,13 @@
-import 'dart:convert';
 
-import 'package:flutter/material.dart';
 
 class Transaction {
   final String id;
   final String description;
   final int value;
   Transaction({
-    @required this.id,
-    @required this.description,
-    @required this.value,
+    required this.id,
+    required this.description,
+    required this.value,
   });
 
   Map<String, dynamic> toMap() {

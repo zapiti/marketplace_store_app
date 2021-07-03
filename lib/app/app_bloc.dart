@@ -1,9 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jwt_decode/jwt_decode.dart';
-import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
+
 
 import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
-import 'package:marketplace_store_app/app/utils/preferences/cd_preferences.dart';
+import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dart';
+
 
 import 'package:rxdart/rxdart.dart';
 
@@ -11,17 +12,19 @@ import 'models/current_user.dart';
 
 class AppBloc extends Disposable {
   static const FIRST_ACCESS = "FIRSTACCESS";
-  final currentUser = BehaviorSubject<CurrentUser>();
+  final currentUser = BehaviorSubject<CurrentUser?>();
   final loadElement = BehaviorSubject<bool>.seeded(false);
+  final currentIndex = BehaviorSubject<int>.seeded(0);
   final loginBloc = Modular.get<LoginBloc>();
 
   @override
   void dispose() {
     loadElement.close();
     currentUser.close();
+    currentIndex.close();
   }
 
-  Future<CurrentUser> getCurrentUserFutureValue() async {
+  Future<CurrentUser?> getCurrentUserFutureValue() async {
     var localUser = await loginBloc.getToken();
     if (localUser != null) {
       try {
@@ -30,7 +33,7 @@ class AppBloc extends Disposable {
       } catch (e) {}
     }
 
-    return currentUser.stream.value;
+    return currentUser.stream.valueOrNull;
   }
 
   getCurrentUser() async {
@@ -41,10 +44,14 @@ class AppBloc extends Disposable {
 
   Future<bool> getFirstAccess() async {
     var access =
-        await codePreferences.getBoolean(key: FIRST_ACCESS, ifNotExists: true);
-    if (access) {
-      codePreferences.set(key: FIRST_ACCESS, value: false);
+        await LocalDataStore.getValue(key: FIRST_ACCESS);
+    if (access == 'true') {
+      LocalDataStore.setData(key: FIRST_ACCESS, value: false.toString());
     }
-    return access;
+    return access == 'true';
+  }
+
+  void setCurrentIndex(int index) {
+    currentIndex.sink.add(index);
   }
 }

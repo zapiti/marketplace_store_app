@@ -9,7 +9,7 @@ import '../../app_bloc.dart';
 import 'widget/animated_splash.dart';
 
 class SplashPage extends StatelessWidget {
-  var appBloc = Modular.get<AppBloc>();
+  final appBloc = Modular.get<AppBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ Future<void> redirectToPage(BuildContext context) async {
 void _redirectToAuth(
     BuildContext context, IAuthRepository auth, AppBloc appBloc) {
   appBloc.getFirstAccess().then((access) {
-    if (access ?? false) {
+    if (access ) {
       Modular.to.pushReplacementNamed(ConstantsRoutes.ONBOARD);
     } else {
       appBloc.getCurrentUserFutureValue().then((currentUser) {

@@ -9,16 +9,16 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 /// */
 class CustomDropMenuWidget extends StatefulWidget {
   final TextEditingController controller;
-  final List<Pairs> listElements;
+  final List<Pairs?>? listElements;
   final String title;
   final bool isExpanded;
-  final Function listen;
-  final double sized;
+  final Function? listen;
+  final double? sized;
   CustomDropMenuWidget(
-      {@required this.title,
-      @required this.controller,
-      @required this.listElements,
-      this.isExpanded, this.listen, this. sized});
+      {required this.title,
+      required this.controller,
+      required this.listElements,
+      this.isExpanded = false, this.listen, this. sized});
 
   @override
   _CustomDropMenuWidgetState createState() => _CustomDropMenuWidgetState();
@@ -52,14 +52,14 @@ class _CustomDropMenuWidgetState extends State<CustomDropMenuWidget> {
                     borderRadius: BorderRadius.circular(5.0),
                     border: Border.all(color: AppThemeUtils.black)),
                 child: DropdownButton<String>(
-                  isExpanded: widget.isExpanded ?? false,
+                  isExpanded: widget.isExpanded ,
                   underline: SizedBox(),
                   onChanged: (string) {
                     setState(() {
-                      widget.controller.text = string;
+                      widget.controller.text = string ?? '';
                     });
                     if(widget.listen != null){
-                      widget.listen(string);
+                      widget.listen!(string);
                     }
                   },
                   hint: Center(

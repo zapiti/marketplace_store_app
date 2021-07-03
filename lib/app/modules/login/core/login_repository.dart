@@ -8,8 +8,8 @@ import 'package:marketplace_store_app/app/models/store/store.dart';
 class LoginRepository {
   static RequestCore _requestManager = Modular.get();
 
-  static Future<ResponsePaginated> sendRecoverEmail(
-      {@required String email}) async {
+  static Future<ResponsePaginated?> sendRecoverEmail(
+      {required String email}) async {
     var result = await _requestManager.requestWithTokenToForm(
       serviceName: "/user/password/reset?email=$email",
       isObject: true,
@@ -20,7 +20,7 @@ class LoginRepository {
     return result;
   }
 
-  static Future<ResponsePaginated> registerStore(Store store) async {
+  static Future<ResponsePaginated?> registerStore(Store store) async {
     var result = await _requestManager.requestWithTokenToForm(
       serviceName: "/api/establishment",
       isObject: true,body: store.toMap(),
@@ -31,7 +31,7 @@ class LoginRepository {
     return result;
   }
 
-  static Future<ResponsePaginated> getCurrentUser() async {
+  static Future<ResponsePaginated?> getCurrentUser() async {
     var result = await _requestManager.requestWithTokenToForm(
       serviceName: "/api/establishment/user/logged",
       isObject: true,body: {},

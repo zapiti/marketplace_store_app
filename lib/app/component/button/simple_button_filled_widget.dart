@@ -3,12 +3,12 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
 class SimpleButtonFilledWidget extends StatelessWidget {
   SimpleButtonFilledWidget(
-      {@required this.text, this.onPressed, this.color, this.icon});
+      {required this.text, this.onPressed, this.color, this.icon});
 
   final String text;
-  final VoidCallback onPressed;
-  final Color color;
-  final IconData icon;
+  final VoidCallback? onPressed;
+  final Color? color;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class SimpleButtonFilledWidget extends StatelessWidget {
         color: color ?? AppThemeUtils.colorPrimary,
         onPressed: () {
           if (onPressed != null) {
-            onPressed();
+            onPressed?.call();
           }
         },
         child: icon != null

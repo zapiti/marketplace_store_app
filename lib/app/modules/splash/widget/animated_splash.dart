@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 
-Function _customFunction;
-String _imagePath;
+Function? _customFunction;
+String? _imagePath;
 
-int _duration;
+int? _duration;
 
 class AnimatedSplash extends StatefulWidget {
   AnimatedSplash(
-      {@required String imagePath, Function customFunction, int duration}) {
+      {required String? imagePath, Function? customFunction, int? duration}) {
     assert(duration != null);
 
     assert(imagePath != null);
@@ -27,41 +27,41 @@ class AnimatedSplash extends StatefulWidget {
 
 class _AnimatedSplashState extends State<AnimatedSplash>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation _animation;
+  AnimationController? _animationController;
+  Animation<double>? _animation;
   bool enableSplash = true;
   @override
   void initState() {
     super.initState();
 
-    if (_duration < 1000) _duration = 2000;
+    if (_duration! < 1000) _duration = 2000;
     _animationController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 800));
     _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-        parent: _animationController, curve: Curves.easeInCirc));
-    _animationController.forward();
+        parent: _animationController!, curve: Curves.easeInCirc));
+    _animationController?.forward();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _animationController.reset();
+    _animationController?.reset();
   }
 
   @override
   Widget build(BuildContext context) {
     !kIsWeb
         ? Future.delayed(Duration(milliseconds: 3000)).then((value) {
-      Future.delayed(Duration(milliseconds: _duration)).then((value) {
+      Future.delayed(Duration(milliseconds: _duration ?? 0)).then((value) {
         if(enableSplash){
           enableSplash = false;
-          _customFunction();
+          _customFunction?.call();
         }
 
       });
     })
         : Future.delayed(Duration.zero).then((value) {
-      _customFunction();
+      _customFunction?.call();
     });
 
 
@@ -78,12 +78,12 @@ class _AnimatedSplashState extends State<AnimatedSplash>
             child: Stack(
               children: [
                 FadeTransition(
-                    opacity: _animation,
+                    opacity: _animation!,
                     child: Center(
                         child: Container(
                             height: 250.0,padding:EdgeInsets.symmetric(horizontal: 40) ,
                             margin: EdgeInsets.symmetric(horizontal: 10),
-                            child: SvgPicture.asset(_imagePath)))),
+                            child: SvgPicture.asset(_imagePath ?? '')))),
                 // Align(
                 //     alignment: Alignment.bottomCenter,
                 //     child:  Container(
