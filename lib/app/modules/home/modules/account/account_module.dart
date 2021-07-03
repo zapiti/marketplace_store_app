@@ -11,13 +11,12 @@ import 'account_page.dart';
 class AccountModule extends Module {
   @override
   final List<Bind> binds = [
-
+    Bind.lazySingleton((i) => AccountController()),
   ];
 
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => AccountPage()),
-
     ChildRoute(ConstantsRoutes.ALTERPASS, child: (_, args) => AlterPassPage()),
     ChildRoute(ConstantsRoutes.HELP, child: (_, args) => HelpPage()),
     ChildRoute(ConstantsRoutes.WALLET, child: (_, args) => WalletPage()),

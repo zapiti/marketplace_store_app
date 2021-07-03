@@ -1,5 +1,7 @@
 import 'package:marketplace_store_app/app/modules/home/modules/account/account_module.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/home_controller.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/home/home_page_module.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/store/store_controller.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/store/store_module.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 
@@ -11,8 +13,10 @@ import 'modules/account/account_controller.dart';
 class HomeModule extends Module {
   @override
   List<Bind> get binds => [
-    Bind.lazySingleton((i) => AccountController()),
-  ];
+        Bind((i) => AccountController()),
+        Bind((i) => StoreController()),
+        Bind((i) => HomeController()),
+      ];
 
   @override
   final List<ModularRoute> routes = [

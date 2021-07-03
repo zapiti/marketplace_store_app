@@ -21,7 +21,7 @@ class StoreRepository {
   Future<ResponsePaginated> saveProducts(Product product) async {
     var result = await _requestManager.requestWithTokenToForm(
       serviceName: "/api/product",
-      isObject: false,
+      isObject: true,
       body: product.toMap(),
       funcFromMap: (data) => data,
       typeRequest: TYPEREQUEST.POST,
@@ -33,7 +33,7 @@ class StoreRepository {
   Future<ResponsePaginated> updateProducts(Product product) async {
     var result = await _requestManager.requestWithTokenToForm(
       serviceName: "/api/product",
-      isObject: false,
+      isObject: true,
       body: product.toMap(),
       funcFromMap: (data) => data,
       typeRequest: TYPEREQUEST.PUT,

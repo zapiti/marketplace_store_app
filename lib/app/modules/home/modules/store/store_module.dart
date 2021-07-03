@@ -9,15 +9,16 @@ import 'store_page.dart';
 
 class StoreModule extends Module {
   @override
-  final List<Bind> binds = [
-    Bind.lazySingleton((i) => StoreController()),
-  ];
+  final List<Bind> binds = [];
 
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => StorePage()),
-    ChildRoute(ConstantsRoutes.NEWPRODUCT, child: (_, args) => NewStoreProductPage()),
-    ChildRoute(ConstantsRoutes.NEWPRODUCTQUANTITY, child: (_, args) => NewStoreProductQuantityPage()),
-    ChildRoute(ConstantsRoutes.NEWPRODUCTBARCODE, child: (_, args) => NewStoreProductBarCodePage()),
+    ChildRoute(ConstantsRoutes.NEWPRODUCT,
+        child: (_, args) => NewStoreProductPage()),
+    ChildRoute(ConstantsRoutes.NEWPRODUCTQUANTITY,
+        child: (_, args) => NewStoreProductQuantityPage()),
+    ChildRoute(ConstantsRoutes.NEWPRODUCTBARCODE,
+        child: (_, args) => NewStoreProductBarCodePage()),
   ];
 }

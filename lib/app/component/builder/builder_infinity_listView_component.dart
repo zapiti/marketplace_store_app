@@ -9,29 +9,30 @@ Widget builderInfinityListViewComponent(ResponsePaginated response,
     String errorResponse,
     String emptyMessage}) {
   return ListView.builder(
-      padding: EdgeInsets.only(bottom: 80),
-      reverse: false,
-      itemCount: response.data.length + 1,
-      itemBuilder: (context, index) {
-        if (index < (response.data.length ?? 0)) {
-          return Flex(direction: Axis.vertical, children: [
-            headerWidget != null && index == 0 ? headerWidget() : SizedBox(),
-            buildBody(response.data[index])
-          ]);
-        } else {
-          if (response.data.length >= 1) {
-            var _page = (response?.page ?? 0) + 1;
-            if (!(response?.page == response.total)) {
-              callMoreElements(_page);
-              return loadElements(context, size: 80);
-            } else {
-              return SizedBox();
-            }
+    padding: EdgeInsets.only(bottom: 80),
+    reverse: false,
+    itemCount: response.data.length + 1,
+    itemBuilder: (context, index) {
+      if (index < (response.data.length ?? 0)) {
+        return Flex(direction: Axis.vertical, children: [
+          headerWidget != null && index == 0 ? headerWidget() : SizedBox(),
+          buildBody(response.data[index])
+        ]);
+      } else {
+        if (response.data.length >= 1) {
+          var _page = (response?.page ?? 0) + 1;
+          if (!(response?.page == response.total)) {
+            callMoreElements(_page);
+            return loadElements(context, size: 80);
           } else {
-            return Container();
+            return SizedBox();
           }
+        } else {
+          return Container();
         }
-      });
+      }
+    },
+  );
 }
 
 GridView builderInfinityGridViewComponent(
@@ -40,28 +41,29 @@ GridView builderInfinityGridViewComponent(
   double cardWidth = MediaQuery.of(context).size.width / 3.3;
   double cardHeight = 150;
   return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: cardWidth / cardHeight,
-      ),
-      padding: EdgeInsets.only(bottom: 80),
-      reverse: false,
-      itemCount: response.data.length + 1,
-      itemBuilder: (context, index) {
-        if (index < (response.data.length ?? 0)) {
-          return buildBody(response.data[index]);
-        } else {
-          if (response.data.length >= 1) {
-            var _page = (response?.page ?? 0) + 1;
-            if (!(response?.page == response.total)) {
-              callMoreElements(_page);
-              return loadElements(context, size: 80);
-            } else {
-              return SizedBox();
-            }
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      childAspectRatio: cardWidth / cardHeight,
+    ),
+    padding: EdgeInsets.only(bottom: 80),
+    reverse: false,
+    itemCount: response.data.length + 1,
+    itemBuilder: (context, index) {
+      if (index < (response.data.length ?? 0)) {
+        return buildBody(response.data[index]);
+      } else {
+        if (response.data.length >= 1) {
+          var _page = (response?.page ?? 0) + 1;
+          if (!(response?.page == response.total)) {
+            callMoreElements(_page);
+            return loadElements(context, size: 80);
           } else {
-            return Container();
+            return SizedBox();
           }
+        } else {
+          return Container();
         }
-      });
+      }
+    },
+  );
 }

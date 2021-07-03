@@ -8,14 +8,14 @@ import 'home_initial_page.dart';
 
 class HomePageModule extends Module {
   @override
-  final List<Bind> binds = [
-    Bind((i) => HomeController()),
-  ];
+  final List<Bind> binds = [];
 
   @override
   final List<ModularRoute> routes = [
     ChildRoute(Modular.initialRoute, child: (_, args) => HomeInitialPage()),
-    ChildRoute(ConstantsRoutes.DETAILS_PENDING, child: (_, args) => DetailPendingPage(args.data)),
-    ChildRoute(ConstantsRoutes.DETAILS_HISTORY, child: (_, args) => DetailHistoryPage(args.data)),
+    ChildRoute(ConstantsRoutes.DETAILS_PENDING,
+        child: (_, args) => DetailPendingPage(args.data)),
+    ChildRoute(ConstantsRoutes.DETAILS_HISTORY,
+        child: (_, args) => DetailHistoryPage(args.data)),
   ];
 }

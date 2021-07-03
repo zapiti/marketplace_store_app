@@ -14,53 +14,60 @@ class AccountPage extends StatefulWidget {
 
 class _AccountPageState extends ModularState<AccountPage, AccountController> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Conta"),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: [
-            titleDescriptionMobileWidget(
-              context,
-              title: "Alterar senha",
-              action: () {
-                Modular.to.pushNamed(ConstantsRoutes.CALL_ALTERPASS);
-              },
-              iconData: MaterialCommunityIcons.lock_outline,
-            ),
-            lineViewWidget(),
-            titleDescriptionMobileWidget(
-              context,
-              title: "Minha carteira",
-              action: () {
-                Modular.to.pushNamed(ConstantsRoutes.CALL_WALLET);
-              },
-              iconData: MaterialCommunityIcons.cash_usd,
-            ),
-            lineViewWidget(),
-            titleDescriptionMobileWidget(
-              context,
-              title: "Ajuda",
-              action: () {
-                Modular.to.pushNamed(ConstantsRoutes.CALL_HELP);
-              },
-              iconData: MaterialCommunityIcons.information_outline,
-            ),
-            lineViewWidget(),
-            titleDescriptionMobileWidget(
-              context,
-              title: "Sair",
-              action: () {
-                var loginBloc = Modular.get<LoginBloc>();
-                loginBloc.getLogout();
+  void initState() {
+    super.initState();
+  }
 
-              },
-              iconData: MaterialCommunityIcons.exit_to_app,
-            ),
-            lineViewWidget(),
-          ],
-        ));
+  @override
+  Widget build(BuildContext context) {
+    //pegar valores do walletinfo
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Conta"),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          titleDescriptionMobileWidget(
+            context,
+            title: "Alterar senha",
+            action: () {
+              Modular.to.pushNamed(ConstantsRoutes.CALL_ALTERPASS);
+            },
+            iconData: MaterialCommunityIcons.lock_outline,
+          ),
+          lineViewWidget(),
+          titleDescriptionMobileWidget(
+            context,
+            title: "Minha carteira",
+            action: () {
+              Modular.to.pushNamed(ConstantsRoutes.CALL_WALLET);
+            },
+            iconData: MaterialCommunityIcons.cash_usd,
+          ),
+          lineViewWidget(),
+          titleDescriptionMobileWidget(
+            context,
+            title: "Ajuda",
+            action: () {
+              Modular.to.pushNamed(ConstantsRoutes.CALL_HELP);
+            },
+            iconData: MaterialCommunityIcons.information_outline,
+          ),
+          lineViewWidget(),
+          titleDescriptionMobileWidget(
+            context,
+            title: "Sair",
+            action: () {
+              var loginBloc = Modular.get<LoginBloc>();
+              loginBloc.getLogout();
+            },
+            iconData: MaterialCommunityIcons.exit_to_app,
+          ),
+          lineViewWidget(),
+        ],
+      ),
+    );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
+import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/account/model/wallet_data.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 import 'package:timelines/timelines.dart';
@@ -13,22 +16,40 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends ModularState<WalletPage, AccountController> {
+  final accountController = Modular.get<AccountController>();
   bool enableWallet = false;
+
+  @override
+  void initState() {
+    super.initState();
+    accountController.getWalletInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            buildTopSidePageWidget(context),
-            buildBottomSideTitle(),
-            buildBottomSideListView()
-          ],
-        ),
+      body: buildBody(),
+    );
+  }
+
+  Widget buildBody() {
+    return builderComponent<ResponsePaginated>(
+      stream: accountController.walletInfo.stream,
+      buildBodyFunc: (context, response) => buildWalletPage(response.data),
+    );
+  }
+
+  buildWalletPage(WalletData walletinfo2) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildTopSidePageWidget(context),
+          buildBottomSideTitle(),
+          buildBottomSideListView()
+        ],
       ),
     );
   }

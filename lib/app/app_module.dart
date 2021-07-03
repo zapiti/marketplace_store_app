@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/account/account_controller.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/home/home_controller.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/store/store_controller.dart';
 import 'package:marketplace_store_app/app/modules/login/login_module.dart';
 import 'package:marketplace_store_app/app/modules/login/page/login_remember/login_remember_bloc.dart';
 import 'package:marketplace_store_app/app/modules/onboard/onboard_module.dart';

@@ -25,7 +25,6 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

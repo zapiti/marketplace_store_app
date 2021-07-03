@@ -52,8 +52,9 @@ class StoreController extends Disposable {
     var response = await _repository.saveProducts(product);
 
     if (response.error == null) {
-      Navigator.of(context).popUntil((route) => route.isFirst);
       getListProducts();
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      // Modular.to.navigate(ConstantsRoutes.CALL_STOREPAGE);
     } else {
       Utils.showSnackbar(context, response.error);
     }
