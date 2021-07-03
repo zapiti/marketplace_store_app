@@ -31,9 +31,7 @@ class _LoginPassPageState extends State<LoginPassPage> {
               onWillPop: ()async  {
                return  !_isLoadRequest;
               },
-          child: Scaffold(
-              backgroundColor: Colors.white,
-              body: Scaffold(
+          child:  Scaffold(
                 backgroundColor: Colors.white,
                 appBar: AppBar(
                   iconTheme: IconThemeData(color: AppThemeUtils.colorPrimary),
@@ -48,9 +46,7 @@ class _LoginPassPageState extends State<LoginPassPage> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          SizedBox(
-                            height: 56,
-                          ),
+
                           Container(
                             child: Center(
                               child: Padding(
@@ -190,7 +186,7 @@ class _LoginPassPageState extends State<LoginPassPage> {
                         ],
                       )),
                 ),
-              )));
+              ));
         });
   }
 }
