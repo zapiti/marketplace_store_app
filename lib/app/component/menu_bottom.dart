@@ -36,52 +36,48 @@ class _MenuBottomState extends State<MenuBottom> {
 
   @override
   Widget build(BuildContext context) {
-    return  StreamBuilder<int>(
-            stream: appStore.currentIndex,
-            initialData: 0,
-            builder: (ctx, snapshotIndex) => StreamBuilder<CurrentUser?>(
-              stream: appStore.currentUser,
-                builder: (ctx, snapshot) =>Container(
-
-                    color: AppThemeUtils.whiteColor,
-                    child:  SafeArea(
-
-                        child:  Scaffold(
-                    body:  Column(
-                      children: [
-                        Expanded(child: widget.child),
-                      ],
-                    ),
-                    bottomNavigationBar: snapshot.data == null
-                        ? SizedBox()
-                        : SafeArea(
-                        child: BottomNavigationBar(
-
-                            showSelectedLabels: true,
-                            showUnselectedLabels: true,
-                      type: BottomNavigationBarType.fixed,
-                      backgroundColor: Colors.white,
-
-                      elevation:0.0,
-                            selectedItemColor: AppThemeUtils.colorPrimary,
-                            unselectedItemColor: AppThemeUtils.greyColor,
-                            onTap: (index) =>
-                                onTapSelectNavigation(index, context),
-                            items: [
-                              BottomNavigationBarItem(
-                                icon: Icon(Icons.home),
-                                label: 'Home',
-                              ),
-                              BottomNavigationBarItem(
-                                icon: Icon(Icons.store),
-                                label: 'Minha loja',
-                              ),
-                              BottomNavigationBarItem(
-                                icon: Icon(Icons.person),
-                                label: 'Conta',
-                              ),
-                            ],
-                            currentIndex: snapshotIndex.data ?? 0,
-                          )))))));
+    return StreamBuilder<int>(
+        stream: appStore.currentIndex,
+        initialData: 0,
+        builder: (ctx, snapshotIndex) => StreamBuilder<CurrentUser?>(
+            stream: appStore.currentUser.stream,
+            builder: (ctx, snapshot) => Container(
+                color: AppThemeUtils.whiteColor,
+                child: SafeArea(
+                    child: Scaffold(
+                        body: Column(
+                          children: [
+                            Expanded(child: widget.child),
+                          ],
+                        ),
+                        bottomNavigationBar: snapshot.data == null
+                            ? SizedBox()
+                            : SafeArea(
+                                child: BottomNavigationBar(
+                                showSelectedLabels: true,
+                                showUnselectedLabels: true,
+                                type: BottomNavigationBarType.fixed,
+                                backgroundColor: Colors.white,
+                                elevation: 0.0,
+                                selectedItemColor: AppThemeUtils.colorPrimary,
+                                unselectedItemColor: AppThemeUtils.greyColor,
+                                onTap: (index) =>
+                                    onTapSelectNavigation(index, context),
+                                items: [
+                                  BottomNavigationBarItem(
+                                    icon: Icon(Icons.home),
+                                    label: 'Home',
+                                  ),
+                                  BottomNavigationBarItem(
+                                    icon: Icon(Icons.store),
+                                    label: 'Minha loja',
+                                  ),
+                                  BottomNavigationBarItem(
+                                    icon: Icon(Icons.person),
+                                    label: 'Conta',
+                                  ),
+                                ],
+                                currentIndex: snapshotIndex.data ?? 0,
+                              )))))));
   }
 }
