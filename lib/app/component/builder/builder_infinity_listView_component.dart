@@ -21,7 +21,7 @@ Widget builderInfinityListViewComponent(ResponsePaginated? response,
       } else {
         if (response?.data.length >= 1) {
           var _page = (response?.page ?? 0) + 1;
-          if (!(response?.page == response?.total)) {
+          if ((response?.data.length < response?.total && (response?.total ?? 0) > 0)) {
             callMoreElements?.call(_page);
             return loadElements(context, size: 80);
           } else {
