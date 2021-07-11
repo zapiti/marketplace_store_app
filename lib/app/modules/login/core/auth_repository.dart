@@ -46,9 +46,9 @@ class AuthRepository implements IAuthRepository {
     // }
   }
 
-  Future<String> _setToken(String  token) async {
+  Future<void> _setToken(String  token) async {
 
-    return await LocalDataStore.setData(
+     await LocalDataStore.setData(
         key: UserEntity.USERLOG, value: token);
   }
 

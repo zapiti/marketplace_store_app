@@ -8,7 +8,7 @@ class AppConfiguration {
   static CurrentUser userTest = CurrentUser();
 
   static String baseUrl() {
-    return "http://192.168.100.12:3000";
+    return "https://9f8decd9d08f.ngrok.io";
   }
 
   static final isMockDevTest = false;

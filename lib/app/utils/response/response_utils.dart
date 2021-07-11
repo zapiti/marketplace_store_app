@@ -73,7 +73,7 @@ class ResponseUtils {
   }
 
   ///***@service e o nome do servico  @body e o body passado na requisicao  @result e o resultado do servidor
-  static String getErrorBody(dynamic result) {
+  static String? getErrorBody(dynamic result) {
     var error = ObjectUtils.parseToMap(result, defaultValue: result) ?? result;
 
     if (error.toString().contains("data")) {
@@ -93,7 +93,7 @@ class ResponseUtils {
           ? "Serviço não existe"
           : "Servidor indisponível";
     } else {
-      return error?.toString()  ?? 'Sem resposta';
+      return error?.toString();
     }
   }
 }
