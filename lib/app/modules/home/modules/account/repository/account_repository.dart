@@ -8,6 +8,7 @@ class AccountRepository {
   var _requestManager = Modular.get<RequestCore>();
   final String apiEstablismentAccount = "/api/establishment/account";
   final String getWalletServiceName = "/api/establishment/getWallet";
+  final String sendHelpMessageService = "/api/establishment/help";
   final String getStablishmentBankAccount =
       "/api/establishment/account/findByLoggedUser";
 
@@ -26,6 +27,18 @@ class AccountRepository {
       isObject: true,
       funcFromMap: (data) => BankAccount.fromMap(data),
       typeRequest: TYPEREQUEST.GET,
+    );
+  }
+
+  Future<ResponsePaginated?> sendHelpMessage(String message) async {
+    final body = {"message": message};
+
+    return await _requestManager.requestWithTokenToForm(
+      serviceName: sendHelpMessageService,
+      isObject: true,
+      body: body,
+      funcFromMap: (data) => (data),
+      typeRequest: TYPEREQUEST.POST,
     );
   }
 

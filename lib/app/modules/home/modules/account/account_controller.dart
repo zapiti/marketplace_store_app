@@ -24,6 +24,8 @@ class AccountController extends Disposable {
   var controllerAgency = TextEditingController();
   var controllerCPFCNPJ = TextEditingController();
 
+  var controllerHelp = TextEditingController();
+
   var buttonText = BehaviorSubject<String>.seeded("CRIAR CONTA");
 
   BankAccount bankAccount = BankAccount();
@@ -71,6 +73,13 @@ class AccountController extends Disposable {
     // nao to sabendo pegar a mensagem que retornar
     Navigator.pop(context);
     Utils.showSnackbar(context, "Conta Criada");
+  }
+
+  sendHelpMessage(BuildContext context) async {
+    var response =
+        await _repository.sendHelpMessage(controllerHelp.text.trim());
+
+    Utils.showSnackbar(context,"Mensagem enviada com sucesso");
   }
 
   _updateAccount(BuildContext context) {
