@@ -1,9 +1,9 @@
-
 import 'transaction.dart';
 
 class WalletData {
-  final int wallet;
+  final double wallet;
   final List<Transaction> transactions;
+
   WalletData({
     required this.wallet,
     required this.transactions,
@@ -18,7 +18,7 @@ class WalletData {
 
   factory WalletData.fromMap(Map<String, dynamic> map) {
     return WalletData(
-      wallet: map['wallet']?.toInt(),
+      wallet: map['wallet']?.toDouble(),
       transactions: List<Transaction>.from(
           map['transactions']?.map((x) => Transaction.fromMap(x))),
     );

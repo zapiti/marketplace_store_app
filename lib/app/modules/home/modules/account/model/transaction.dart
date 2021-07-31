@@ -1,9 +1,7 @@
-
-
 class Transaction {
   final String id;
   final String description;
-  final int value;
+  final double value;
   Transaction({
     required this.id,
     required this.description,
@@ -22,7 +20,7 @@ class Transaction {
     return Transaction(
       id: map['id'],
       description: map['description'],
-      value: map['value']?.toInt(),
+      value: map['value']?.toDouble(),
     );
   }
 }

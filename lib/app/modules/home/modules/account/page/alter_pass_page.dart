@@ -19,11 +19,11 @@ class _AlterPassPageState
           title: Text("Alterar senha"),
           centerTitle: true,
         ),
-        body:SingleChildScrollView(child:  Column(
+        body: SingleChildScrollView(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                 child: Text(
@@ -32,7 +32,6 @@ class _AlterPassPageState
                 )),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                
                 child: StreamBuilder<bool>(
                     stream: controller.showPassActual.stream,
                     initialData: true,
@@ -72,7 +71,6 @@ class _AlterPassPageState
             ),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-       
                 child: StreamBuilder<bool>(
                     stream: controller.showPass.stream,
                     initialData: true,
@@ -91,7 +89,6 @@ class _AlterPassPageState
                           },
                           onSubmitted: (term) {},
                           decoration: InputDecoration(
-
                               labelText: "Nova senha",
                               suffixIcon: IconButton(
                                 icon: Icon(
@@ -115,7 +112,6 @@ class _AlterPassPageState
             ),
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                
                 child: StreamBuilder<bool>(
                     stream: controller.showPassConfirm.stream,
                     initialData: true,
@@ -131,7 +127,6 @@ class _AlterPassPageState
                           textAlignVertical: TextAlignVertical.center,
                           onSubmitted: (term) {},
                           decoration: InputDecoration(
-
                               labelText: "Confirmar nova senha",
                               suffixIcon: IconButton(
                                 icon: Icon(

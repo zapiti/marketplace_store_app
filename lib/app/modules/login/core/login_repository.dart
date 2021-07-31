@@ -23,7 +23,8 @@ class LoginRepository {
   static Future<ResponsePaginated?> registerStore(Store store) async {
     var result = await _requestManager.requestWithTokenToForm(
       serviceName: "/api/establishment",
-      isObject: true,body: store.toMap(),
+      isObject: true,
+      body: store.toMap(),
       funcFromMap: (data) => data,
       typeRequest: TYPEREQUEST.POST,
     );
@@ -34,8 +35,9 @@ class LoginRepository {
   static Future<ResponsePaginated?> getCurrentUser() async {
     var result = await _requestManager.requestWithTokenToForm(
       serviceName: "/api/establishment/user/logged",
-      isObject: true,body: {},
-      funcFromMap: (data) => CurrentUser.fromMap(data) ,
+      isObject: true,
+      body: {},
+      funcFromMap: (data) => CurrentUser.fromMap(data),
       typeRequest: TYPEREQUEST.GET,
     );
 

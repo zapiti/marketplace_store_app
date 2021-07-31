@@ -3,6 +3,7 @@ import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
 import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:marketplace_store_app/app/modules/home/modules/account/model/transaction.dart';
 import 'package:marketplace_store_app/app/modules/home/modules/account/model/wallet_data.dart';
 import 'package:marketplace_store_app/app/routes/constants_routes.dart';
 import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
@@ -16,13 +17,12 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends ModularState<WalletPage, AccountController> {
-  final accountController = Modular.get<AccountController>();
   bool enableWallet = false;
 
   @override
   void initState() {
     super.initState();
-    accountController.getWalletInfo();
+    controller.getWalletInfo();
   }
 
   @override
@@ -35,20 +35,20 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
 
   Widget buildBody() {
     return builderComponent<ResponsePaginated?>(
-      stream: accountController.walletInfo.stream,
+      stream: controller.walletInfo.stream,
       buildBodyFunc: (context, response) => buildWalletPage(response?.data),
     );
   }
 
-  buildWalletPage(WalletData walletinfo2) {
+  buildWalletPage(WalletData walletInfo) {
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          buildTopSidePageWidget(context),
+          buildTopSidePageWidget(context, walletInfo),
           buildBottomSideTitle(),
-          buildBottomSideListView()
+          buildBottomSideListView(walletInfo)
         ],
       ),
     );
@@ -69,7 +69,7 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
         : AppThemeUtils.greyColor;
   }
 
-  Container buildBottomSideListView() {
+  Container buildBottomSideListView(WalletData walletinfo2) {
     return Container(
       margin: EdgeInsets.only(left: 35, right: 20, top: 10),
       child: FixedTimeline.tileBuilder(
@@ -89,36 +89,46 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
         builder: TimelineTileBuilder.connectedFromStyle(
           contentsAlign: ContentsAlign.basic,
           connectionDirection: ConnectionDirection.before,
-          contentsBuilder: (context, index) => buildTiles(),
           connectorStyleBuilder: (context, index) => ConnectorStyle.solidLine,
           indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
-          itemCount: 10,
+          itemCount: walletinfo2.transactions.length,
+          contentsBuilder: (context, index) =>
+              buildTiles(walletinfo2.transactions[index]),
         ),
       ),
     );
   }
 
-  Padding buildTiles() {
+  Padding buildTiles(Transaction transaction) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            child: Text(
-              "Saque realizado",
-              style: AppThemeUtils.normalBoldSize(),
-            ),
-          ),
-          Container(
-            child: Text(
-              MoneyMaskedTextController(initialValue: 45, leftSymbol: "R\$")
-                  .text,
-              style: AppThemeUtils.normalSize(),
-            ),
-          )
+          transactionDescription(transaction),
+          transactionValue(transaction)
         ],
+      ),
+    );
+  }
+
+  Container transactionValue(Transaction transaction) {
+    return Container(
+      child: Text(
+        MoneyMaskedTextController(
+                initialValue: transaction.value, leftSymbol: "R\$")
+            .text,
+        style: AppThemeUtils.normalSize(),
+      ),
+    );
+  }
+
+  Container transactionDescription(Transaction transaction) {
+    return Container(
+      child: Text(
+        transaction.description,
+        style: AppThemeUtils.normalBoldSize(),
       ),
     );
   }
@@ -133,11 +143,12 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
     );
   }
 
-  Container buildTopSidePageWidget(BuildContext context) {
+  Container buildTopSidePageWidget(
+      BuildContext context, WalletData walletinfo) {
     return Container(
       child: Stack(
         children: [
-          buildTopWallPageWidget(),
+          buildTopPageWidget(walletinfo),
           buildWithDrawButton(context),
           buildEditButton()
         ],
@@ -154,7 +165,8 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
           Icons.edit,
           color: AppThemeUtils.whiteColor,
         ),
-        onPressed: () {
+        onPressed: () async {
+          await controller.getAccount();
           Modular.to.pushNamed(ConstantsRoutes.CALL_MYBANK);
         },
       ),
@@ -189,13 +201,16 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
     );
   }
 
-  Container buildTopWallPageWidget() {
+  Container buildTopPageWidget(WalletData walletinfo) {
     return Container(
       height: 170,
       width: double.infinity,
       color: enableWalletFunction(),
       child: Column(
-        children: [buildValueText(), buildCurrentBalanceWidget()],
+        children: [
+          buildValueText(walletinfo),
+          buildCurrentBalanceWidget(),
+        ],
       ),
     );
   }
@@ -210,11 +225,13 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
     );
   }
 
-  Container buildValueText() {
+  Container buildValueText(WalletData walletinfo) {
     return Container(
       margin: EdgeInsets.only(top: 25),
       child: Text(
-        MoneyMaskedTextController(initialValue: 45, leftSymbol: "R\$ ").text,
+        MoneyMaskedTextController(
+                initialValue: walletinfo.wallet, leftSymbol: "R\$ ")
+            .text,
         style: AppThemeUtils.normalBoldSize(
             fontSize: 28, color: AppThemeUtils.whiteColor),
       ),
