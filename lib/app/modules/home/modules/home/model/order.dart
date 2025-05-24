@@ -1,5 +1,21 @@
 import 'package:new_marketplace_app/app/modules/home/model/product.dart';
 
+class OrderEvent {
+  final String status;
+  final DateTime timestamp;
+  final String? description;
+
+  OrderEvent({required this.status, required this.timestamp, this.description});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'status': status,
+      'timestamp': timestamp.toIso8601String(),
+      'description': description,
+    };
+  }
+}
+
 class Order {
   DateTime dtCreate = DateTime.now().add(Duration(minutes: -20));
   int numPedido = 80045;
@@ -9,6 +25,8 @@ class Order {
   String paymentMethod = "Cartão de Crédito";
   double totalValue = 0.0;
   String status = "Pendente";
+  double deliveryFee = 5.0;
+  List<OrderEvent> events = [];
 
   List<Product> products = [
     Product(
@@ -22,6 +40,7 @@ class Order {
       stock: 50,
       barCode: "7891098765432",
       image: null,
+      quantity: 2,
     ),
     Product(
       name: "Pão Francês",
@@ -34,6 +53,7 @@ class Order {
       stock: 100,
       barCode: "7891098765433",
       image: null,
+      quantity: 1,
     ),
     Product(
       name: "Queijo Mussarela",
@@ -46,21 +66,90 @@ class Order {
       stock: 30,
       barCode: "7891098765434",
       image: null,
+      quantity: 2,
     ),
   ];
 
   Order() {
     calculateTotal();
+
+    // Adicionar eventos de exemplo para demonstração
+    final baseTime = dtCreate;
+
+    // Evento inicial - pedido recebido
+    events.add(
+      OrderEvent(
+        status: "Pedido Recebido",
+        timestamp: baseTime,
+        description: "Pedido recebido pelo sistema",
+      ),
+    );
+
+    // Evento de confirmação
+    events.add(
+      OrderEvent(
+        status: "Pedido Confirmado",
+        timestamp: baseTime.add(Duration(minutes: 5)),
+        description: "Pedido confirmado pelo estabelecimento",
+      ),
+    );
+
+    // Evento de preparação
+    events.add(
+      OrderEvent(
+        status: "Em Preparação",
+        timestamp: baseTime.add(Duration(minutes: 10)),
+        description: "Seu pedido está sendo preparado",
+      ),
+    );
   }
 
   void calculateTotal() {
     totalValue = 0.0;
     for (var product in products) {
       if (product.promotionalValue != null) {
-        totalValue += product.promotionalValue!;
+        totalValue += product.promotionalValue! * product.quantity;
       } else if (product.value != null) {
-        totalValue += product.value!;
+        totalValue += product.value! * product.quantity;
       }
     }
+  }
+
+  void updateStatus(String newStatus, {String? description}) {
+    status = newStatus;
+    events.add(
+      OrderEvent(
+        status: newStatus,
+        timestamp: DateTime.now(),
+        description: description,
+      ),
+    );
+  }
+}
+
+class CompletedOrder extends Order {
+  CompletedOrder() {
+    super.status = "Entregue";
+
+    // Adicionar eventos específicos para pedidos concluídos
+    final completionTime = dtCreate.add(Duration(minutes: 30));
+
+    // Adicionar evento de "Pronto para Entrega"
+    events.add(
+      OrderEvent(
+        status: "Pronto para Entrega",
+        timestamp: dtCreate.add(Duration(minutes: 20)),
+        description: "Pedido preparado e pronto para ser entregue",
+      ),
+    );
+
+    // Adicionar evento de "Entregue"
+    events.add(
+      OrderEvent(
+        status: "Entregue",
+        timestamp: completionTime,
+        description: "Pedido entregue com sucesso",
+      ),
+    );
   }
 }

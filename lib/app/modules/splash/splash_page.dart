@@ -14,8 +14,6 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return AnimatedSplash(
       imagePath: ImagePath.imageLogo,
       customFunction: () {
@@ -38,7 +36,10 @@ Future<void> redirectToPage(BuildContext context) async {
 }
 
 void _redirectToAuth(
-    BuildContext context, IAuthRepository auth, AppBloc appBloc) {
+  BuildContext context,
+  IAuthRepository auth,
+  AppBloc appBloc,
+) {
   appBloc.getFirstAccess().then((access) {
     if (access) {
       Modular.to.pushReplacementNamed(ConstantsRoutes.ONBOARD);

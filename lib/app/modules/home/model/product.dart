@@ -12,6 +12,7 @@ class Product {
   double? qtdMax;
   String? barCode;
   String? image;
+  int quantity = 1; // Quantidade do produto no pedido
 
   Product({
     this.name,
@@ -27,6 +28,7 @@ class Product {
     this.qtdMax,
     this.barCode,
     this.image,
+    this.quantity = 1,
   });
 
   static Product? fromMap(dynamic map) {
@@ -34,28 +36,37 @@ class Product {
     var temp;
     return Product(
       name: map['name']?.toString(),
-      value: null == (temp = map['value'])
-          ? null
-          : (temp is num ? temp.toDouble() : double.tryParse(temp)),
-      promotionalValue: null == (temp = map['promotionalValue'])
-          ? null
-          : (temp is num ? temp.toDouble() : double.tryParse(temp)),
+      value:
+          null == (temp = map['value'])
+              ? null
+              : (temp is num ? temp.toDouble() : double.tryParse(temp)),
+      promotionalValue:
+          null == (temp = map['promotionalValue'])
+              ? null
+              : (temp is num ? temp.toDouble() : double.tryParse(temp)),
       category: map['category']?.toString(),
       sector: map['sector']?.toString(),
       description: map['description']?.toString(),
       quantityType: map['quantityType']?.toString(),
-      stock: null == (temp = map['stock'])
-          ? null
-          : (temp is num ? temp.toDouble() : double.tryParse(temp)),
+      stock:
+          null == (temp = map['stock'])
+              ? null
+              : (temp is num ? temp.toDouble() : double.tryParse(temp)),
       specification: map['specification']?.toString(),
-      qtdMin: null == (temp = map['qtdMin'])
-          ? null
-          : (temp is num ? temp.toDouble() : double.tryParse(temp)),
-      qtdMax: null == (temp = map['qtdMax'])
-          ? null
-          : (temp is num ? temp.toDouble() : double.tryParse(temp)),
+      qtdMin:
+          null == (temp = map['qtdMin'])
+              ? null
+              : (temp is num ? temp.toDouble() : double.tryParse(temp)),
+      qtdMax:
+          null == (temp = map['qtdMax'])
+              ? null
+              : (temp is num ? temp.toDouble() : double.tryParse(temp)),
       barCode: map['barCode']?.toString(),
       image: map['image']?.toString(),
+      quantity:
+          map['quantity'] != null
+              ? int.tryParse(map['quantity'].toString()) ?? 1
+              : 1,
     );
   }
 
@@ -74,6 +85,7 @@ class Product {
       'qtdMax': qtdMax,
       'barCode': barCode,
       'image': image,
+      'quantity': quantity,
     };
   }
 }

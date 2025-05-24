@@ -15,9 +15,17 @@ class ItemProductNew extends StatefulWidget {
 
 class _ItemProductNewState extends State<ItemProductNew> {
   final currencyFormat = NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
-  
+
   @override
   Widget build(BuildContext context) {
+    // Calcular o subtotal do produto (preço x quantidade)
+    final subtotal =
+        widget.product.promotionalValue != null
+            ? widget.product.promotionalValue! * widget.product.quantity
+            : widget.product.value != null
+            ? widget.product.value! * widget.product.quantity
+            : 0.0;
+
     return Container(
       padding: EdgeInsets.all(12),
       child: Row(
@@ -31,21 +39,22 @@ class _ItemProductNewState extends State<ItemProductNew> {
               color: Colors.grey[200],
               borderRadius: BorderRadius.circular(8),
             ),
-            child: widget.product.image != null
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: ImageUtils.imageFromBase64String(
-                      widget.product.image,
-                      fit: BoxFit.cover,
+            child:
+                widget.product.image != null
+                    ? ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: ImageUtils.imageFromBase64String(
+                        widget.product.image,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                    : Center(
+                      child: Icon(
+                        Icons.image,
+                        color: Colors.grey[400],
+                        size: 30,
+                      ),
                     ),
-                  )
-                : Center(
-                    child: Icon(
-                      Icons.image,
-                      color: Colors.grey[400],
-                      size: 30,
-                    ),
-                  ),
           ),
           SizedBox(width: 12),
           // Informações do produto
@@ -53,11 +62,32 @@ class _ItemProductNewState extends State<ItemProductNew> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.product.name ?? 'Produto sem nome',
-                  style: AppThemeUtils.normalBoldSize(fontSize: 16),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.product.name ?? 'Produto Marketplace',
+                        style: AppThemeUtils.normalBoldSize(fontSize: 16),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: AppThemeUtils.colorPrimary.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        "${widget.product.quantity}x",
+                        style: AppThemeUtils.normalBoldSize(
+                          fontSize: 14,
+                          color: AppThemeUtils.colorPrimary,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                if (widget.product.description != null && widget.product.description!.isNotEmpty) ...[
+                if (widget.product.description != null &&
+                    widget.product.description!.isNotEmpty) ...[
                   SizedBox(height: 4),
                   Text(
                     widget.product.description!,
@@ -71,6 +101,7 @@ class _ItemProductNewState extends State<ItemProductNew> {
                 ],
                 SizedBox(height: 8),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -84,6 +115,13 @@ class _ItemProductNewState extends State<ItemProductNew> {
                           fontSize: 12,
                           color: AppThemeUtils.colorPrimary,
                         ),
+                      ),
+                    ),
+                    Text(
+                      "Subtotal: ${currencyFormat.format(subtotal)}",
+                      style: AppThemeUtils.normalBoldSize(
+                        fontSize: 12,
+                        color: Colors.grey[700],
                       ),
                     ),
                   ],
