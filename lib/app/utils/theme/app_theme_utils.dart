@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:marketplace_store_app/app/utils/colors/hex_color_utils.dart';
+import 'package:new_marketplace_app/app/utils/colors/hex_color_utils.dart';
 
 enum ThemeSize { BIG, MEDIUM, SMALL }
 enum ThemeLayoutType { WEB, ANDROID, IOS }
@@ -67,7 +67,10 @@ class AppThemeUtils {
     return ThemeData(
         primaryColor: AppThemeUtils.colorPrimary,
         primaryColorLight: AppThemeUtils.colorPrimary,
-        buttonColor: AppThemeUtils.whiteColor,
+        colorScheme: ColorScheme.light(
+          primary: AppThemeUtils.colorPrimary,
+          secondary: AppThemeUtils.whiteColor,
+        ),
         iconTheme: IconThemeData(color: Colors.white),
           );
   }

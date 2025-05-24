@@ -1,4 +1,4 @@
-import 'package:marketplace_store_app/app/models/current_user.dart';
+import 'package:new_marketplace_app/app/models/current_user.dart';
 
 class AppConfiguration {
   static final PRODUCTION_SERVER = "PRODUCTION_SERVER";

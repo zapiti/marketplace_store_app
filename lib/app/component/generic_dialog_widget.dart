@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 //
 // class GenericDialogWidget {
 //   static showGenericDialog(BuildContext context,
@@ -11,7 +11,7 @@ import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
 //             title: Text(title ?? ""),
 //             content: Text(description ?? ""),
 //             actions: [
-//               FlatButton(
+//               TextButton(
 //                 child: Text(
 //                   "Fechar",
 //                   style: AppThemeUtils.normalSize(

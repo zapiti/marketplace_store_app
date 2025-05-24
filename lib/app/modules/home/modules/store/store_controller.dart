@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+// import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/models/pairs.dart';
-import 'package:marketplace_store_app/app/modules/home/model/product.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/store/repository/store_repository.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
-import 'package:marketplace_store_app/app/utils/utils.dart';
+import 'package:new_marketplace_app/app/component/dialog/dialog_generic.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/models/pairs.dart';
+import 'package:new_marketplace_app/app/modules/home/model/product.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/store/repository/store_repository.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StoreController extends Disposable {
@@ -112,17 +112,7 @@ class StoreController extends Disposable {
     );
   }
 
-  void saveProductToCode(BuildContext context) {
-    FlutterBarcodeScanner.scanBarcode(
-            "#ff6666", "Cancelar", true, ScanMode.BARCODE)
-        .then(
-      (barcode) {
-        if (barcode != null && barcode != "-1") {
-          Modular.to.pushReplacementNamed(ConstantsRoutes.HOME);
-        }
-      },
-    );
-  }
+  void saveProductToCode(BuildContext context) {}
 
   void updateImageStore(String txt) {}
 

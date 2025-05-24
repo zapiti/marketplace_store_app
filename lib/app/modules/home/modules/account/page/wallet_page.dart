@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/account/model/wallet_data.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
-import 'package:timelines/timelines.dart';
+import 'package:new_marketplace_app/app/component/builder/builder_component.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/model/wallet_data.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 import '../account_controller.dart';
 
@@ -27,10 +26,7 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: buildBody(),
-    );
+    return Scaffold(appBar: buildAppBar(), body: buildBody());
   }
 
   Widget buildBody() {
@@ -48,7 +44,7 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
         children: [
           buildTopSidePageWidget(context),
           buildBottomSideTitle(),
-          buildBottomSideListView()
+          buildBottomSideListView(),
         ],
       ),
     );
@@ -70,32 +66,7 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
   }
 
   Container buildBottomSideListView() {
-    return Container(
-      margin: EdgeInsets.only(left: 35, right: 20, top: 10),
-      child: FixedTimeline.tileBuilder(
-        mainAxisSize: MainAxisSize.min,
-        theme: TimelineThemeData(
-          nodePosition: 0,
-          color: AppThemeUtils.colorPrimary,
-          connectorTheme: ConnectorThemeData(
-            thickness: 3.0,
-            color: AppThemeUtils.colorPrimary,
-          ),
-          indicatorTheme: IndicatorThemeData(
-            size: 15.0,
-          ),
-        ),
-        verticalDirection: VerticalDirection.up,
-        builder: TimelineTileBuilder.connectedFromStyle(
-          contentsAlign: ContentsAlign.basic,
-          connectionDirection: ConnectionDirection.before,
-          contentsBuilder: (context, index) => buildTiles(),
-          connectorStyleBuilder: (context, index) => ConnectorStyle.solidLine,
-          indicatorStyleBuilder: (context, index) => IndicatorStyle.dot,
-          itemCount: 10,
-        ),
-      ),
-    );
+    return Container(margin: EdgeInsets.only(left: 35, right: 20, top: 10));
   }
 
   Padding buildTiles() {
@@ -113,11 +84,13 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
           ),
           Container(
             child: Text(
-              MoneyMaskedTextController(initialValue: 45, leftSymbol: "R\$")
-                  .text,
+              MoneyMaskedTextController(
+                initialValue: 45,
+                leftSymbol: "R\$",
+              ).text,
               style: AppThemeUtils.normalSize(),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -139,7 +112,7 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
         children: [
           buildTopWallPageWidget(),
           buildWithDrawButton(context),
-          buildEditButton()
+          buildEditButton(),
         ],
       ),
     );
@@ -150,10 +123,7 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
       margin: EdgeInsets.symmetric(horizontal: 15),
       alignment: Alignment.centerRight,
       child: IconButton(
-        icon: Icon(
-          Icons.edit,
-          color: AppThemeUtils.whiteColor,
-        ),
+        icon: Icon(Icons.edit, color: AppThemeUtils.whiteColor),
         onPressed: () {
           Modular.to.pushNamed(ConstantsRoutes.CALL_MYBANK);
         },
@@ -172,18 +142,16 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
           style: AppThemeUtils.normalSize(color: enableWalletFunction()),
         ),
         style: ElevatedButton.styleFrom(
-          primary: AppThemeUtils.whiteColor,
+          backgroundColor: AppThemeUtils.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(12.0),
             side: BorderSide(color: enableWalletFunction()),
           ),
         ),
         onPressed: () {
-          setState(
-            () {
-              enableWallet = !enableWallet;
-            },
-          );
+          setState(() {
+            enableWallet = !enableWallet;
+          });
         },
       ),
     );
@@ -194,9 +162,7 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
       height: 170,
       width: double.infinity,
       color: enableWalletFunction(),
-      child: Column(
-        children: [buildValueText(), buildCurrentBalanceWidget()],
-      ),
+      child: Column(children: [buildValueText(), buildCurrentBalanceWidget()]),
     );
   }
 
@@ -205,7 +171,9 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
       child: Text(
         "Saldo atual",
         style: AppThemeUtils.normalSize(
-            fontSize: 18, color: AppThemeUtils.whiteColor),
+          fontSize: 18,
+          color: AppThemeUtils.whiteColor,
+        ),
       ),
     );
   }
@@ -216,7 +184,9 @@ class _WalletPageState extends ModularState<WalletPage, AccountController> {
       child: Text(
         MoneyMaskedTextController(initialValue: 45, leftSymbol: "R\$ ").text,
         style: AppThemeUtils.normalBoldSize(
-            fontSize: 28, color: AppThemeUtils.whiteColor),
+          fontSize: 28,
+          color: AppThemeUtils.whiteColor,
+        ),
       ),
     );
   }

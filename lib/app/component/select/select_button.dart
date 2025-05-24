@@ -1,9 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:marketplace_store_app/app/models/pairs.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
-
+import 'package:new_marketplace_app/app/models/pairs.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class SelectButton extends StatefulWidget {
   final List<Pairs>? title;
@@ -16,7 +15,8 @@ class SelectButton extends StatefulWidget {
   SelectButton({
     this.key,
     this.title,
-    this.keys1,this.keys2,
+    this.keys1,
+    this.keys2,
     this.initialItem,
     this.tapIndex,
     this.everyEnable = false,
@@ -52,111 +52,127 @@ class _SelectButtonState extends State<SelectButton>
     }
 
     return KeyedSubtree(
-        // key:  widget.key,
-        child: Row(children: [
-      Expanded(
-
-          child: KeyedSubtree(
+      // key:  widget.key,
+      child: Row(
+        children: [
+          Expanded(
+            child: KeyedSubtree(
               // key:  (widget.keys ?? []).isEmpty ? null: widget.keys[e.key],
               child: Container(
                 key: widget.keys1,
-                  padding: EdgeInsets.all(5),
-                  child: ElevatedButton(
-                    //
-                    style: ElevatedButton.styleFrom(
-                        primary: index == 0
-                            ? AppThemeUtils.colorPrimary
-                            : Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                            side: BorderSide(
-                                color: index == 0
-                                    ? AppThemeUtils.colorPrimary
-                                    : AppThemeUtils.colorPrimary,
-                                width: 1))),
-                    onPressed: () {
-                      if (widget.tapIndex != null) {
-                        setState(() {
-                          if (0 == index && widget.everyEnable == false) {
-                            // index = null;
-                            // widget.tapIndex(null);
-                          } else {
-                            index = 0;
-                            widget.tapIndex?.call(widget.title![0]);
-                          }
-                        });
-                      }
-                    },
-                    child: Container(
-                      height: 45,
-                      child: Center(
-                        child: AutoSizeText(
-                          widget.title![0].second,
-                          maxLines: 1,
-                          minFontSize: 12,
-                          maxFontSize: 16,
-                          textAlign: TextAlign.center,
-                          style: AppThemeUtils.normalSize(
-                            color: index == 0
-                                ? Colors.white
-                                :AppThemeUtils.colorPrimary,
-                          ),
+                padding: EdgeInsets.all(5),
+                child: ElevatedButton(
+                  //
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        index == 0 ? AppThemeUtils.colorPrimary : Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      side: BorderSide(
+                        color:
+                            index == 0
+                                ? AppThemeUtils.colorPrimary
+                                : AppThemeUtils.colorPrimary,
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (widget.tapIndex != null) {
+                      setState(() {
+                        if (0 == index && widget.everyEnable == false) {
+                          // index = null;
+                          // widget.tapIndex(null);
+                        } else {
+                          index = 0;
+                          widget.tapIndex?.call(widget.title![0]);
+                        }
+                      });
+                    }
+                  },
+                  child: Container(
+                    height: 45,
+                    child: Center(
+                      child: AutoSizeText(
+                        widget.title![0].second,
+                        maxLines: 1,
+                        minFontSize: 12,
+                        maxFontSize: 16,
+                        textAlign: TextAlign.center,
+                        style: AppThemeUtils.normalSize(
+                          color:
+                              index == 0
+                                  ? Colors.white
+                                  : AppThemeUtils.colorPrimary,
                         ),
                       ),
                     ),
-                  )))),
-      Expanded(
-          child: KeyedSubtree(
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: KeyedSubtree(
               // key:  (widget.keys ?? []).isEmpty ? null: widget.keys[e.key],
               child: Container(
-                  key: widget.keys2,
-                  padding: EdgeInsets.all(5),
-                  child: ElevatedButton(
-                    //
-                    style: ElevatedButton.styleFrom(
-                        primary: index == 1
-                            ?AppThemeUtils.colorPrimary
-                            : Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(4)),
-                            side: BorderSide(
-                                color: index == 1
-                                    ?AppThemeUtils.colorPrimary
-                                    :AppThemeUtils.colorPrimary,
-                                width: 1))),
-                    onPressed: () {
-                      if (widget.tapIndex != null) {
-                        setState(() {
-                          if (1 == index && widget.everyEnable == false) {
-                            // index = null;
-                            // widget.tapIndex(null);
-                          } else {
-                            index = 1;
-                            widget.tapIndex?.call(widget.title![1]);
-                          }
-                        });
-                      }
-                    },
-                    child: Container(
-                      height: 45,
-                      child: Center(
-                        child: AutoSizeText(
-                          widget.title![1].second,
-                          maxLines: 1,
-                          minFontSize: 12,
-                          maxFontSize: 16,
-                          textAlign: TextAlign.center,
-                          style: AppThemeUtils.normalSize(
-                            color: index == 1
-                                ? Colors.white
-                                :AppThemeUtils.colorPrimary,
-                          ),
+                key: widget.keys2,
+                padding: EdgeInsets.all(5),
+                child: ElevatedButton(
+                  //
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        index == 1 ? AppThemeUtils.colorPrimary : Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      side: BorderSide(
+                        color:
+                            index == 1
+                                ? AppThemeUtils.colorPrimary
+                                : AppThemeUtils.colorPrimary,
+                        width: 1,
+                      ),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (widget.tapIndex != null) {
+                      setState(() {
+                        if (1 == index && widget.everyEnable == false) {
+                          // index = null;
+                          // widget.tapIndex(null);
+                        } else {
+                          index = 1;
+                          widget.tapIndex?.call(widget.title![1]);
+                        }
+                      });
+                    }
+                  },
+                  child: Container(
+                    height: 45,
+                    child: Center(
+                      child: AutoSizeText(
+                        widget.title![1].second,
+                        maxLines: 1,
+                        minFontSize: 12,
+                        maxFontSize: 16,
+                        textAlign: TextAlign.center,
+                        style: AppThemeUtils.normalSize(
+                          color:
+                              index == 1
+                                  ? Colors.white
+                                  : AppThemeUtils.colorPrimary,
                         ),
                       ),
                     ),
-                  ))))
-    ]));
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

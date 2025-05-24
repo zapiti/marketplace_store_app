@@ -1,9 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/account/page/alter_bank_page.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/account/page/alter_pass_page.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/account/page/help_page.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/account/page/wallet_page.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/page/alter_bank_page.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/page/alter_pass_page.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/page/help_page.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/page/wallet_page.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
 
 import 'account_controller.dart';
 import 'account_page.dart';

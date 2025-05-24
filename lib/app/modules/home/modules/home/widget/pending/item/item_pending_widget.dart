@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/home/model/order.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/date/date_utils.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/home/model/order.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/date/date_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class ItemPendingWidget extends StatelessWidget {
   final Order itemPedingOrder;

@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/home/widget/history/page/details_pending_page.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/home/widget/pending/page/details_pending_page.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/home/widget/history/page/details_pending_page.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/home/widget/pending/page/details_pending_page.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
 
 import 'home_controller.dart';
 import 'home_initial_page.dart';

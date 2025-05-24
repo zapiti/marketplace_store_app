@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:marketplace_store_app/app/utils/image_utils.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/image_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class UserImageWidget extends StatefulWidget {
   final double? height;
@@ -41,10 +41,12 @@ class _UserImageWidgetState extends State<UserImageWidget> {
     var pickedFile;
     File? photo2;
     try {
-      pickedFile = await ImagePicker().getImage(
+      pickedFile = await ImagePicker().pickImage(
           source: source, maxWidth: 300, maxHeight: 300);
 
-      photo2 = pickedFile;
+      if (pickedFile != null) {
+        photo2 = File(pickedFile.path);
+      }
     } catch (e) {
       print(e);
     }
@@ -193,7 +195,7 @@ class _UserImageWidgetState extends State<UserImageWidget> {
                                     _settingModalBottomSheet(context);
                                   },
                             style: ElevatedButton.styleFrom(
-                                primary: Colors.grey, elevation: 0),
+                                backgroundColor: Colors.grey, elevation: 0),
                           ),
                         ),
                       ),

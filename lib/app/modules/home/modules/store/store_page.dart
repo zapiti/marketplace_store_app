@@ -1,16 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/app_bloc.dart';
-import 'package:marketplace_store_app/app/component/builder/builder_component.dart';
-import 'package:marketplace_store_app/app/component/builder/builder_infinity_listView_component.dart';
-import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
-import 'package:marketplace_store_app/app/component/state_view/stateful_wrapper.dart';
-import 'package:marketplace_store_app/app/models/current_user.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/modules/home/item/item_product_edit.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/app_bloc.dart';
+import 'package:new_marketplace_app/app/component/builder/builder_component.dart';
+import 'package:new_marketplace_app/app/component/builder/builder_infinity_listView_component.dart';
+import 'package:new_marketplace_app/app/component/picker/user_image_widget.dart';
+import 'package:new_marketplace_app/app/component/state_view/stateful_wrapper.dart';
+import 'package:new_marketplace_app/app/models/current_user.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/modules/home/item/item_product_edit.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 import 'store_controller.dart';
 
 class StorePage extends StatefulWidget {
@@ -30,10 +30,7 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: buildBody(),
-    );
+    return Scaffold(appBar: buildAppBar(), body: buildBody());
   }
 
   StreamBuilder<CurrentUser?> buildBody() {
@@ -46,7 +43,9 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
   }
 
   StatefulWrapper buildBodyPage(
-      BuildContext context, AsyncSnapshot<CurrentUser?> snapshotUser) {
+    BuildContext context,
+    AsyncSnapshot<CurrentUser?> snapshotUser,
+  ) {
     return StatefulWrapper(
       onInit: () {},
       child: Column(
@@ -54,11 +53,11 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
           Stack(
             children: [
               buildWallpaper(context, snapshotUser),
-              buildTitleTile(snapshotUser)
+              buildTitleTile(snapshotUser),
             ],
           ),
           buildAddProductButton(context),
-          buildProductListWidget()
+          buildProductListWidget(),
         ],
       ),
     );
@@ -73,11 +72,12 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
         // tryAgain: () {
         //   _blocFaq.getListFaq();
         // },
-        buildBodyFunc: (context, response) => builderInfinityListViewComponent(
-          response,
-          callMoreElements: (page) => {},
-          buildBody: (content) => ItemProductEdit(content),
-        ),
+        buildBodyFunc:
+            (context, response) => builderInfinityListViewComponent(
+              response,
+              callMoreElements: (page) => {},
+              buildBody: (content) => ItemProductEdit(content),
+            ),
       ),
     );
   }
@@ -93,7 +93,7 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
           style: AppThemeUtils.normalSize(color: AppThemeUtils.colorPrimary),
         ),
         style: ElevatedButton.styleFrom(
-          primary: AppThemeUtils.whiteColor,
+          backgroundColor: AppThemeUtils.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(4.0),
             side: BorderSide(color: AppThemeUtils.colorPrimary),
@@ -149,19 +149,21 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
                         minFontSize: 8,
                         style: AppThemeUtils.normalSize(),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }
 
   Container buildWallpaper(
-      BuildContext context, AsyncSnapshot<CurrentUser?> snapshotUser) {
+    BuildContext context,
+    AsyncSnapshot<CurrentUser?> snapshotUser,
+  ) {
     return Container(
       child: UserImageWidget(
         changeImage: (txt) {
@@ -177,9 +179,6 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
   }
 
   AppBar buildAppBar() {
-    return AppBar(
-      title: Text("Pedidos"),
-      centerTitle: true,
-    );
+    return AppBar(title: Text("Pedidos"), centerTitle: true);
   }
 }

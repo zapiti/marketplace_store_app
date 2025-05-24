@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 Function? _customFunction;
 String? _imagePath;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/component/load/load_elements.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/component/load/load_elements.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
 
 Widget builderInfinityListViewComponent(ResponsePaginated? response,
     {Function? callMoreElements,

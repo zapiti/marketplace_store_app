@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/component/load/load_elements.dart';
-import 'package:marketplace_store_app/app/component/state_view/empty_view_mobile.dart';
-import 'package:marketplace_store_app/app/component/state_view/stateful_wrapper.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/utils/object/object_utils.dart';
-import 'package:marketplace_store_app/app/utils/response/response_utils.dart';
+import 'package:new_marketplace_app/app/component/load/load_elements.dart';
+import 'package:new_marketplace_app/app/component/state_view/empty_view_mobile.dart';
+import 'package:new_marketplace_app/app/component/state_view/stateful_wrapper.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/utils/object/object_utils.dart';
+import 'package:new_marketplace_app/app/utils/response/response_utils.dart';
 
 Widget builderComponent<T>(
     {required Stream<T> stream,

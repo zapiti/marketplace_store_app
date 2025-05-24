@@ -1,9 +1,9 @@
-import 'package:marketplace_store_app/app/modules/home/modules/account/account_module.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/home/home_controller.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/home/home_page_module.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/store/store_controller.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/store/store_module.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/account_module.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/home/home_controller.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/home/home_page_module.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/store/store_controller.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/store/store_module.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 

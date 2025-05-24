@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
-import 'package:marketplace_store_app/app/modules/login/core/login_repository.dart';
+import 'package:new_marketplace_app/app/component/dialog/dialog_generic.dart';
+import 'package:new_marketplace_app/app/modules/login/core/login_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoginRememberBloc extends Disposable {

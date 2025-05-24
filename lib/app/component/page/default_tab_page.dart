@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 // ignore: must_be_immutable
 class DefaultTabPage extends StatefulWidget {
@@ -13,13 +13,14 @@ class DefaultTabPage extends StatefulWidget {
   final int? initialPage;
   TabController? tabController;
 
-  DefaultTabPage(
-      {this.title,
-        this.page,
-        this.neverScroll,
-        this.changeTab,
-        this.initialPage,
-        this.tapIndex});
+  DefaultTabPage({
+    this.title,
+    this.page,
+    this.neverScroll,
+    this.changeTab,
+    this.initialPage,
+    this.tapIndex,
+  });
 
   @override
   _DefaultTabPageState createState() => _DefaultTabPageState();
@@ -34,14 +35,14 @@ class _DefaultTabPageState extends State<DefaultTabPage>
   void initState() {
     super.initState();
     tabController = new TabController(
-        vsync: this,
-        length: widget.page?.length ?? 0,
-        initialIndex: widget.initialPage ?? 0)
-      ..addListener(() {
-        setState(() {
-          index = tabController?.index ?? -1;
-        });
+      vsync: this,
+      length: widget.page?.length ?? 0,
+      initialIndex: widget.initialPage ?? 0,
+    )..addListener(() {
+      setState(() {
+        index = tabController?.index ?? -1;
       });
+    });
 
     if (widget.changeTab != null) {
       widget.tabController = tabController;
@@ -58,73 +59,80 @@ class _DefaultTabPageState extends State<DefaultTabPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
-        body: Column(
-          children: <Widget>[
-            Container(
-
-                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                child: Row(
-                    children: widget.title
-                        ?.map<Widget>((e) =>
-                        Expanded(
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: index == widget.title?.indexOf(e)
-                                      ? Theme
-                                      .of(context)
-                                      .primaryColor
+      body: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            child: Row(
+              children:
+                  widget.title
+                      ?.map<Widget>(
+                        (e) => Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  index == widget.title?.indexOf(e)
+                                      ? Theme.of(context).primaryColor
                                       : Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                      BorderRadius.all(Radius.circular(0)),
-                                      side: BorderSide(
-                                          color: index ==
-                                              widget.title?.indexOf(e)
-                                              ? Theme
-                                              .of(context)
-                                              .primaryColor
-                                              : Theme
-                                              .of(context)
-                                              .primaryColor,
-                                          width: 1))),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(0),
+                                ),
+                                side: BorderSide(
+                                  color:
+                                      index == widget.title?.indexOf(e)
+                                          ? Theme.of(context).primaryColor
+                                          : Theme.of(context).primaryColor,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
 
-                              onPressed: () {
-                                if (widget.tapIndex != null) {
-                                  widget.tapIndex?.call(widget.title?.indexOf(e) ?? 0 );
-                                }
-                                tabController?.animateTo(widget.title?.indexOf(
-                                    e) ?? 0);
-                              },
-                              child: Container(
-                                height: 40,
-                                child: Center(
-                                  child: AutoSizeText(
-                                    e,
-                                    maxLines: 2,
-                                    minFontSize: 12,
-                                    maxFontSize: 13,
-                                    textAlign: TextAlign.center,
-                                    style: AppThemeUtils.normalSize(
-                                        color: index == widget.title?.indexOf(e)
+                            onPressed: () {
+                              if (widget.tapIndex != null) {
+                                widget.tapIndex?.call(
+                                  widget.title?.indexOf(e) ?? 0,
+                                );
+                              }
+                              tabController?.animateTo(
+                                widget.title?.indexOf(e) ?? 0,
+                              );
+                            },
+                            child: Container(
+                              height: 40,
+                              child: Center(
+                                child: AutoSizeText(
+                                  e,
+                                  maxLines: 2,
+                                  minFontSize: 12,
+                                  maxFontSize: 13,
+                                  textAlign: TextAlign.center,
+                                  style: AppThemeUtils.normalSize(
+                                    color:
+                                        index == widget.title?.indexOf(e)
                                             ? Colors.white
-                                            : Theme
-                                            .of(context)
-                                            .primaryColor,
-                                        fontWeight: FontWeight.bold),
+                                            : Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
-                            )))
-                        .toList() ?? [])),
-            Expanded(
-                child: TabBarView(
-                  physics: widget.neverScroll ?? ClampingScrollPhysics(),
-                  controller: tabController,
-                  children: widget.page  ?? [],
-                )),
-          ],
-        ));
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList() ??
+                  [],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              physics: widget.neverScroll ?? ClampingScrollPhysics(),
+              controller: tabController,
+              children: widget.page ?? [],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

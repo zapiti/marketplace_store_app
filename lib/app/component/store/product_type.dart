@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/utils/market/utils_market.dart';
-import 'package:marketplace_store_app/app/utils/market/utils_product.dart';
+import 'package:new_marketplace_app/app/utils/market/utils_market.dart';
+import 'package:new_marketplace_app/app/utils/market/utils_product.dart';
 
 class ProductType extends StatefulWidget {
   final TextEditingController typeController;

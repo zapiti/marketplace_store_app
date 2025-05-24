@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/core/request_core.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/account/model/wallet_data.dart';
+import 'package:new_marketplace_app/app/core/request_core.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/model/wallet_data.dart';
 
 class AccountRepository {
   var _requestManager = Modular.get<RequestCore>();

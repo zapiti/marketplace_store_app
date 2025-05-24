@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:marketplace_store_app/app/image/image_path.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/image/image_path.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class SuccessRegisterPage extends StatefulWidget {
   @override
@@ -59,7 +59,7 @@ class _SuccessRegisterPageState extends State<SuccessRegisterPage> {
           child: ElevatedButton(
             child: Text("Confirmar"),
             style:
-                ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+                ElevatedButton.styleFrom(backgroundColor: AppThemeUtils.colorPrimary),
             onPressed: () {
               Navigator.of(context)
                   .popUntil((route) => route.isFirst);

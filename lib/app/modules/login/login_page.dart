@@ -1,13 +1,12 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:marketplace_store_app/app/image/image_logo_widget.dart';
-import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/image/image_logo_widget.dart';
+import 'package:new_marketplace_app/app/modules/login/login_bloc.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -22,14 +21,14 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        body: Scaffold(
-          body: SingleChildScrollView(
-            child:  Container(
-
-    height: MediaQuery.of(context).size.height,
-    padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom ),
-    child:Column(
+      body: Scaffold(
+        body: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
@@ -39,122 +38,173 @@ class _LoginPageState extends State<LoginPage> {
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25),
                       child: SingleChildScrollView(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            child: GetLogoIcon2(),
-                            padding: EdgeInsets.only(bottom: 30, top: 30),
-                          ),
-                          Padding(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              child: GetLogoIcon2(),
+                              padding: EdgeInsets.only(bottom: 30, top: 30),
+                            ),
+                            Padding(
                               padding: EdgeInsets.symmetric(horizontal: 10),
                               child: RichText(
-                                  textAlign: TextAlign.center,
-                                  text: TextSpan(
-                                    text: "",
-                                    style: AppThemeUtils.normalSize(
-                                        color: AppThemeUtils.black,
-                                        fontSize: 26),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: "Bem-vindo! Insira seu",
-                                          style: AppThemeUtils.normalSize(
-                                              fontSize: 18)),
-                                      TextSpan(
-                                          text: " e-mail ",
-                                          style: AppThemeUtils.normalBoldSize(
-                                              fontSize: 16)),
-                                      TextSpan(
-                                          text: "para acessar sua conta:",
-                                          style: AppThemeUtils.normalSize(
-                                              fontSize: 18)),
-                                    ],
-                                  ))),
-                          Padding(
-                              padding:
-                                  EdgeInsets.only(top: 20, left: 10, right: 10),
+                                textAlign: TextAlign.center,
+                                text: TextSpan(
+                                  text: "",
+                                  style: AppThemeUtils.normalSize(
+                                    color: AppThemeUtils.black,
+                                    fontSize: 26,
+                                  ),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text: "Bem-vindo! Insira seu",
+                                      style: AppThemeUtils.normalSize(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: " e-mail ",
+                                      style: AppThemeUtils.normalBoldSize(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "para acessar sua conta:",
+                                      style: AppThemeUtils.normalSize(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 20,
+                                left: 10,
+                                right: 10,
+                              ),
                               child: TextField(
-                                controller: bloc.emailController,onChanged: (text){
-                                  if(errorEmail != null){
+                                controller: bloc.emailController,
+                                onChanged: (text) {
+                                  if (errorEmail != null) {
                                     setState(() {
                                       errorEmail = null;
                                     });
                                   }
-
-                              },
-                                decoration: InputDecoration(errorText: errorEmail,
-                                    border: OutlineInputBorder(
-                                        borderSide: BorderSide()),
-                                    labelText: 'E-mail'),
-                              )),
-                          Padding(
-                            padding:
-                                EdgeInsets.only(top: 20, left: 10, right: 10),
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    primary: AppThemeUtils.colorPrimary),
-                                child: Text(
-                                  "CONTINUAR",
-                                  style: AppThemeUtils.normalSize(
-                                      color: AppThemeUtils.whiteColor),
-                                ),
-                                onPressed: () {
-                                  // if(EmailValidator.validate(bloc.emailController.text)){
-                                    Modular.to.pushNamed(ConstantsRoutes.CALL_LOGIN);
-
-                                  // }else{
-                                  //   setState(() {
-                                  //
-                                  //     errorEmail = "Adicione um e-mail válido";
-                                  //   });
-                                  // }
-
                                 },
+                                decoration: InputDecoration(
+                                  errorText: errorEmail,
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide(),
+                                  ),
+                                  labelText: 'E-mail',
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: FlatButton(
-                                padding: EdgeInsets.all(12),
-                                color: Colors.transparent,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Ainda não tem uma conta?",
-                                      style: AppThemeUtils.normalSize(
-                                          fontSize: 14),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 20,
+                                left: 10,
+                                right: 10,
+                              ),
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: 50,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppThemeUtils.colorPrimary,
+                                  ),
+                                  child: Text(
+                                    "CONTINUAR",
+                                    style: AppThemeUtils.normalSize(
+                                      color: AppThemeUtils.whiteColor,
                                     ),
-                                    Text(
-                                      "Cadastre-se",
-                                      style: AppThemeUtils.normalSize(
+                                  ),
+                                  onPressed: () {
+                                    // if(EmailValidator.validate(bloc.emailController.text)){
+                                    Modular.to.pushNamed(
+                                      ConstantsRoutes.CALL_LOGIN,
+                                    );
+
+                                    // }else{
+                                    //   setState(() {
+                                    //
+                                    //     errorEmail = "Adicione um e-mail válido";
+                                    //   });
+                                    // }
+                                  },
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: 10,
+                                left: 10,
+                                right: 10,
+                              ),
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: 50,
+                                child: OutlinedButton(
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                      color: AppThemeUtils.colorPrimary,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    "ENTRAR SEM USUÁRIO",
+                                    style: AppThemeUtils.normalSize(
+                                      color: AppThemeUtils.colorPrimary,
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    bloc.enterWithoutUser(context);
+                                  },
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 10),
+                              child: SizedBox(
+                                width: double.infinity,
+                                child: TextButton(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Ainda não tem uma conta?",
+                                        style: AppThemeUtils.normalSize(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Cadastre-se",
+                                        style: AppThemeUtils.normalSize(
                                           color: AppThemeUtils.colorPrimary,
-                                          fontSize: 14),
-                                    ),
-                                  ],
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onPressed: () {
+                                    Modular.to.pushNamed(
+                                      ConstantsRoutes.CALL_REGISTRE,
+                                    );
+                                  },
                                 ),
-                                onPressed: () {
-                                  Modular.to.pushNamed(ConstantsRoutes.CALL_REGISTRE);
-                                },
                               ),
                             ),
-                          )
-                        ],
-                      )),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ],
-            )),
+            ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

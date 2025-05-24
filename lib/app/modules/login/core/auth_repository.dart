@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/core/auth/auth_repository_interface.dart';
-import 'package:marketplace_store_app/app/core/request_core.dart';
-import 'package:marketplace_store_app/app/models/current_user.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/models/user_entity.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dart';
+import 'package:new_marketplace_app/app/core/auth/auth_repository_interface.dart';
+import 'package:new_marketplace_app/app/core/request_core.dart';
+import 'package:new_marketplace_app/app/models/current_user.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/models/user_entity.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/preferences/local_data_store.dart';
 
 
 import '../../../app_bloc.dart';

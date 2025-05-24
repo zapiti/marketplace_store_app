@@ -3,15 +3,15 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:marketplace_store_app/app/component/load/dialog_loading.dart';
-import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
-import 'package:marketplace_store_app/app/models/code_response.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/component/load/dialog_loading.dart';
+import 'package:new_marketplace_app/app/configuration/app_configuration.dart';
+import 'package:new_marketplace_app/app/models/code_response.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
 
-import 'package:marketplace_store_app/app/utils/network/network_service.dart';
+import 'package:new_marketplace_app/app/utils/network/network_service.dart';
 
-import 'package:marketplace_store_app/app/utils/response/response_utils.dart';
-import 'package:marketplace_store_app/app/utils/string/string_file.dart';
+import 'package:new_marketplace_app/app/utils/response/response_utils.dart';
+import 'package:new_marketplace_app/app/utils/string/string_file.dart';
 
 import 'client/api_client.dart';
 

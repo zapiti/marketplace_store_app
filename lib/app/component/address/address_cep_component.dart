@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/component/address/cep_controller.dart';
+import 'package:new_marketplace_app/app/component/address/cep_controller.dart';
 
 class AddressCepComponent extends StatefulWidget {
   final TextEditingController zipCodeController;

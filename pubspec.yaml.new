@@ -1,0 +1,46 @@
+name: new_marketplace_app
+description: "Aplicativo marketplace aplicativo"
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  jwt_decode: any
+  another_flushbar: any
+  cpf_cnpj_validator: any
+  search_cep: any
+  timelines: any
+  flutter_barcode_scanner: any
+  image_cropper: any
+  image_picker: any
+  flutter_masked_text2: any
+  email_validator: any
+  flutter_svg: any
+  fluttericon: any
+  flutter_secure_storage: any
+  auto_size_text: any
+  google_fonts: any
+  connectivity_plus: any
+  dio: any
+  flutter_feather_icons: any
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: any
+  flutter_modular: any
+  rxdart: any
+  shared_preferences: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_modular_test: any
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/

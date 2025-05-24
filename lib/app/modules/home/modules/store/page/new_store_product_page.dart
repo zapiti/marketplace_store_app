@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
-import 'package:marketplace_store_app/app/component/store/product_type.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
-import 'package:marketplace_store_app/app/utils/utils.dart';
+import 'package:new_marketplace_app/app/component/picker/user_image_widget.dart';
+import 'package:new_marketplace_app/app/component/store/product_type.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/utils.dart';
 import '../store_controller.dart';
 
 class NewStoreProductPage extends StatefulWidget {
@@ -59,7 +59,7 @@ class _NewStoreProductPageState
           style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
         ),
         onPressed: onPressedMethod,
-        style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+        style: ElevatedButton.styleFrom(backgroundColor: AppThemeUtils.colorPrimary),
       ),
     );
   }

@@ -1,32 +1,34 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/component/load/load_elements.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
-import 'package:marketplace_store_app/app/utils/string/string_file.dart';
+import 'package:new_marketplace_app/app/component/load/load_elements.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/string/string_file.dart';
 
-void showGenericDialog(
-    {IconData? iconData,
-    required BuildContext context,
-    String? title,
-    String? description,
-    String? subtitle,
-    VoidCallback? positiveCallback,
-    VoidCallback? negativeCallback,
-    String? positiveText,
-    String? negativeText,
-    Color? color,
-    bool hideSubTitle = true,
-    Widget? customWidget,
-    bool isLight = false,
-    bool containsPop = true,
-    String? imagePath,
-    Stream? streamLoad,
-    Color? topColor,
-    int? multLineButton}) {
+void showGenericDialog({
+  IconData? iconData,
+  required BuildContext context,
+  String? title,
+  String? description,
+  String? subtitle,
+  VoidCallback? positiveCallback,
+  VoidCallback? negativeCallback,
+  String? positiveText,
+  String? negativeText,
+  Color? color,
+  bool hideSubTitle = true,
+  Widget? customWidget,
+  bool isLight = false,
+  bool containsPop = true,
+  String? imagePath,
+  Stream? streamLoad,
+  Color? topColor,
+  int? multLineButton,
+}) {
   // FocusScope.of(context).requestFocus(FocusNode());
   showDialog(
-      context: context,
-      builder: (ctx) => _DialogGeneric(
+    context: context,
+    builder:
+        (ctx) => _DialogGeneric(
           iconData: iconData,
           title: title,
           description: description,
@@ -43,7 +45,9 @@ void showGenericDialog(
           color: color,
           multLineButton: multLineButton,
           isLight: isLight,
-          hideSubTitle: hideSubTitle));
+          hideSubTitle: hideSubTitle,
+        ),
+  );
 }
 
 class _DialogGeneric extends StatelessWidget {
@@ -65,316 +69,324 @@ class _DialogGeneric extends StatelessWidget {
   final Widget? customWidget;
   final Stream? streamLoad;
 
-  _DialogGeneric(
-      {this.iconData,
-      this.title,
-      this.topColor,
-      this.description,
-      this.positiveCallback,
-      this.negativeCallback,
-      this.positiveText,
-      this.customWidget,
-      this.negativeText,
-      this.color,
-      this.isLight = true,
-      this.containsPop = true,
-      this.subtitle,
-      this.hideSubTitle = true,
-      this.imagePath,
-      this.multLineButton,
-      this.streamLoad});
+  _DialogGeneric({
+    this.iconData,
+    this.title,
+    this.topColor,
+    this.description,
+    this.positiveCallback,
+    this.negativeCallback,
+    this.positiveText,
+    this.customWidget,
+    this.negativeText,
+    this.color,
+    this.isLight = true,
+    this.containsPop = true,
+    this.subtitle,
+    this.hideSubTitle = true,
+    this.imagePath,
+    this.multLineButton,
+    this.streamLoad,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
-          child: Container(
-              width: MediaQuery.of(context).size.width > 435
+        child: Container(
+          width:
+              MediaQuery.of(context).size.width > 435
                   ? 350
                   : MediaQuery.of(context).size.width * 0.8,
-              child: Material(
-                  color: Colors.transparent,
-                  child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: ListBody(children: <Widget>[
-                        Container(
-                                    padding: EdgeInsets.only(top: 0, bottom: 0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(20.0)),
-                                      border: Border.all(
-                                          color: Colors.white, width: 0),
-                                      shape: BoxShape.rectangle,
-                                    ),
-                                    child:  StreamBuilder(
-                                        stream: streamLoad,
-                                        initialData: false,
-                                        builder: (context, snapshot) => (snapshot.data as bool)
-                                            ? Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                          children: [
-                                            loadElements(context),
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+              child: ListBody(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(top: 0, bottom: 0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      border: Border.all(color: Colors.white, width: 0),
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: StreamBuilder(
+                      stream: streamLoad,
+                      initialData: false,
+                      builder:
+                          (context, snapshot) =>
+                              (snapshot.data as bool)
+                                  ? Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      loadElements(context),
 
-                                        Container(
-                                          padding: EdgeInsets.all(10),
-                                          child:   Text(
-                                              "Carregando...",
-                                              style: AppThemeUtils.normalSize(color: AppThemeUtils.colorPrimary),
-                                            ))
-                                          ],
-                                        )
-                                            :Column(
-                                      children: <Widget>[
-                                        Container(
-                                            decoration: BoxDecoration(
-                                                color:
-                                                    AppThemeUtils.colorPrimary,
-                                                border: Border.all(
-                                                  color: Colors.transparent,
-                                                ),
-                                                borderRadius: BorderRadius.only(
-                                                    topRight:
-                                                        Radius.circular(20),
-                                                    topLeft:
-                                                        Radius.circular(20))),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  margin: EdgeInsets.only(
-                                                      top: 5,
-                                                      bottom: 5,right: 5,
-                                                      left: 10),
-                                                  child: imagePath != null
-                                                      ? Image.asset(
-                                                          imagePath ?? '',
-                                                          height: 60,
-                                                          width: 60,
-                                                        )
-                                                      : Icon(
-                                                          iconData ?? Icons.error,
-                                                          color: color ??
-                                                              AppThemeUtils
-                                                                  .whiteColor,
-                                                          size: 30,
-                                                        ),
-                                                ),
-
-                                                Expanded(
-                                                    child: Container(
-                                                        margin: EdgeInsets.only(
-                                                            top: 10,
-                                                            bottom: 10,
-                                                            right: 10),
-                                                        child: AutoSizeText(
-                                                          title ?? '',
-                                                          minFontSize: 10,
-                                                          maxLines: 1,
-                                                          style: AppThemeUtils
-                                                              .normalSize(
-                                                                  color: color ??
-                                                                      AppThemeUtils
-                                                                          .whiteColor,
-                                                                  fontSize: 18),
-                                                        ))),
-                                              ],
-                                            )),
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              top: 20, bottom: 10),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(20.0)),
-                                            border: Border.all(
-                                                color: Colors.white, width: 1),
-                                            shape: BoxShape.rectangle,
+                                      Container(
+                                        padding: EdgeInsets.all(10),
+                                        child: Text(
+                                          "Carregando...",
+                                          style: AppThemeUtils.normalSize(
+                                            color: AppThemeUtils.colorPrimary,
                                           ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Container(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 0),
-                                                child: Center(
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: <Widget>[
-                                                      Flexible(
-                                                        child: Wrap(
-                                                          children: <Widget>[
-                                                            customWidget ??
-                                                                Padding(
-                                                                  padding: EdgeInsets.all(10),
-                                                                  child: Text(
-                                                                    description ?? '',
-                                                                    textAlign:
-                                                                    TextAlign
-                                                                        .center,
-                                                                    style: AppThemeUtils
-                                                                        .normalSize(color: AppThemeUtils.black),
-                                                                  ),
-                                                                ),
-                                                          ],
-                                                        ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                  : Column(
+                                    children: <Widget>[
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: AppThemeUtils.colorPrimary,
+                                          border: Border.all(
+                                            color: Colors.transparent,
+                                          ),
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            topLeft: Radius.circular(20),
+                                          ),
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              margin: EdgeInsets.only(
+                                                top: 5,
+                                                bottom: 5,
+                                                right: 5,
+                                                left: 10,
+                                              ),
+                                              child:
+                                                  imagePath != null
+                                                      ? Image.asset(
+                                                        imagePath ?? '',
+                                                        height: 60,
+                                                        width: 60,
+                                                      )
+                                                      : Icon(
+                                                        iconData ?? Icons.error,
+                                                        color:
+                                                            color ??
+                                                            AppThemeUtils
+                                                                .whiteColor,
+                                                        size: 30,
                                                       ),
-                                                    ],
-                                                  ),
+                                            ),
+
+                                            Expanded(
+                                              child: Container(
+                                                margin: EdgeInsets.only(
+                                                  top: 10,
+                                                  bottom: 10,
+                                                  right: 10,
+                                                ),
+                                                child: AutoSizeText(
+                                                  title ?? '',
+                                                  minFontSize: 10,
+                                                  maxLines: 1,
+                                                  style:
+                                                      AppThemeUtils.normalSize(
+                                                        color:
+                                                            color ??
+                                                            AppThemeUtils
+                                                                .whiteColor,
+                                                        fontSize: 18,
+                                                      ),
                                                 ),
                                               ),
-                                              Container(
-                                                padding: EdgeInsets.only(
-                                                    top: 10, bottom: 0),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                          top: 20,
+                                          bottom: 10,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(20.0),
+                                          ),
+                                          border: Border.all(
+                                            color: Colors.white,
+                                            width: 1,
+                                          ),
+                                          shape: BoxShape.rectangle,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Container(
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: 0,
+                                              ),
+                                              child: Center(
                                                 child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
                                                   children: <Widget>[
-                                                    negativeCallback == null
-                                                        ? SizedBox()
-                                                        : Expanded(
-                                                            child: Center(
-                                                            child: Container(
-                                                                height: 35,
-                                                                width: 200,
-                                                                margin: EdgeInsets
-                                                                    .only(
-                                                                        right:
-                                                                            10,
-                                                                        left:
-                                                                            10,
-                                                                        bottom:
-                                                                            10,
-                                                                        top: 5),
-                                                                child:
-                                                                    RaisedButton(
-                                                                  color: isLight
-                                                                      ? Colors
-                                                                          .transparent
-                                                                      : AppThemeUtils
-                                                                          .colorError,
-                                                                  elevation: 0,
-                                                                  onPressed:
-                                                                      () {
-                                                                    negativeCallback?.call();
-                                                                    if (containsPop ) {
-                                                                      Navigator.of(
-                                                                              context)
-                                                                          .pop();
-                                                                    }
-                                                                  },
-                                                                  child:
-                                                                      AutoSizeText(
-                                                                    negativeText ??
-                                                                        'Não',
-                                                                    maxLines:
-                                                                        multLineButton ??
-                                                                            1,
-                                                                    minFontSize:
-                                                                        12,
-                                                                    style: AppThemeUtils
-                                                                        .normalBoldSize(
-                                                                      color: isLight
+                                                    Flexible(
+                                                      child: Wrap(
+                                                        children: <Widget>[
+                                                          customWidget ??
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsets.all(
+                                                                      10,
+                                                                    ),
+                                                                child: Text(
+                                                                  description ??
+                                                                      '',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                  style: AppThemeUtils.normalSize(
+                                                                    color:
+                                                                        AppThemeUtils
+                                                                            .black,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                top: 10,
+                                                bottom: 0,
+                                              ),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: <Widget>[
+                                                  negativeCallback == null
+                                                      ? SizedBox()
+                                                      : Expanded(
+                                                        child: Center(
+                                                          child: Container(
+                                                            height: 35,
+                                                            width: 200,
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                  right: 10,
+                                                                  left: 10,
+                                                                  bottom: 10,
+                                                                  top: 5,
+                                                                ),
+                                                            child: ElevatedButton(
+                                                              onPressed: () {
+                                                                negativeCallback
+                                                                    ?.call();
+                                                                if (containsPop) {
+                                                                  Navigator.of(
+                                                                    context,
+                                                                  ).pop();
+                                                                }
+                                                              },
+                                                              child: AutoSizeText(
+                                                                negativeText ??
+                                                                    'Não',
+                                                                maxLines:
+                                                                    multLineButton ??
+                                                                    1,
+                                                                minFontSize: 12,
+                                                                style: AppThemeUtils.normalBoldSize(
+                                                                  color:
+                                                                      isLight
                                                                           ? AppThemeUtils
                                                                               .colorPrimary
                                                                           : AppThemeUtils
                                                                               .whiteColor,
-                                                                    ),
-                                                                  ),
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.all(Radius.circular(
-                                                                              5)),
-                                                                      side: BorderSide(
-                                                                          color: isLight
-                                                                              ? Colors.transparent
-                                                                              : AppThemeUtils.colorError,
-                                                                          width: 1)),
-                                                                )),
-                                                          )),
-                                                     Expanded(
-                                                            child: Center(
-                                                            child: Container(
-                                                                height: 35,
-                                                                width: 200,
-                                                                margin: EdgeInsets
-                                                                    .only(
-                                                                        right:
-                                                                            10,
-                                                                        left:
-                                                                            10,
-                                                                        bottom:
-                                                                            10,
-                                                                        top: 5),
-                                                                child:
-                                                                    RaisedButton(
-                                                                  color: AppThemeUtils
-                                                                      .colorPrimary,
-                                                                  elevation: 0,
-                                                                  onPressed:
-                                                                      () {
-                                                                    if(positiveCallback != null){
-                                                                      positiveCallback!();
-                                                                    }
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  Expanded(
+                                                    child: Center(
+                                                      child: Container(
+                                                        height: 35,
+                                                        width: 200,
+                                                        margin: EdgeInsets.only(
+                                                          right: 10,
+                                                          left: 10,
+                                                          bottom: 10,
+                                                          top: 5,
+                                                        ),
+                                                        child: ElevatedButton(
+                                                          onPressed: () {
+                                                            if (positiveCallback !=
+                                                                null) {
+                                                              positiveCallback!();
+                                                            }
 
-                                                                    if (containsPop) {
-                                                                      Navigator.of(
-                                                                              context)
-                                                                          .pop();
-                                                                    }
-                                                                  },
-                                                                  child: Container(
-                                                                      margin: EdgeInsets.symmetric(
-                                                                        horizontal:
-                                                                            0,
-                                                                      ),
-                                                                      child: AutoSizeText(
-                                                                        positiveText ??
-                                                                            StringFile.sim,
-                                                                        maxLines:
-                                                                            multLineButton ??
-                                                                                1,
-                                                                        minFontSize:
-                                                                            12,
-                                                                        style: AppThemeUtils
-                                                                            .normalBoldSize(
-                                                                          color:
-                                                                              AppThemeUtils.whiteColor,
-                                                                        ),
-                                                                      )),
-                                                                  shape: RoundedRectangleBorder(
-                                                                      borderRadius:
-                                                                          BorderRadius.all(
-                                                                              Radius.circular(5))),
-                                                                )),
-                                                          )),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
+                                                            if (containsPop) {
+                                                              Navigator.of(
+                                                                context,
+                                                              ).pop();
+                                                            }
+                                                          },
+                                                          child: Container(
+                                                            margin:
+                                                                EdgeInsets.symmetric(
+                                                                  horizontal: 0,
+                                                                ),
+                                                            child: AutoSizeText(
+                                                              positiveText ??
+                                                                  StringFile
+                                                                      .sim,
+                                                              maxLines:
+                                                                  multLineButton ??
+                                                                  1,
+                                                              minFontSize: 12,
+                                                              style: AppThemeUtils.normalBoldSize(
+                                                                color:
+                                                                    AppThemeUtils
+                                                                        .whiteColor,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ))),
-                      ]))))),
+                                      ),
+                                    ],
+                                  ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -395,254 +407,235 @@ class WidgetDialogGeneric extends StatelessWidget {
   final bool? containsPop;
   final String? imagePath;
 
-  WidgetDialogGeneric(
-      {this.iconData,
-      this.title,
-      this.topColor,
-      this.description,
-      this.positiveCallback,
-      this.negativeCallback,
-      this.positiveText,
-      this.negativeText,
-      this.color,
-      this.isLight = true,
-      this.containsPop = true,
-      this.subtitle,
-      this.hideSubTitle = true,
-      this.imagePath});
+  WidgetDialogGeneric({
+    this.iconData,
+    this.title,
+    this.topColor,
+    this.description,
+    this.positiveCallback,
+    this.negativeCallback,
+    this.positiveText,
+    this.negativeText,
+    this.color,
+    this.isLight = true,
+    this.containsPop = true,
+    this.subtitle,
+    this.hideSubTitle = true,
+    this.imagePath,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: SingleChildScrollView(
-          child: Container(
-              width: MediaQuery.of(context).size.width > 435
+        child: Container(
+          width:
+              MediaQuery.of(context).size.width > 435
                   ? 350
                   : MediaQuery.of(context).size.width * 0.8,
-              child: Material(
-                  color: Colors.transparent,
-                  child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: ListBody(children: <Widget>[
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.transparent),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+              child: ListBody(
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(top: 0, bottom: 0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      border: Border.all(color: Colors.white, width: 0),
+                      shape: BoxShape.rectangle,
+                    ),
+                    child: Column(
+                      children: <Widget>[
                         Container(
-                            padding: EdgeInsets.only(top: 0, bottom: 0),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                              border: Border.all(color: Colors.white, width: 0),
-                              shape: BoxShape.rectangle,
+                          decoration: BoxDecoration(
+                            color: AppThemeUtils.colorPrimary,
+                            border: Border.all(color: Colors.transparent),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(20),
+                              topLeft: Radius.circular(20),
                             ),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                    decoration: BoxDecoration(
-                                        color: AppThemeUtils.colorPrimary,
-                                        border: Border.all(
-                                          color: Colors.transparent,
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(
+                                  top: 5,
+                                  bottom: 5,
+                                  left: 20,
+                                ),
+                                child:
+                                    imagePath != null
+                                        ? Image.asset(
+                                          imagePath ?? '',
+                                          height: 60,
+                                          width: 60,
+                                        )
+                                        : Icon(
+                                          iconData ?? Icons.error,
+                                          color: AppThemeUtils.whiteColor,
+                                          size: 30,
                                         ),
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(20),
-                                            topLeft: Radius.circular(20))),
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              top: 5, bottom: 5, left: 20),
-                                          child: imagePath != null
-                                              ? Image.asset(
-                                                  imagePath ?? '',
-                                                  height: 60,
-                                                  width: 60,
-                                                )
-                                              : Icon(
-                                                  iconData ?? Icons.error,
-                                                  color:  AppThemeUtils.whiteColor,
-                                                  size: 30,
-                                                ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                            child: Container(
-                                                margin: EdgeInsets.only(
-                                                    top: 10,
-                                                    bottom: 10,
-                                                    right: 10),
-                                                child: AutoSizeText(
-                                                  title ?? '',
-                                                  minFontSize: 10,
-                                                  maxLines: 1,
-                                                  style:
-                                                      AppThemeUtils.normalSize(
-                                                          color: color ??
-                                                              AppThemeUtils
-                                                                  .whiteColor,
-                                                          fontSize: 22),
-                                                ))),
-                                      ],
-                                    )),
-                                Container(
-                                  padding: EdgeInsets.only(top: 20, bottom: 10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(20.0)),
-                                    border: Border.all(
-                                        color: Colors.white, width: 1),
-                                    shape: BoxShape.rectangle,
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(
+                                    top: 10,
+                                    bottom: 10,
+                                    right: 10,
                                   ),
-                                  child: Column(
+                                  child: AutoSizeText(
+                                    title ?? '',
+                                    minFontSize: 10,
+                                    maxLines: 1,
+                                    style: AppThemeUtils.normalSize(
+                                      color: color ?? AppThemeUtils.whiteColor,
+                                      fontSize: 22,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 20, bottom: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                            border: Border.all(color: Colors.white, width: 1),
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 0),
+                                child: Center(
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: <Widget>[
-                                      Container(
-                                        padding:
-                                            EdgeInsets.symmetric(horizontal: 0),
-                                        child: Center(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Flexible(child: description ?? SizedBox()),
-                                            ],
-                                          ),
-                                        ),
+                                      Flexible(
+                                        child: description ?? SizedBox(),
                                       ),
-                                      Container(
-                                        padding: EdgeInsets.only(
-                                            top: 20, bottom: 10),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: <Widget>[
-                                            negativeCallback == null
-                                                ? SizedBox()
-                                                : Expanded(
-                                                    child: Center(
-                                                    child: Container(
-                                                        height: 35,
-                                                        width: 200,
-                                                        margin: EdgeInsets.only(
-                                                            right: 10,
-                                                            left: 10,
-                                                            bottom: 10,
-                                                            top: 5),
-                                                        child: RaisedButton(
-                                                          color: isLight ?? false
-                                                              ? Colors
-                                                                  .transparent
-                                                              : AppThemeUtils
-                                                                  .colorError,
-                                                          elevation: 0,
-                                                          onPressed: () {
-                                                            negativeCallback?.call();
-                                                            if (containsPop ?? false) {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            }
-                                                          },
-                                                          child: AutoSizeText(
-                                                            negativeText ??
-                                                                StringFile.nao,
-                                                            maxLines: 1,
-                                                            minFontSize: 8,
-                                                            style: AppThemeUtils
-                                                                .normalBoldSize(
-                                                              color: isLight ?? false
-                                                                  ? AppThemeUtils
-                                                                      .colorPrimary
-                                                                  : AppThemeUtils
-                                                                      .whiteColor,
-                                                            ),
-                                                          ),
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .all(Radius
-                                                                          .circular(
-                                                                              5)),
-                                                              side: BorderSide(
-                                                                  color: isLight ?? false
-                                                                      ? Colors
-                                                                          .transparent
-                                                                      : AppThemeUtils
-                                                                          .colorError,
-                                                                  width: 1)),
-                                                        )),
-                                                  )),
-                                            positiveCallback == null
-                                                ? SizedBox()
-                                                : Expanded(
-                                                    child: Center(
-                                                    child: Container(
-                                                        height: 35,
-                                                        width: 200,
-                                                        margin: EdgeInsets.only(
-                                                            right: 10,
-                                                            left: 10,
-                                                            bottom: 10,
-                                                            top: 5),
-                                                        child: RaisedButton(
-                                                          color: AppThemeUtils
-                                                              .colorPrimary,
-                                                          elevation: 0,
-                                                          onPressed: () {
-                                                            positiveCallback?.call();
-                                                            if (containsPop ?? false) {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                            }
-                                                          },
-                                                          child: Container(
-                                                              margin: EdgeInsets
-                                                                  .symmetric(
-                                                                horizontal: 0,
-                                                              ),
-                                                              child:
-                                                                  AutoSizeText(
-                                                                positiveText ??
-                                                                    StringFile
-                                                                        .sim,
-                                                                maxLines: 1,
-                                                                minFontSize: 8,
-                                                                style: AppThemeUtils
-                                                                    .normalBoldSize(
-                                                                  color: AppThemeUtils
-                                                                      .whiteColor,
-                                                                ),
-                                                              )),
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          5))),
-                                                        )),
-                                                  )),
-                                          ],
-                                        ),
-                                      )
                                     ],
                                   ),
                                 ),
-                              ],
-                            )),
-                      ]))))),
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(top: 20, bottom: 10),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    negativeCallback == null
+                                        ? SizedBox()
+                                        : Expanded(
+                                          child: Center(
+                                            child: Container(
+                                              height: 35,
+                                              width: 200,
+                                              margin: EdgeInsets.only(
+                                                right: 10,
+                                                left: 10,
+                                                bottom: 10,
+                                                top: 5,
+                                              ),
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  negativeCallback?.call();
+                                                  if (containsPop ?? false) {
+                                                    Navigator.of(context).pop();
+                                                  }
+                                                },
+                                                child: AutoSizeText(
+                                                  negativeText ??
+                                                      StringFile.nao,
+                                                  maxLines: 1,
+                                                  minFontSize: 8,
+                                                  style:
+                                                      AppThemeUtils.normalBoldSize(
+                                                        color:
+                                                            isLight ?? false
+                                                                ? AppThemeUtils
+                                                                    .colorPrimary
+                                                                : AppThemeUtils
+                                                                    .whiteColor,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    positiveCallback == null
+                                        ? SizedBox()
+                                        : Expanded(
+                                          child: Center(
+                                            child: Container(
+                                              height: 35,
+                                              width: 200,
+                                              margin: EdgeInsets.only(
+                                                right: 10,
+                                                left: 10,
+                                                bottom: 10,
+                                                top: 5,
+                                              ),
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  positiveCallback?.call();
+                                                  if (containsPop ?? false) {
+                                                    Navigator.of(context).pop();
+                                                  }
+                                                },
+                                                child: Container(
+                                                  margin: EdgeInsets.symmetric(
+                                                    horizontal: 0,
+                                                  ),
+                                                  child: AutoSizeText(
+                                                    positiveText ??
+                                                        StringFile.sim,
+                                                    maxLines: 1,
+                                                    minFontSize: 8,
+                                                    style:
+                                                        AppThemeUtils.normalBoldSize(
+                                                          color:
+                                                              AppThemeUtils
+                                                                  .whiteColor,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

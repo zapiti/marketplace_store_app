@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class SimpleButtonOutlineWidget extends StatelessWidget {
   SimpleButtonOutlineWidget({required this.text, this.onPressed});
@@ -11,9 +11,7 @@ class SimpleButtonOutlineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(5),
-      child: RaisedButton(
-        padding: EdgeInsets.all(16),
-        color: AppThemeUtils.whiteColor,
+      child: ElevatedButton(
         onPressed: () {
           if (onPressed != null) {
             onPressed?.call();
@@ -23,9 +21,6 @@ class SimpleButtonOutlineWidget extends StatelessWidget {
           text,
           style: TextStyle(color: AppThemeUtils.colorPrimary, fontSize: 16),
         ),
-        shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(4.0),
-            side: BorderSide(color:AppThemeUtils.colorPrimary)),
       ),
     );
   }

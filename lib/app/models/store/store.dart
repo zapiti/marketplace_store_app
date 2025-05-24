@@ -1,4 +1,4 @@
-import 'package:marketplace_store_app/app/models/address/address.dart';
+import 'package:new_marketplace_app/app/models/address/address.dart';
 
 class Store {
   String? cnpj;

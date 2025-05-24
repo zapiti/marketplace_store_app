@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class SimpleNavigationBarWidget extends StatelessWidget
     implements ObstructingPreferredSizeWidget {

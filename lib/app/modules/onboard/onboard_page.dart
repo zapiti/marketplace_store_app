@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:marketplace_store_app/app/image/image_path.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/image/image_path.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 import 'onboard_controller.dart';
 
 class OnboardPage extends StatefulWidget {
@@ -30,7 +30,7 @@ class _OnboardPageState extends ModularState<OnboardPage, OnboardController> {
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: ElevatedButton(
           child: Text("ENTRAR"),
-          style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+          style: ElevatedButton.styleFrom(backgroundColor: AppThemeUtils.colorPrimary),
           onPressed: () {
             Modular.to.pushReplacementNamed(ConstantsRoutes.LOGIN);
           },

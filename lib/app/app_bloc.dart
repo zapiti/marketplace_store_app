@@ -2,8 +2,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 
 
-import 'package:marketplace_store_app/app/modules/login/login_bloc.dart';
-import 'package:marketplace_store_app/app/utils/preferences/local_data_store.dart';
+import 'package:new_marketplace_app/app/modules/login/login_bloc.dart';
+import 'package:new_marketplace_app/app/utils/preferences/local_data_store.dart';
 
 
 import 'package:rxdart/rxdart.dart';

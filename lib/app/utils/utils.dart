@@ -1,6 +1,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:marketplace_store_app/app/component/dialog/dialog_generic.dart';
+import 'package:new_marketplace_app/app/component/dialog/dialog_generic.dart';
 
 class Utils {
   static double? percentage(partialValue, totalValue) {

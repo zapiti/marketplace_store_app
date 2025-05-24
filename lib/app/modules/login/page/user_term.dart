@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 class UserTerm extends StatefulWidget {
   String title;
@@ -21,53 +21,57 @@ class _UserTermState extends State<UserTerm> {
   @override
   Widget build(BuildContext buildContext) {
     return Scaffold(
-        key: globalKey,
-        appBar: AppBar(backgroundColor: AppThemeUtils.colorPrimary,
-          title: Text(
-            widget.title,
-            style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
-          ),
-          automaticallyImplyLeading: true,
-          centerTitle: true,
+      key: globalKey,
+      appBar: AppBar(
+        backgroundColor: AppThemeUtils.colorPrimary,
+        title: Text(
+          widget.title,
+          style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                color: Colors.transparent,
-                child: SingleChildScrollView(
-                  child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                      child: RichText(
-                          textAlign: TextAlign.start,
-                          text: TextSpan(
-                            text: "",
-                            style: AppThemeUtils.normalSize(
-                                color: AppThemeUtils.black, fontSize: 26),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: widget.title + "\n\n",
-                                  style: AppThemeUtils.normalBoldSize(
-                                      fontSize: 26)),
-                              TextSpan(
-                                  text: titleTermOneDescription,
-                                  style:
-                                      AppThemeUtils.normalSize(fontSize: 16)),
-                              TextSpan(
-                                  text: titleTermTwoTitle,
-                                  style: AppThemeUtils.normalBoldSize(
-                                      fontSize: 26)),
-                              TextSpan(
-                                  text: titleTermTwoDescription,
-                                  style:
-                                      AppThemeUtils.normalSize(fontSize: 16)),
-                            ],
-                          ))),
+        automaticallyImplyLeading: true,
+        centerTitle: true,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: Container(
+              color: Colors.transparent,
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+                  child: RichText(
+                    textAlign: TextAlign.start,
+                    text: TextSpan(
+                      text: "",
+                      style: AppThemeUtils.normalSize(
+                        color: AppThemeUtils.black,
+                        fontSize: 26,
+                      ),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: widget.title + "\n\n",
+                          style: AppThemeUtils.normalBoldSize(fontSize: 26),
+                        ),
+                        TextSpan(
+                          text: titleTermOneDescription,
+                          style: AppThemeUtils.normalSize(fontSize: 16),
+                        ),
+                        TextSpan(
+                          text: titleTermTwoTitle,
+                          style: AppThemeUtils.normalBoldSize(fontSize: 26),
+                        ),
+                        TextSpan(
+                          text: titleTermTwoDescription,
+                          style: AppThemeUtils.normalSize(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                /*Text(
+              ),
+              /*Text(
                           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?',
                           style: TextStyle(
                               fontSize: 14,
@@ -75,79 +79,79 @@ class _UserTermState extends State<UserTerm> {
                               fontFamily: 'Metropolis_Regular',
                               color: const Color(0xff5C5C5C)),
                         ),*/
-              ),
-            ), //Text
-
-            // Accept Button
-            new Container(
-              margin: const EdgeInsets.only(
-                  left: 30.0, right: 30.0, bottom: 0.0, top: 10),
-              alignment: Alignment.center,
-              child: RaisedButton(
-                shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(5.0),
+            ),
+          ), //Text
+          // Accept Button
+          new Container(
+            margin: const EdgeInsets.only(
+              left: 30.0,
+              right: 30.0,
+              bottom: 0.0,
+              top: 10,
+            ),
+            alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(buildContext, true);
+              },
+              child: new Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 15.0,
                 ),
-                color: AppThemeUtils.colorPrimary,
-                onPressed: ()  {
-                  Navigator.pop(buildContext, true);
-                },
-                child: new Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16.0,
-                    horizontal: 15.0,
-                  ),
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new Expanded(
-                        child: Text(
-                          "Aceitar termos",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: 'Metropolis_Regular',
-                              color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ), // Next Button
-
-            Container(
-              margin: EdgeInsets.only(top: 0, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pop(buildContext, false);
-                    },
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(top: 2, right: 5, bottom: 2),
-                      child: new Text(
-                        "Recusar",
+                child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    new Expanded(
+                      child: Text(
+                        "Aceitar termos",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontSize: 14.0,
+                          fontSize: 18,
                           fontFamily: 'Metropolis_Regular',
-                          color: AppThemeUtils.colorPrimary,
+                          color: Colors.white,
                         ),
-                        textAlign: TextAlign.end,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ],
-        ));
+          ), // Next Button
+
+          Container(
+            margin: EdgeInsets.only(top: 0, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(buildContext, false);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 2, right: 5, bottom: 2),
+                    child: new Text(
+                      "Recusar",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontSize: 14.0,
+                        fontFamily: 'Metropolis_Regular',
+                        color: AppThemeUtils.colorPrimary,
+                      ),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
-Future<bool> goToTerm(String title,BuildContext context) async {
+Future<bool> goToTerm(String title, BuildContext context) async {
   var group = await Navigator.push(
     context,
     MaterialPageRoute(builder: (context) => UserTerm(title)),
@@ -158,15 +162,16 @@ Future<bool> goToTerm(String title,BuildContext context) async {
 //var titleTermOneTitle = "Política Privacidade\n\n";
 var titleTermOneDescription =
     "A sua privacidade é importante para nós. É política do fintec respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site fintec, e outros sites que possuímos e operamos. " +
-        "Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado. " +
-        "Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis ​​para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados. " +
-        "Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei. " +
-        "O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade. " +
-        "Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados. " +
-        "O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contacto connosco.";
+    "Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado. " +
+    "Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis ​​para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados. " +
+    "Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei. " +
+    "O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade. " +
+    "Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados. " +
+    "O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contacto connosco.";
 
 var titleTermTwoTitle = "\n\nPolítica de Cookies fintec\n\n";
-var titleTermTwoDescription = "O que são cookies?" +
+var titleTermTwoDescription =
+    "O que são cookies?" +
     "Como é prática comum em quase todos os sites profissionais, este site usa cookies, que são pequenos arquivos baixados no seu computador, para melhorar sua experiência. Esta página descreve quais informações eles coletam, como as usamos e por que às vezes precisamos armazenar esses cookies. Também compartilharemos como você pode impedir que esses cookies sejam armazenados, no entanto, isso pode fazer o downgrade ou 'quebrar' certos elementos da funcionalidade do site." +
     "Como usamos os cookies?" +
     "Utilizamos cookies por vários motivos, detalhados abaixo. Infelizmente, na maioria dos casos, não existem opções padrão do setor para desativar os cookies sem desativar completamente a funcionalidade e os recursos que eles adicionam a este site. É recomendável que você deixe todos os cookies se não tiver certeza se precisa ou não deles, caso sejam usados ​​para fornecer um serviço que você usa." +

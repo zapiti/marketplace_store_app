@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/models/page/response_paginated.dart';
-import 'package:marketplace_store_app/app/modules/home/modules/account/repository/account_repository.dart';
+import 'package:new_marketplace_app/app/models/page/response_paginated.dart';
+import 'package:new_marketplace_app/app/modules/home/modules/account/repository/account_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AccountController extends Disposable {

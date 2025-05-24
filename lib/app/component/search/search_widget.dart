@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/core/util/color_util.dart';
+import 'package:new_marketplace_app/app/core/util/color_util.dart';
 
 class SearchWidget extends StatelessWidget {
   final String? hint;

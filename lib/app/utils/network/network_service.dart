@@ -1,6 +1,6 @@
 
 import 'dart:async'; //For StreamController/Stream
-import 'package:connectivity/connectivity.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class NetWorkService {
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marketplace_store_app/app/image/image_path.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/image/image_path.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 import '../store_controller.dart';
 
 class NewStoreProductBarCodePage extends StatefulWidget {
@@ -45,7 +45,7 @@ class _NewStoreProductBarCodePageState
         onPressed: () {
           controller.saveProducts(context);
         },
-        style: ElevatedButton.styleFrom(primary: AppThemeUtils.greyColor),
+        style: ElevatedButton.styleFrom(backgroundColor: AppThemeUtils.greyColor),
       ),
     );
   }
@@ -70,7 +70,7 @@ class _NewStoreProductBarCodePageState
           onPressed: () {
             controller.saveProductToCode(context);
           },
-          style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+          style: ElevatedButton.styleFrom(backgroundColor: AppThemeUtils.colorPrimary),
         ),
       ),
     );
@@ -90,7 +90,7 @@ class _NewStoreProductBarCodePageState
           onPressed: () {
             controller.saveProductToDigite(context);
           },
-          style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+          style: ElevatedButton.styleFrom(backgroundColor: AppThemeUtils.colorPrimary),
         ),
       ),
     );

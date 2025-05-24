@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/component/picker/user_image_widget.dart';
-import 'package:marketplace_store_app/app/component/select/custom_drop_menu.dart';
-import 'package:marketplace_store_app/app/component/select/select_button.dart';
-import 'package:marketplace_store_app/app/models/pairs.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
-import 'package:marketplace_store_app/app/utils/utils.dart';
+import 'package:new_marketplace_app/app/component/picker/user_image_widget.dart';
+import 'package:new_marketplace_app/app/component/select/custom_drop_menu.dart';
+import 'package:new_marketplace_app/app/component/select/select_button.dart';
+import 'package:new_marketplace_app/app/models/pairs.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/utils/utils.dart';
 import '../store_controller.dart';
 
 class NewStoreProductQuantityPage extends StatefulWidget {
@@ -60,7 +60,7 @@ class _NewStoreProductQuantityPageState
           style: AppThemeUtils.normalSize(color: AppThemeUtils.whiteColor),
         ),
         onPressed: controller.newStoreUnity == null ? null : onPressedMethod,
-        style: ElevatedButton.styleFrom(primary: AppThemeUtils.colorPrimary),
+        style: ElevatedButton.styleFrom(backgroundColor: AppThemeUtils.colorPrimary),
       ),
     );
   }

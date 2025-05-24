@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/routes/constants_routes.dart';
+import 'package:new_marketplace_app/app/routes/constants_routes.dart';
 
 class HomePage extends StatefulWidget {
   @override

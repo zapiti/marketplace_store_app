@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:marketplace_store_app/app/configuration/app_configuration.dart';
-import 'package:marketplace_store_app/app/core/auth/auth_repository_interface.dart';
+import 'package:new_marketplace_app/app/configuration/app_configuration.dart';
+import 'package:new_marketplace_app/app/core/auth/auth_repository_interface.dart';
 import '../../app_bloc.dart';
 
 class ApiClient {
@@ -23,8 +23,8 @@ class ApiClient {
         var header = getHeaderToken(token: user);
         options.headers = header;
 
-        options.connectTimeout = 15 * 1000; // 60 seconds
-        options.receiveTimeout = 15 * 1000; // 60 seconds
+        options.connectTimeout = Duration(milliseconds: 15 * 1000); // 15 seconds
+        options.receiveTimeout = Duration(milliseconds: 15 * 1000); // 15 seconds
 
         handler.next(options);
       }, onResponse: (Response response,handler) {
@@ -58,8 +58,7 @@ class ApiClient {
           //   options.headers.clear();
           //   options.headers = headers;
         }
-        _dio.interceptors.responseLock.unlock();
-        _dio.interceptors.requestLock.unlock();
+        // A API dio >= 5.0.0 não utiliza mais responseLock e requestLock
         handler.next(error);
       }));
     } catch (e) {}

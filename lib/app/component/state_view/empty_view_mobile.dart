@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:marketplace_store_app/app/image/image_path.dart';
-import 'package:marketplace_store_app/app/utils/theme/app_theme_utils.dart';
+import 'package:new_marketplace_app/app/image/image_path.dart';
+import 'package:new_marketplace_app/app/utils/theme/app_theme_utils.dart';
 
 Widget emptyViewMobile(BuildContext context,
     {String? emptyMessage,
@@ -34,7 +34,7 @@ Widget emptyViewMobile(BuildContext context,
               style: AppThemeUtils.normalSize(
                   color: isError
                       ? AppThemeUtils.colorError
-                      : Theme.of(context).textTheme.bodyText1?.color),
+                      : Theme.of(context).textTheme.bodyMedium?.color),
             ),
           ),
           SizedBox(height: 15,),
